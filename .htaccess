@@ -1,0 +1,44 @@
+
+
+
+Options +Indexes
+# Este es el codigo paara que se use php7.4 en servidor
+<IfModule mime_module>
+ 
+  AddHandler application/x-httpd-ea-php74___lsphp .php .php7 .phtml .html .htm
+</IfModule>
+
+
+
+
+
+# BEGIN WordPress
+# codigo original htacces de hostgator da error 500
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteRule .* - [E-HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+# RewriteBase /
+# RewriteRule ^index.php$ - [L]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule . /index.php [L]
+# </IfModule>
+# END WordPres
+
+# manda a pagina en mantenimiento
+# <IfModule mod_rewrite.c>
+# RewriteEngine on
+# RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000
+# RewriteCond %{REQUEST_URI} !/maintenance.html$ [NC]
+# RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+# RewriteRule .* /maintenance.html [R=503,L]
+# </IfModule>
+
+# Redigir a pagina de mantenimiento
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

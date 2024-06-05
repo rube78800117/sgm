@@ -1,0 +1,18 @@
+{
+    "Name":"Nombre",
+    "Profile":"Perfil de usuario",
+    "Log Out":"Cerrar sesión",
+    "Email":"Correo electrónico",
+    "Password":"Contraseña",
+    "Confirm Password":"Confirme su Contraseña",
+    "Already registered?":"¿Ya estas registrado?",
+    "Register":"Registrarse", 
+    "REGISTER":"Registrarse",
+    "Forgot your password?":"¿Olvidaste tu contraseña?",
+    "Remember me":"Recordar mi contraseña", 
+    "Home":"Inicio" 
+
+
+  
+
+}

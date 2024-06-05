@@ -1,0 +1,60 @@
+[01-Mar-2024 20:56:07 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/queue.php on line 16
+[01-Mar-2024 20:56:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Laravel\Jetstream\Features" not found in /home2/ideasfan/public_html/config/jetstream.php:46
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/jetstream.php on line 46
+[01-Mar-2024 20:56:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "App\Providers\RouteServiceProvider" not found in /home2/ideasfan/public_html/config/fortify.php:64
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/fortify.php on line 64
+[01-Mar-2024 20:56:16 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/app.php on line 16
+[01-Mar-2024 20:56:27 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/queue.php on line 16
+[01-Mar-2024 20:56:31 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/app.php on line 16
+[02-Mar-2024 02:33:09 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/services.php on line 18
+[02-Mar-2024 02:34:09 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/app.php on line 16
+[02-Mar-2024 02:34:11 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/broadcasting.php on line 18
+[02-Mar-2024 02:34:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/cache.php on line 18
+[02-Mar-2024 02:34:14 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/database.php on line 18
+[02-Mar-2024 02:34:15 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/filesystems.php on line 16
+[02-Mar-2024 02:34:16 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "App\Providers\RouteServiceProvider" not found in /home2/ideasfan/public_html/config/fortify.php:64
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/fortify.php on line 64
+[02-Mar-2024 02:34:17 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/hashing.php:32
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/hashing.php on line 32
+[02-Mar-2024 04:51:17 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home2/ideasfan/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/ideasfan/public_html/config/app.php on line 16
