@@ -65,7 +65,7 @@ class CreateOrder extends Component
         $this->validate($rules);
         $order = new Order(); 
         $order->status = 2; 
-        $order->movement_type = 0;
+        $order->movement_type = 11;
         $order->user_id = auth()->user()->id; 
         $order->reason = $this->reason; 
         $order->content = Cart::content(); 
@@ -105,7 +105,7 @@ class CreateOrder extends Component
       $order = new Order(); 
       $order->status = 2; 
       $order->user_id = auth()->user()->id; 
-      $order->movement_type = $this->warehouse_id;
+      $order->movement_type = 22;
       $order->reason = $this->reason; 
       $order->content = Cart::content(); 
       $order->approved_user_id = auth()->user()->id; 

@@ -26,7 +26,7 @@ class CreateArticleWarehouseTable extends Migration
             $table->foreign('warehouse_id')-> references ('id')->on('warehouses')-> onDelete('set null');
             $table->unsignedBigInteger('user_control')->nullable();
             $table->foreign('user_control')-> references ('id')->on('users')-> onDelete('set null');
-            $table->date('control_date');
+            $table->date('control_date')->nullable();
 
 
            

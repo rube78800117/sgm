@@ -452,22 +452,23 @@
                                         class="absolute z-50 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         style="display: none;">
                                         <!-- Contenido del menú emergente -->
-                                        <div class="py-1">
-                                            <!-- Agrega tus elementos del menú aquí -->
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-
+                                        <div class="p-4 text-sm">
+                                    
                                          
-                                        
+                                      
+
+                                           
+                                                <p class="text-gray-500 text-sm"> Fecha de control:</p> <span class="text-gray-700 font-bold ">{{$item->pivot->control_date}}</span>  <hr> 
+                                                
+                                                @livewire('mycomponents.location-article', ['locationId' => $item->pivot->location_id], key($item->id))
+                                                
+             
                                       
                                           
                                     
-                                            </a>
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                                Ultimo Control:
-                                            </a>
-                                            
+                                    
+                                       
+                                           
                                           
                                         </div>
                                     </div>
@@ -500,8 +501,7 @@
                                     </div>
                                     {{-- @livewire('card-update', ['article' => $article, 'WarehouseId'=> $item->id]) --}}
                                     @livewire('add-cart-item', ['article' => $article, 'WarehouseId' => $item->id, 'warehouses_name' => $item->name, 'line_color' => $item->station->line->color])
-                                    @livewire('mycomponents.location-article', ['locationId' => $item->pivot->location_id], key($item->id))
-                                </div>
+                                                      </div>
 
 
 

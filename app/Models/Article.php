@@ -84,7 +84,7 @@ class Article extends Model
     public function warehouses()
     {
         return $this->belongsToMany(Warehouse::class)
-            ->withPivot('quantity', 'id', 'accumulated_request', 'created_at', 'updated_at','location_id', )
+            ->withPivot('quantity', 'id', 'accumulated_request', 'created_at', 'updated_at','location_id', 'control_date' )
             ->orderBy('accumulated_request', 'desc');
     }
 

@@ -429,7 +429,7 @@ class CreateListDetail extends Component
         $this->warehouse = Warehouse::where('id', 'LIKE', $this->warehouse_id)->first();
         $warehouse = $this->warehouse;
 
-        $this->sectors = Sector::where('id', 'LIKE', $this->warehouse_id)->get();
+        $this->sectors = Sector::where('warehouse_id', 'LIKE', $this->warehouse_id)->get();
         $sectors = $this->sectors;
 
 
@@ -440,7 +440,7 @@ class CreateListDetail extends Component
     public function updatedSectorselect($sector_id)
   
     {  $this->sector_id = $sector_id;
-        $this->locations = Location::where('id', 'LIKE', $this->sector_id)->get();
+        $this->locations = Location::where('sector_id', 'LIKE', $this->sector_id)->get();
         $locations = $this->locations;
     }
     public function updatedLocationselect($location_id)
