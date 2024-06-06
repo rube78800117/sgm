@@ -1,4 +1,6 @@
 <div class="container mt-12">
+
+
     <x-jet-form-section submit="save">
         <x-slot name="title">
             Crear nuevo estante para deposito de materiales y repuestos.
@@ -7,10 +9,75 @@
 
         <x-slot name="description">
             Complete la siguiente informacion para crear una nuevo estante.
+            <div>
+                <div class="mb-2">
+                    <label for="columns" class="block text-sm font-medium text-gray-700">Número de Columnas:</label>
+                    <input wire:model="columns"  type="number" id="columns" min="1"
+                        required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                </div>
+                <div class="mb-2 flex flex-col-reverse">
+                    <label for="levels" class="block text-sm font-medium text-gray-700">Número de Niveles:</label>
+                    <input type="number" id="levels" wire:model="levels" min="1" max="26" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                </div>
+                <button wire:click="generate"
+                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Generar</button>
+
+                <div class="flex flex-wrap gap-4 mt-4">
+                    @foreach ($columnsData as $column)
+                        <div class="border-2 border-gray-600  flex-1 flex flex-col">
+
+
+
+                            @foreach (array_reverse($column) as $item)
+                                <!-- Mostrar desde abajo hacia arriba -->
+                                <div class=" border border-gray-700 text-center ">
+                                    <span class=" w-3 border-t  py-2">{{ $item['column'] }}{{ $item['level'] }}</span>
+
+                                </div>
+                            @endforeach
+
+                        </div>
+                    @endforeach
+
+
+
+                    {{-- 
+
+                     @foreach ($columnsData as $column)
+                          
+                                 <span>{{i++}}</span>
+                       
+                                
+                            @endforeach --}}
+
+                </div>
+                {{-- star genera estante con localizacion segun entradas --}}
+                <div class="flex justify-between">
+                    @php
+                        $sum = 0;
+                        $i = 1; // Inicializar la variable de suma en 0
+                    @endphp
+
+                    @foreach ($columnsData as $column)
+                        <span></span>
+
+                        @php
+                            $sum += $i; // Sumar el valor actual de i a la variable de suma
+                        @endphp
+                        <span>Col: {{ $sum }}</span>
+                    @endforeach
+                </div>
+                  {{-- END genera estante con localizacion segun entradas --}}
+
+            </div>
+
         </x-slot>
 
 
         <x-slot name="form">
+
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label>
                     Nombre
@@ -20,26 +87,30 @@
 
 
 
-                  <div class="p-2 rounded-md my-2 bg-gray-200">
-                <div class="">
-                    <x-jet-label>
-                        Niveles
-                    </x-jet-label>
-                    <x-jet-input wire:model="createForm.slug" type="text " class="w-full mt-1 bg-gray-100" />
-                    <x-jet-input-error for="createForm.slug" />
-                </div>
-                <div class="">
-                    <x-jet-label>
-                        Columnas
-                    </x-jet-label>
-                    <x-jet-input wire:model="createForm.slug" type="text " class="w-full mt-1 bg-gray-100" />
-                    <x-jet-input-error for="createForm.slug" />
-                </div>
-            </div>
+                {{-- <div class="p-2 rounded-md my-2 bg-gray-200">
+                    <div class="">
+                        <x-jet-label>
+                            Niveles
+                        </x-jet-label>
+                        <x-jet-input wire:model="createForm.levels" type="text " class="w-full mt-1 bg-gray-100" />
+                        <x-jet-input-error for="createForm.levelsslug" />
+                    </div>
+                    <div class="">
+                        <x-jet-label>
+                            Columnas
+                        </x-jet-label>
+                        <x-jet-input wire:model="createForm.columns" type="text " class="w-full mt-1 bg-gray-100" />
+                        <x-jet-input-error for="createForm.columns" />
+                    </div>
+                </div> --}}
+
             </div>
 
-          
 
+
+
+
+         
 
 
 
@@ -109,7 +180,7 @@
     </x-jet-action-section>
 
 
-    
+
 
 
 
@@ -148,6 +219,10 @@
                 </div>
             </div>
 
+
+
+
+
         </x-slot>
 
 
@@ -156,6 +231,8 @@
                 Actualizar sector
             </x-jet-danger-button>
         </x-slot>
+
+
 
     </x-jet-dialog-modal>
 

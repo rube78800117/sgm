@@ -8,10 +8,12 @@ use App\Models\Line;
 use App\Models\Station;
 use App\Models\Warehouse;
 use App\Models\ArticleWarehouse;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Support\Facades\DB;
 class EditConfig extends Component
 {
- public $estado, $lineselect = 1,$linewarehouse, $stationselect, $warehouseselect, $result;
+ public $estado, $lineselect = 1,$linewarehouse, $stationselect, $warehouseselect, $result, $dataOrders;
  protected $listeners = ['stockDelete'];
 
 
@@ -61,7 +63,7 @@ class EditConfig extends Component
         }
     }
     public function render()
-    {   $this->estado=Config::find(1);
+    {   $this->estado = Config ::find(1);
         // dd($this->estado->activ_register);
         // dd($this->estado);
         $estado = $this->estado->activ_register;
@@ -69,6 +71,8 @@ class EditConfig extends Component
 
         return view('livewire.admin.edit-config', compact('estado'));
     }
+
+
 
 
     public function updatedLinewarehouse($line_id)
@@ -96,4 +100,17 @@ class EditConfig extends Component
         $this->warehouse = Warehouse::where('id', 'LIKE', $this->warehouse_id)->first();
         $warehouse = $this->warehouse;
     }
+
+
+
+    public function ordersWarehouse(){
+        //     dd($this->warehouseselect);
+            $dataOrders = OrderDetail::where('warehouse_id', $this->warehouseselect)->get();   
+            //   $this->result = ArticleWarehouse::hydrate($data->toArray());     
+        //  dd($result->count());
+            // return $result;
+            // dd($this->result);
+        }
+
+
 }
