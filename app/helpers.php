@@ -10,8 +10,7 @@ use App\Models\Config;
 use Dotenv\Parser\Lines;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\DB;
 
  function estadosConfig(){
    
@@ -128,16 +127,29 @@ function discount2($item, $mov)
 //descuenta despues de inviarse la solicitud de la cajita de pedidos
 function discount($item)
 {
+    DB::transaction(function () use ($item) {
+        $article = Article::find($item->options->id_art);
+        $qty_available = qty_available($item->options->id_art, $item->id);
+        $qty_before = $article->warehouses()->find($item->id)->pivot->quantity; // cantidad antes de la salida 
+        $accumulated_before = $article->warehouses()->find($item->id)->pivot->accumulated_request; // guarda el valor anterior antes de eliminarlo
+        $qty_acumulate = ($qty_before - $qty_available) + $accumulated_before;
+        // dd($qty_before);
+        $location_id = $article->warehouses()->find($item->id)->pivot->location_id; //guarda el valor anterior de localizacion antes de eliminar
+        $article->warehouses()->detach($item->id);
+        $article->warehouses()->attach([$item->id => ['quantity' => $qty_available, 'accumulated_request' =>  $qty_acumulate, 'location_id' =>  $location_id]]);
+    });
  
-    $article = Article::find($item->options->id_art);
-    $qty_available = qty_available($item->options->id_art, $item->id);
-    $qty_before = $article->warehouses()->find($item->id)->pivot->quantity; //cantidad antes de la salida 
-    $accumulated_before = $article->warehouses()->find($item->id)->pivot->accumulated_request; //guarda el valor anterior antes de eliminarlo
-    $qty_acumulate = ($qty_before - $qty_available) + $accumulated_before;
-    // dd($qty_before);
+    // $article = Article::find($item->options->id_art);
+    // $qty_available = qty_available($item->options->id_art, $item->id);
+    // $qty_before = $article->warehouses()->find($item->id)->pivot->quantity; //cantidad antes de la salida 
+    // $accumulated_before = $article->warehouses()->find($item->id)->pivot->accumulated_request; //guarda el valor anterior antes de eliminarlo
+    // $qty_acumulate = ($qty_before - $qty_available) + $accumulated_before;
+    // // dd($qty_before);
 
-    $article->warehouses()->detach($item->id);
-    $article->warehouses()->attach([$item->id => ['quantity' => $qty_available, 'accumulated_request' =>  $qty_acumulate]]);
+
+
+    // $article->warehouses()->detach($item->id);
+    // $article->warehouses()->attach([$item->id => ['quantity' => $qty_available, 'accumulated_request' =>  $qty_acumulate]]);
 }
 function discountMasive($item)
 {
@@ -182,12 +194,11 @@ function increase($item)
 
 }
 
-
+// reajusta el stock si es que se cancela la solicitud
 function  income_ajust($item)
 {  
-    $itemopt=($item->options);
   
-
+    $itemopt=($item->options);
     $article = Article::find($itemopt->id_art);
     $quantity = quantity($itemopt->id_art, $item->id) + $item->qty;
 
@@ -196,8 +207,10 @@ function  income_ajust($item)
         $article->warehouses()->attach([$item->id => ['quantity' => $quantity, 'accumulated_request' => 0]]);
     } else {
         $accumulated_before = $article->warehouses()->find($item->id)->pivot->accumulated_request;  //guarda el valor anterior antes de eliminarlo
+        $location_id = $article->warehouses()->find($item->id)->pivot->location_id; //guarda el valor anterior de localizacion antes de eliminar
         $article->warehouses()->detach($item->id);
-        $article->warehouses()->attach([$item->id => ['quantity' => $quantity, 'accumulated_request' => $accumulated_before]]);
+
+        $article->warehouses()->attach([$item->id => ['quantity' => $quantity, 'accumulated_request' => $accumulated_before, 'location_id' => $location_id ]]);
     }
 }
 

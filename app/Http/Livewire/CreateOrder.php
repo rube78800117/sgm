@@ -7,7 +7,9 @@ use App\Models\Order;
 use App\Models\Line;
 use App\Models\Warehouse;
 use App\Models\Station;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 
 class CreateOrder extends Component
 {
@@ -60,31 +62,105 @@ class CreateOrder extends Component
 
 
 
-    public function create_order(){
-        $rules=$this->rules;
-        $this->validate($rules);
-        $order = new Order(); 
-        $order->status = 2; 
-        $order->movement_type = 11;
-        $order->user_id = auth()->user()->id; 
-        $order->reason = $this->reason; 
-        $order->content = Cart::content(); 
-        $order->approved_user_id = auth()->user()->id; 
+    public function create_order() {
+      $rules = $this->rules;
+      $this->validate($rules);
+  
+      try {
+          DB::transaction(function () {
+              $order = new Order(); 
+              $order->status = 2; 
+              $order->movement_type = '0';
+              $order->user_id = auth()->user()->id;
+              $order->reason = $this->reason; 
+              $order->content = Cart::content(); 
+              $order->approved_user_id = auth()->user()->id;
+              $order->ot = 444;
+              $order->equipment = "equipos Nro 1";
+              $order->observation = "Observacione 1";
+              $order->destiny_mov_warehouse_id = $this->warehouse_id;
+              $order->items_out_date = Carbon::today();
+  
+              $order->save();
+  
+              foreach (Cart::content() as $item) {
+                  discount($item);
+              }
+  
+              Cart::destroy();
 
-        $order->save();
+              return redirect()->route('orders.show', $order);
+          });
+  
+  
+      } catch (Exception $e) {
+          // Manejo de errores
+          return back()->withError('An error occurred while processing the order.');
+      }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // public function create_order(){
+      
+    //     $rules=$this->rules;
+    //     $this->validate($rules);
+    //     $order = new Order(); 
+    //     $order->status = 2; 
+    //     $order->movement_type = '0';
+    //     $order->user_id = auth()->user()->id; 
+    //     $order->reason = $this->reason; 
+    //     $order->content = Cart::content(); 
+    //     $order->approved_user_id = auth()->user()->id; 
+
+    //     $order->ot = 444;
+    //     $order->equipment = "equipos Nro 1";
+    //     $order->observation = "Observacione 1";
+    //     $order->destiny_mov_warehouse_id = $this->warehouse_id;
+    //     $order->items_out_date = Carbon::today();
+
+
+    //     $order->save();
         
-        foreach (Cart::content() as $item) {
+    //     foreach (Cart::content() as $item) {
           
-          discount($item);
-        }
+    //       discount($item);
+    //     }
 
 
 
 
-        Cart::destroy();
-        return redirect()->route('orders.show', $order);
+    //     Cart::destroy();
+    //     return redirect()->route('orders.show', $order);
         
-    }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // public function save(Request $request)
     // {   $CreateOrder = new Order;   
@@ -103,11 +179,18 @@ class CreateOrder extends Component
       $rules=$this->rules;
       $this->validate($rules);
       $order = new Order(); 
-      $order->status = 2; 
+      $order->status = 2;
       $order->user_id = auth()->user()->id; 
-      $order->movement_type = 22;
+      $order->movement_type = '7';
       $order->reason = $this->reason; 
       $order->content = Cart::content(); 
+
+      $order->ot=0;
+      $order->equipment= "mov";
+      $order->observation= "Obs movimiento";
+      $order->destiny_mov_warehouse_id = $this->warehouse_id;
+      $order->items_out_date= Carbon::today();
+
       $order->approved_user_id = auth()->user()->id; 
 
 

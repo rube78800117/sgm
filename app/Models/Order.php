@@ -10,7 +10,7 @@ use App\Models\User;
 class Order extends Model
 {
   public $timestamps = true;
-  protected $fillable = ['reason', 'status', 'movement_type']; // propiedad de resguardo por 
+  protected $fillable = ['reason', 'status', 'movement_type', 'destiny_mov_warehouse_id']; // propiedad de resguardo por 
   use HasFactory;
   const PENDIENTE = 1;
   const ENVIADO = 2;
@@ -18,8 +18,8 @@ class Order extends Model
   const APROBADO = 4;
   const RECHAZADO = 5;
   const ANULADO = 6;
-  const SALIDA = 11;
-  const MOVIMIENTO_ENTRE_ALMACENES = 22;
+  const SALIDA = 0;
+  const MOVIMIENTO_ENTRE_ALMACENES = 7;
 
   public function user()
   {

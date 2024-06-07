@@ -15,18 +15,25 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('Users');
+
             $table->string('ot');
             $table->string('equipment');
             $table->text('observation');
             $table->text('reason');
             $table->json('content');
 
+            $table->unsignedBigInteger('destiny_mov_warehouse_id')->nullable();
+            $table->foreign('destiny_mov_warehouse_id')->references('id')->on('Warehouses');
+
             $table->enum('movement_type',[Order::SALIDA, Order::MOVIMIENTO_ENTRE_ALMACENES])->default(Order::SALIDA);
             $table->enum('status',[Order::PENDIENTE, Order::ENVIADO,  Order::REVISION, Order::APROBADO, Order::RECHAZADO, Order::ANULADO,])->default(Order::PENDIENTE);
+
             $table->unsignedBigInteger('approved_user_id');
             $table->foreign('approved_user_id')->references('id')->on('Users');
+
             $table->date('items_out_date');       
            
            
