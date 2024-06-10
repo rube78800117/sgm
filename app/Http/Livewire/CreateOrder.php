@@ -10,6 +10,7 @@ use App\Models\Station;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\DB;
+// use Exception;
 
 class CreateOrder extends Component
 {
@@ -174,44 +175,81 @@ class CreateOrder extends Component
     }
 
 
-
-    public function create_mov(){
-      $rules=$this->rules;
-      $this->validate($rules);
-      $order = new Order(); 
-      $order->status = 2;
-      $order->user_id = auth()->user()->id; 
-      $order->movement_type = '7';
-      $order->reason = $this->reason; 
-      $order->content = Cart::content(); 
-
-      $order->ot=0;
-      $order->equipment= "mov";
-      $order->observation= "Obs movimiento";
-      $order->destiny_mov_warehouse_id = $this->warehouse_id;
-      $order->items_out_date= Carbon::today();
-
-      $order->approved_user_id = auth()->user()->id; 
-
-
-
-
-// agreagar AQUI
-
-
-
-
-
-
-      $order->save();
-      
-      foreach (Cart::content() as $item) {
-         move($item, $this->warehouse_id);
-         discount($item);
-      }
-      Cart::destroy();
-      return redirect()->route('orders.show', $order);
+    
+    public function create_mov()
+    {
+        $rules = $this->rules;
+        $this->validate($rules);
+    
+        try {
+            DB::transaction(function () {
+                $order = new Order(); 
+                $order->status = 2;
+                $order->user_id = auth()->user()->id; 
+                $order->movement_type = '7';
+                $order->reason = $this->reason; 
+                $order->content = Cart::content(); 
+    
+                $order->ot = 0;
+                $order->equipment = "mov";
+                $order->observation = "Obs movimiento";
+                $order->destiny_mov_warehouse_id = $this->warehouse_id;
+                $order->items_out_date = Carbon::today();
+    
+                $order->approved_user_id = auth()->user()->id; 
+    
+                // Guardar la orden dentro de la transacción
+                $order->save();
+                
+                // Realizar las operaciones para cada artículo en el carrito
+                foreach (Cart::content() as $item) {
+                    move($item, $this->warehouse_id);
+                    discount($item);
+                }
+    
+                // Destruir el contenido del carrito dentro de la transacción
+                Cart::destroy();
+                 // Redirigir después de que todas las operaciones se hayan completado
+            return redirect()->route('orders.show', $order);
+            });
+    
+  
+        } catch (Exception $e) {
+            // Manejo del error
+            report($e);
+            return redirect()->route('orders.index')->with('error', 'Algo salió mal, la transacción fue revertida.');
+        }
     }
+
+    // public function create_mov(){
+
+
+    //   $rules=$this->rules;
+    //   $this->validate($rules);
+    //   $order = new Order(); 
+    //   $order->status = 2;
+    //   $order->user_id = auth()->user()->id; 
+    //   $order->movement_type = '7';
+    //   $order->reason = $this->reason; 
+    //   $order->content = Cart::content(); 
+
+    //   $order->ot=0;
+    //   $order->equipment= "mov";
+    //   $order->observation= "Obs movimiento";
+    //   $order->destiny_mov_warehouse_id = $this->warehouse_id;
+    //   $order->items_out_date= Carbon::today();
+
+    //   $order->approved_user_id = auth()->user()->id; 
+
+    //   $order->save();
+      
+    //   foreach (Cart::content() as $item) {
+    //      move($item, $this->warehouse_id);
+    //      discount($item);
+    //   }
+    //   Cart::destroy();
+    //   return redirect()->route('orders.show', $order);
+    // }
 
 
 

@@ -12,7 +12,7 @@ class StatusOrder extends Component
 
 
 
-    public $order, $status, $val, $approved, $mov, $movement_type;
+    public $order, $status, $val, $approved, $mov, $movement_type,  $articleOutStock;
     public function mount()
     {
         if ($this->order->status <= 2) {
@@ -47,14 +47,22 @@ class StatusOrder extends Component
 
 
     public function status_save($val) {
+
+        
+
         try {
             DB ::transaction(function () use ($val) {
+
+
+
                 if ($val == 6) {
                     $items = json_decode($this->order->content);
-    
+                    
                     foreach ($items as $item) {
-                        income_ajust($item);
+                        income_ajust($item, $this->order->movement_type, $this->order->destiny_mov_warehouse_id);
+                                   
                     }
+
                 } elseif ($val == 4) {
                     $items = json_decode($this->order->content);
     
