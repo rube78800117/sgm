@@ -43,12 +43,14 @@ class AddCartItem extends Component
             
 
             
-              
+    
         $this->options['warehouse'] = $this->warehouses_name;
         $this->options['id_dopp'] = $this->article->id_dopp;
         $this->options['id_eetc'] = $this->article->id_eetc;
         $this->options['id_art'] = $this->article->id;
         $this->options['line_color'] = $this->line_color;
+        $this->options['unit'] = $this->article->unit->name;
+     
         return $this->quantity;
     }
 

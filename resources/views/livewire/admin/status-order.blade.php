@@ -35,12 +35,12 @@
 
             {{-- Seccion approved --}}
             <div
-                class="{{($order->status >= 5 && $order->status <= 6)?'hidden':' bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' }}">
+                class="{{ $order->status >= 5 && $order->status <= 6 ? 'hidden' : ' bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' }}">
 
 
                 <div class=" relative">
                     <div
-                        class="{{($order->status >= 2 && $order->status <= 4)?'bg-blue-400':'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
+                        class="{{ $order->status >= 2 && $order->status <= 4 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
                             <p class="text-gray-700"> Recibido</p>
@@ -54,7 +54,7 @@
 
 
                 <div
-                    class="{{($order->status >= 3 && $order->status <= 4)?'bg-blue-400':'bg-gray-400' }} h-1 flex-1 mx-2">
+                    class="{{ $order->status >= 3 && $order->status <= 4 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
                 </div>
 
 
@@ -62,7 +62,7 @@
 
                 <div class=" relative">
                     <div
-                        class="{{($order->status >= 3 && $order->status <= 4)?'bg-blue-400':'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
+                        class="{{ $order->status >= 3 && $order->status <= 4 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
                             <p class="text-gray-700"> Revision</p>
@@ -76,14 +76,14 @@
 
 
                 <div
-                    class="{{($order->status >= 4 && $order->status <= 4)?'bg-blue-400':'bg-gray-400' }} h-1 flex-1 mx-2">
+                    class="{{ $order->status >= 4 && $order->status <= 4 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
                 </div>
 
 
 
                 <div class=" relative">
                     <div
-                        class="{{($order->status >= 4 && $order->status <= 4)?'bg-green-400':'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
+                        class="{{ $order->status >= 4 && $order->status <= 4 ? 'bg-green-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
                             <p class="text-gray-700"> Aprobado</p>
@@ -97,18 +97,21 @@
             </div>
 
 
-            {{-- {{seccion cancell}} --}}
+            {{-- {{STAR seccion cancell}} --}}
 
-            <div class="{{($order->status >= 4 && $order->status <= 4)?'hidden':'' }} ">
+            {{-- <div class="{{ $order->status >= 4 && $order->status <= 4 ? 'hidden' : '' }} ">
 
 
-                <div class="{{($order->status >= 5 && $order->status != 6)?'bg-white':'bg-whitemx-2' }} h-1 flex-1  ">
+                <div class="{{ $order->status >= 5 && $order->status != 6 ? 'bg-white' : 'bg-whitemx-2' }} h-1 flex-1  ">
                 </div>
 
                 <div class="relative">
                     <div
-                        class="{{($order->status >= 5 && $order->status != 6)?'bg-red-400':'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center hidden">
-                        {{-- <i class="fas fa-check text-white"></i> --}}
+                        class="{{ $order->status >= 5 && $order->status != 6 ? 'bg-red-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center hidden">
+                        
+                        
+                        <i class="fas fa-check text-white"></i>
+
 
                         <i class=" text-2xl fas fa-times text-white"></i>
 
@@ -123,42 +126,73 @@
 
 
 
-                <div class="{{($order->status >= 6 && $order->status != 5)?'bg-white':'bg-white  h-1 flex-1 mx-2' }}">
+                <div class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-white' : 'bg-white  h-1 flex-1 mx-2' }}">
                 </div>
 
                 <div class="relative">
                     <div
-                        class="{{($order->status >= 6 && $order->status != 5)?'bg-red-400':'hidden bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
-                        {{-- <i class="fas fa-check text-white"></i> --}}
+                        class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-red-400' : 'hidden bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
+                        <i class="fas fa-check text-white"></i>
 
                         <i class=" text-2xl fas fa-times text-white"></i>
                         <div class="absolute -bottom-6 -left-1.5 mt-0.5">
                             <p class="text-gray-700"> Anulado</p>
+
+
                         </div>
+
                     </div>
 
 
                 </div>
 
 
-            </div>
+            </div> --}}
 
-
+            {{-- {{END seccion cancell}} --}}
 
         </div>
 
+        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
+            <div class="flex justify-end">
+                        <p class="text-sm  font-bold uppercase"><span class="font-bold">Número de solicitud </span>-
+                {{ $order->id }}</p>
+            </div>
+    
+
+            @if ($order->movement_type==7)
+            <p class="flex justify-end font-bold text-sm">MOVIMIENTO ENTRE ALMACENES</p>
+            <div class="flex">  <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm"> {{strtoupper($user->name)}} </span></div>
+            <div class="flex">  <p class="font-bold text-sm">ALMACEN DE DESTINO: </p> &nbsp <span class="text-sm">{{strtoupper($destination->station->line->name)}} - {{strtoupper($destination->station->name)}}  -  {{strtoupper($destination->name)}}</span></div>
+            <div class="flex">  <P class="font-bold text-sm">MOTIVO DEL MOVIMIENTO: </P> &nbsp <span class="text-sm"> {{strtoupper($order->reasonMove)}} </span></div>
+            <div class="flex">  <P class="font-bold text-sm">FECHA DEL MOVIMIENTO: </P> &nbsp <span class="text-sm"> {{strtoupper($order->items_out_date)}} </span></div>
+
+            @else
+            <p class="flex justify-end font-bold text-sm">SALIDA DE ALMACEN</p>
+            <div class="flex">  <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm"> {{strtoupper($user->name)}} </span></div>
+            <div class="flex">  <P class="font-bold text-sm">MOTIVO DE SALIDA: </P> &nbsp <span class="text-sm"> {{strtoupper($order->reason)}} </span></div>
+            <div class="flex">  <P class="font-bold text-sm">SISTEMA - SUBSISTEMA - EQUIPO : </P> &nbsp <span class="text-sm"> {{strtoupper($order->equipment)}} </span></div>
+            <div class="flex">  <P class="font-bold text-sm">ORDEN DE TRABAJO (OT): </P> &nbsp <span class="text-sm"> {{strtoupper($order->ot)}} </span></div>
+            <div class="flex">  <P class="font-bold text-sm">FECHA DE SALIDA: </P> &nbsp <span class="text-sm"> {{strtoupper($order->items_out_date)}} </span></div>
+
+            @endif   
+       
+            {{-- {{$order->movement_type}}
+            {{$order->items_out_date}}
+             --}}
+{{-- 
+           :2,"movement_type":"7","status":"4","approved_user_id":1,"items_out_date":"2024-06-10", --}}
+        </div>
 
 
 
 
         {{-- muestra lista detalle de la solicitud --}}
 
-        <div class="items-center justify-items-center   py-8">
+        <div class="items-center justify-items-center ">
 
-            <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6 ">
-                <p class="text-gray-700 uppercase"><span class="font-semibold">Número de solicitud </span>-
-                    {{$order->id}}</p>
-
+            <div class="bg-white rounded-lg shadow-lg px-6 py-2 mb-6 ">
+               
                 {{-- envia inf to save with radio button --}}
                 {{-- <form wire:submit.prevent="update()">
                     <div class="flex space-x-3 mt-2">
@@ -197,7 +231,38 @@
                 </form> --}}
 
 
-                <div class=" flex {{($order->status >= 4  )?'hidden ':''}}">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 ">
+                    <div class="grid grid-col-2 gap-6 text-gray-700">
+                        <div class="grid grid-col-2 gap-6 text-gray-700">
+                            <div>
+                                <p class="text-gray-700  font-semibold"><i
+                                        class="text-yellow-600 fas fa-info-circle"></i>&nbsp Instrucciones para el
+                                    control adecuado de Stock en almacenes.</p>
+                                <p class="text-justify text-gray-600">
+                                    <spam class="text-blue-700 font-semibold">Enviado: </spam> La solicitud ya fue
+                                    enviada al administrador, las cantidades disponibles ya fueron actualizadas, por lo
+                                    tanto usted puede disponer del o los articulos estrictamente del almacen que lo
+                                    solicito. Si esta solicitud no es correcta puede comunicarse con el administrador
+                                    para su anulacion y se restablecerán las cantidades en Stock solicitadas a su
+                                    respectivo almacen.
+                                </p>
+
+                                <p class="text-justify text-gray-600  ">
+                                    <spam class="text-blue-700 font-semibold">Revision: </spam> El administrador puede
+                                    anular o aprobar esta solicitud en coordinacion con el solicitante, esto para
+                                    mantener un control adecuado de stock en los diferentes almacenes. Tome en cuenta
+                                    que los administradores pueden aprobar esta solicitud rapidamente cuando se trata de
+                                    articulos comunes, por tanto usted debe comunicarse rapidamente con el para anularla
+                                    si fuera el caso de que la solicitud no sea correcta
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" flex {{ $order->status >= 4 ? 'hidden ' : '' }} justify-between py-4"  >
 
                     {{--
                     <x-jet-button class="ml-auto button-success " wire:loading.attr="disabled" wire:target="status_save"
@@ -215,125 +280,113 @@
 
 
 
-                    <button wire:click="status_save({{6}},{{ $order}})" type="button"
-
+                    <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
                         class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
                         Cancelar Solicitud</button>
-                
-
-
-                <button  wire:click="status_save({{4}})" type="button"
-                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 mx-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
-                    Aprobar Solicitud </button>
-        
 
 
 
-        </div>
-        <div class="bg-white rounded-lg shadow-lg p-6 ">
-            <div class="grid grid-col-2 gap-6 text-gray-700">
-             <div class="grid grid-col-2 gap-6 text-gray-700">
-            <div>
-                    <p class="text-gray-700  font-semibold"><i class="text-yellow-600 fas fa-info-circle"></i>&nbsp Instrucciones para el control adecuado de Stock en almacenes.</p>
-                    <p class="text-justify text-gray-600"> <spam class="text-blue-700 font-semibold">Enviado: </spam> La solicitud ya fue enviada al administrador, las cantidades disponibles ya fueron actualizadas, por lo tanto usted puede disponer del o los articulos estrictamente del almacen que lo solicito. Si esta solicitud no es correcta puede comunicarse con el administrador para su anulacion y se restablecerán las cantidades en Stock solicitadas a su respectivo almacen.</p>
-                
-                               <p class="text-justify text-gray-600  "> <spam class="text-blue-700 font-semibold">Revision: </spam> El administrador puede anular o aprobar  esta solicitud en coordinacion con el solicitante, esto para mantener un control adecuado de stock en los diferentes almacenes. Tome en cuenta que los administradores pueden aprobar esta solicitud rapidamente cuando se trata de articulos comunes, por tanto usted debe comunicarse rapidamente con el para anularla si fuera el caso de que la solicitud no sea correcta</p>
+                    <button wire:click="status_save({{ 4 }})" type="button"
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
+                        Aprobar Solicitud </button>
+
+
+
+
+                </div>
+                {{-- tabla de resumen de articulos ya solicitados --}}
+                <div class="bg-white rounded-lg shadow-lg px-6  py-4 mb-2 ">
+                    <p class="text-gray-700 uppercase"><span class="font-semibold">RESUMEN</span> </p>
                 </div>
 
-            </div>
-            </div>
-        </div>
-
-
-        {{-- tabla de resumen de articulos ya solicitados --}}
-        <div class="bg-white rounded-lg shadow-lg px-6 mt-6 py-4 mb-2 ">
-            <p class="text-gray-700 uppercase"><span class="font-semibold">RESUMEN</span> </p>
-        </div>
-
-        <table class="border-separate border border-gray-200 w-full">
-            <thead>
-                <tr class="border-separate border border-gray-300">
-                    <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Item</th>
-                    <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Almacen</th>
-                    {{-- <th
+                <table class="border-separate border border-gray-200 w-full">
+                    <thead>
+                        <tr class="border-separate border border-gray-300">
+                            <th
+                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                Item</th>
+                            <th
+                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                Almacen</th>
+                            {{-- <th
                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                         Linea
                     </th> --}}
-                    <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Cantidad</th>
-                    {{-- <th
+                            <th
+                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                Cantidad</th>
+                            {{-- <th
                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                     </th> --}}
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($items as $item)
-                <tr
-                    class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 border-separate border border-gray-400">
-                    <td
-                        class="px-10 w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span
-                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($items as $item)
+                            <tr
+                                class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 border-separate border border-gray-400">
+                                <td
+                                    class="px-10 w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
 
-                        <div class="flex justify-start items-center">
-
-
+                                    <div class="flex justify-start items-center">
 
 
 
-                            <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}" alt="">
+
+
+                                        <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}"
+                                            alt="">
 
 
 
-                            <div class="font-bold text-sm text-gray-600">
-                                <p class="flex justify-start items-center"> {{ $item->name }}</p>
-                                <p class="flex justify-start items-center"> {{ $item->options->id_dopp }} </p>
-                                <p class="flex justify-start items-center"> {{ $item->options->id_eetc}} </p>
+                                        <div class="font-bold text-sm text-gray-600">
+                                            <p class="flex justify-start items-center"> {{ $item->name }}</p>
+                                            <p class="flex justify-start items-center"> {{ $item->options->id_dopp }}
+                                            </p>
+                                            <p class="flex justify-start items-center"> {{ $item->options->id_eetc }}
+                                            </p>
 
-                            </div>
-                        </div>
-                    </td>
-
-
-                    <td
-                        class="bg-{{ $item->options->line_color}} text-sm px-10 w-full lg:w-auto p-3 text-gray-700 text-center border border-b block lg:table-cell relative lg:static">
-
-                        <div class="font-bold ">
-
-                            <p class="flex justify-center items-center text-xs"> {{ $item->options->warehouse }}</p>
-                        </div>
-
-                    </td>
+                                        </div>
+                                    </div>
+                                </td>
 
 
-                    <td
-                        class="w-full lg:w-auto pl-20 p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                        <div class="font-bold ">
+                                <td
+                                    class="bg-{{ $item->options->line_color }} text-sm px-10 w-full lg:w-auto p-3 text-gray-700 text-center border border-b block lg:table-cell relative lg:static">
 
-                            <p class="flex items-center text-xs"> {{ $item->qty }}</p>
-                        </div>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                                    <div class="font-bold ">
+
+                                        <p class="flex justify-center items-center text-xs">
+                                            {{ $item->options->warehouse }}</p>
+                                    </div>
+
+                                </td>
+
+
+                                <td
+                                    class="w-full lg:w-auto pl-20 p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                    <div class="font-bold ">
+
+                                        <p class="flex items-center text-xs"> {{ $item->qty }}</p>
+                                    </div>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
 
 
-        {{-- <x-jet-button class="ml-auto  " wire:loading.attr="disabled" wire:target="status_save"
+                {{-- <x-jet-button class="ml-auto  " wire:loading.attr="disabled" wire:target="status_save"
             wire:click=" {{route('admin.orders.index')}} ">
             << Volver </x-jet-button> --}}
 
-    </div>
+            </div>
 
 
 
 
-</div>
+        </div>
 
 
 
@@ -341,11 +394,11 @@
 
 
 
-{{-- asdadasdasssssssssse lllllllllllllllllllllllllllllllll --}}
+        {{-- asdadasdasssssssssse lllllllllllllllllllllllllllllllll --}}
 
 
 
-{{-- <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+        {{-- <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
     <section class="py-20 mx-auto space-y-8 sm:py-20">
         <div style='width:800px;'
             class="container flex flex-row items-stretch justify-center w-full max-w-4xl space-x-12" x-data="{tab: 1}">
@@ -541,10 +594,10 @@
 
 
 
-{{-- STAR tab componenet --}}
+        {{-- STAR tab componenet --}}
 
 
-{{-- <div class="bg-gray-300 flex justify-center items-center p-8 h-full h-screen">
+        {{-- <div class="bg-gray-300 flex justify-center items-center p-8 h-full h-screen">
     <div x-data="{ tab: 'foo' }" style="max-width:550px">
         <div class="flex -mx-px">
             <button x-on:click="tab = 'foo'" x-bind:class="{ 'bg-white border-white': tab === 'foo' }"
@@ -614,38 +667,4 @@
  --}}
 
 
-{{-- END tab componenet --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
+        {{-- END tab componenet --}}

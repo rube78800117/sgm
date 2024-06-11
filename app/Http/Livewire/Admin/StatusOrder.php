@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\OrderDetail;
+use App\Models\Warehouse;
 use Illuminate\Support\Facades\DB;
 
 class StatusOrder extends Component
@@ -26,10 +27,15 @@ class StatusOrder extends Component
 
     public function render()
     {
+        
+        $destination = Warehouse::find($this->order->destiny_mov_warehouse_id);  
+        $user = User::find($this->order->user_id);
+        // dd( $destination->station->line->name);
         $items = json_decode($this->order->content);
         
+
         // dd($items);
-        return view('livewire.admin.status-order', compact("items"));
+        return view('livewire.admin.status-order', compact("items", "destination", "user"));
     }
     public function update()
     {
@@ -59,6 +65,8 @@ class StatusOrder extends Component
                     $items = json_decode($this->order->content);
                     
                     foreach ($items as $item) {
+
+                        
                         income_ajust($item, $this->order->movement_type, $this->order->destiny_mov_warehouse_id);
                                    
                     }
