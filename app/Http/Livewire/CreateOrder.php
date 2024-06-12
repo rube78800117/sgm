@@ -15,22 +15,22 @@ use Illuminate\Support\Facades\DB;
 class CreateOrder extends Component
 {
 
-    public $reason;
+    public $reason, $ot, $equipment, $date_out ;
     public $line_id = 1, $station_id, $warehouse_id, $stations, $warehouses, $warehouse, $lines, $linewarehouse, $stationselect,$warehouseselect ;
     public $rules=[
       'reason'=>'required'
     ];
 
-
-
-
-
-
-
-
     public function create_order() {
-      $rules = $this->rules;
-      $this->validate($rules);
+      
+      
+        $this->validate([
+
+            'reason'=>'required',
+            'equipment'=>'required',
+            'date_out' => ['required', 'date', 'after_or_equal:' . Carbon::now()->subMonth()->toDateString(), 'before_or_equal:' . Carbon::now()->addMonth()->toDateString()],
+
+        ]);
   
       try {
           DB::transaction(function () {
@@ -41,11 +41,11 @@ class CreateOrder extends Component
               $order->reason = $this->reason; 
               $order->content = Cart::content(); 
               $order->approved_user_id = auth()->user()->id;
-              $order->ot = 444;
-              $order->equipment = "equipos Nro 1";
-              $order->observation = "Observacione 1";
+              $order->ot = $this->ot;
+              $order->equipment = $this->equipment;
+              $order->observation = "No se registrado";
               $order->destiny_mov_warehouse_id = $this->warehouse_id;
-              $order->items_out_date = Carbon::today();
+              $order->items_out_date = $this->date_out;
   
               $order->save();
   

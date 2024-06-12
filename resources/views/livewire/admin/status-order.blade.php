@@ -69,7 +69,6 @@
                         </div>
                     </div>
 
-
                 </div>
 
 
@@ -94,30 +93,31 @@
                 </div>
 
 
+
+
+
+
+
+
             </div>
 
+            {{-- {{seccion cancell}} --}}
 
-            {{-- {{STAR seccion cancell}} --}}
+            <div
+                class="{{ $order->status >= 6 && $order->status != 5 ? ' bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' : 'hidden' }} ">
 
-            {{-- <div class="{{ $order->status >= 4 && $order->status <= 4 ? 'hidden' : '' }} ">
 
 
-                <div class="{{ $order->status >= 5 && $order->status != 6 ? 'bg-white' : 'bg-whitemx-2' }} h-1 flex-1  ">
-                </div>
 
-                <div class="relative">
+
+
+
+                <div class=" relative">
                     <div
-                        class="{{ $order->status >= 5 && $order->status != 6 ? 'bg-red-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center hidden">
-                        
-                        
+                        class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
-
-
-                        <i class=" text-2xl fas fa-times text-white"></i>
-
-
-                        <div class="absolute -left-1.5 mt-0.5">
-                            <p class="text-gray-700 "> Rechazado</p>
+                        <div class="absolute -bottom-6 mt-0.5">
+                            <p class="text-gray-700"> Recibido</p>
                         </div>
 
                     </div>
@@ -126,61 +126,135 @@
 
 
 
-                <div class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-white' : 'bg-white  h-1 flex-1 mx-2' }}">
+
+                <div
+                    class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
                 </div>
+
+
+
+
+                <div class=" relative">
+                    <div
+                        class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
+                        <i class="fas fa-check text-white"></i>
+                        <div class="absolute -bottom-6 mt-0.5">
+                            <p class="text-gray-700"> Revision</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <div
+                    class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'hidden  bg-gray-400' }} h-1 flex-1 mx-2">
+                </div>
+
+
 
                 <div class="relative">
                     <div
                         class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-red-400' : 'hidden bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
-                        <i class="fas fa-check text-white"></i>
+
 
                         <i class=" text-2xl fas fa-times text-white"></i>
                         <div class="absolute -bottom-6 -left-1.5 mt-0.5">
                             <p class="text-gray-700"> Anulado</p>
-
-
                         </div>
-
                     </div>
 
 
                 </div>
 
 
-            </div> --}}
+            </div>
 
-            {{-- {{END seccion cancell}} --}}
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
 
+
+
+
+
+
+
+
+
+
+
+
         <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
             <div class="flex justify-end">
-                        <p class="text-sm  font-bold uppercase"><span class="font-bold">Número de solicitud </span>-
-                {{ $order->id }}</p>
+                <p class="text-md  font-bold uppercase"><span class="font-bold">Número de solicitud </span>-
+                    {{ $order->id }}</p>
+                    
             </div>
-    
 
-            @if ($order->movement_type==7)
-            <p class="flex justify-end font-bold text-sm">MOVIMIENTO ENTRE ALMACENES</p>
-            <div class="flex">  <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm"> {{strtoupper($user->name)}} </span></div>
-            <div class="flex">  <p class="font-bold text-sm">ALMACEN DE DESTINO: </p> &nbsp <span class="text-sm">{{strtoupper($destination->station->line->name)}} - {{strtoupper($destination->station->name)}}  -  {{strtoupper($destination->name)}}</span></div>
-            <div class="flex">  <P class="font-bold text-sm">MOTIVO DEL MOVIMIENTO: </P> &nbsp <span class="text-sm"> {{strtoupper($order->reasonMove)}} </span></div>
-            <div class="flex">  <P class="font-bold text-sm">FECHA DEL MOVIMIENTO: </P> &nbsp <span class="text-sm"> {{strtoupper($order->items_out_date)}} </span></div>
 
+            @if ($order->movement_type == 7)
+                <p class="flex justify-end font-bold text-sm">MOVIMIENTO ENTRE ALMACENES</p>
+                <div class="flex">
+                    <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($user->name) }} </span>
+                </div>
+                <div class="flex">
+                    <p class="font-bold text-sm">ALMACEN DE DESTINO: </p> &nbsp <span
+                        class="text-sm">{{ strtoupper($destination->station->line->name) }} -
+                        {{ strtoupper($destination->station->name) }} - {{ strtoupper($destination->name) }}</span>
+                </div>
+                <div class="flex">
+                    <P class="font-bold text-sm">MOTIVO DEL MOVIMIENTO: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->reasonMove) }} </span>
+                </div>
+                <div class="flex">
+                    <P class="font-bold text-sm">FECHA DEL MOVIMIENTO: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->items_out_date) }} </span>
+                </div>
             @else
-            <p class="flex justify-end font-bold text-sm">SALIDA DE ALMACEN</p>
-            <div class="flex">  <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm"> {{strtoupper($user->name)}} </span></div>
-            <div class="flex">  <P class="font-bold text-sm">MOTIVO DE SALIDA: </P> &nbsp <span class="text-sm"> {{strtoupper($order->reason)}} </span></div>
-            <div class="flex">  <P class="font-bold text-sm">SISTEMA - SUBSISTEMA - EQUIPO : </P> &nbsp <span class="text-sm"> {{strtoupper($order->equipment)}} </span></div>
-            <div class="flex">  <P class="font-bold text-sm">ORDEN DE TRABAJO (OT): </P> &nbsp <span class="text-sm"> {{strtoupper($order->ot)}} </span></div>
-            <div class="flex">  <P class="font-bold text-sm">FECHA DE SALIDA: </P> &nbsp <span class="text-sm"> {{strtoupper($order->items_out_date)}} </span></div>
+                <p class="flex justify-end font-bold text-sm">SALIDA DE ALMACEN</p>
+                <div class="flex">
+                    <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($user->name) }} </span>
+                </div>
+                <div class="flex">
+                    <P class="font-bold text-sm">MOTIVO DE SALIDA: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->reason) }} </span>
+                </div>
+                <div class="flex">
+                    <P class="font-bold text-sm">SISTEMA - SUBSISTEMA - EQUIPO : </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->equipment) }} </span>
+                </div>
+                <div class="flex">
+                    <P class="font-bold text-sm">ORDEN DE TRABAJO (OT): </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->ot) }} </span>
+                </div>
+                <div class="flex">
+                    <P class="font-bold text-sm">FECHA DE SALIDA: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->items_out_date) }} </span>
+                </div>
 
-            @endif   
-       
+
+            @endif
+
             {{-- {{$order->movement_type}}
             {{$order->items_out_date}}
              --}}
-{{-- 
+            {{-- 
            :2,"movement_type":"7","status":"4","approved_user_id":1,"items_out_date":"2024-06-10", --}}
         </div>
 
@@ -192,7 +266,7 @@
         <div class="items-center justify-items-center ">
 
             <div class="bg-white rounded-lg shadow-lg px-6 py-2 mb-6 ">
-               
+
                 {{-- envia inf to save with radio button --}}
                 {{-- <form wire:submit.prevent="update()">
                     <div class="flex space-x-3 mt-2">
@@ -231,7 +305,7 @@
                 </form> --}}
 
 
-                
+
                 <div class="bg-white rounded-lg shadow-lg p-6 ">
                     <div class="grid grid-col-2 gap-6 text-gray-700">
                         <div class="grid grid-col-2 gap-6 text-gray-700">
@@ -262,42 +336,39 @@
                     </div>
                 </div>
 
-                <div class=" flex {{ $order->status >= 4 ? 'hidden ' : '' }} justify-between py-4"  >
-
-                    {{--
-                    <x-jet-button class="ml-auto button-success " wire:loading.attr="disabled" wire:target="status_save"
-                        wire:click="status_save({{6}})">
-                        Cancelar
-                    </x-jet-button> --}}
-
-
-
-
-                    {{-- <x-jet-button class="ml-auto  " wire:loading.attr="disabled" wire:target="status_save"
-                        wire:click="status_save({{4}})">
-                        Aprobado
-                    </x-jet-button> --}}
-
-
-
-                    <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
-                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
-                        Cancelar Solicitud</button>
-
-
-
-                    <button wire:click="status_save({{ 4 }})" type="button"
-                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
-                        Aprobar Solicitud </button>
-
-
-
-
-                </div>
                 {{-- tabla de resumen de articulos ya solicitados --}}
+
+
+                
+             
+
+
                 <div class="bg-white rounded-lg shadow-lg px-6  py-4 mb-2 ">
-                    <p class="text-gray-700 uppercase"><span class="font-semibold">RESUMEN</span> </p>
+                    <p class="text-gray-700 text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS SOLICITADOS</span> </p>
                 </div>
+
+
+                <div class=" {{ $order->status == 4 ? 'bg-green-200' : 'hidden ' }} py-2 px-6 rounded-lg "> 
+                    <div class="flex">
+                        <P class="font-bold text-sm">OBSERVACIONES: </P> &nbsp <span class="text-sm">
+                            {{ strtoupper($order->observation) }} </span>
+                    </div>
+                </div>
+
+                <div class=" {{ $order->status == 6 ? 'bg-red-200' : 'hidden ' }} py-2 px-6 rounded-lg "> 
+                    <div class="flex">
+                        <P class="font-bold text-sm">OBSERVACIONES: </P> &nbsp <span class="text-sm">
+                            {{ strtoupper($order->observation) }} </span>
+                    </div>
+                </div>
+                {{-- <div class=" {{ $order->status >= 4 && $order->status <= 4 ? 'text-green-300' : 'hidden'}}py-4"><span class="">
+                    OBSERVACIONES:</span>
+                   
+                </div>
+                <div class=" {{  $order->status >= 6 && $order->status != 5 ? 'text-red-300' : 'hidden'}}py-4"><span class="">
+                    OBSERVACIONES:</span>
+                   
+                </div> --}}
 
                 <table class="border-separate border border-gray-200 w-full">
                     <thead>
@@ -376,10 +447,52 @@
                 </table>
 
 
+                <div class=" {{ $order->status >= 4 ? 'hidden ' : '' }}py-4">
 
-                {{-- <x-jet-button class="ml-auto  " wire:loading.attr="disabled" wire:target="status_save"
-            wire:click=" {{route('admin.orders.index')}} ">
-            << Volver </x-jet-button> --}}
+
+
+
+                    <x-jet-label value=" Observaciones" />
+
+                    <x-jet-input Type="text" wire:model.defer="observation" class="w-full "
+                        value="{{ old('observation', $this->observation) }}" />
+                    <x-jet-input-error for="observation" />
+                    {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
+
+
+
+                    {{--
+                    <x-jet-button class="ml-auto button-success " wire:loading.attr="disabled" wire:target="status_save"
+                        wire:click="status_save({{6}})">
+                        Cancelar
+                    </x-jet-button> --}}
+
+
+
+
+                    {{-- <x-jet-button class="ml-auto  " wire:loading.attr="disabled" wire:target="status_save"
+                        wire:click="status_save({{4}})">
+                        Aprobado
+                    </x-jet-button> --}}
+
+                    <div class="flex justify-between pt-2">
+
+
+
+                        <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
+                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
+                            Cancelar Solicitud</button>
+
+
+
+                        <button wire:click="status_save({{ 4 }})" type="button"
+                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
+                            Aprobar Solicitud </button>
+
+                    </div>
+
+
+                </div>
 
             </div>
 

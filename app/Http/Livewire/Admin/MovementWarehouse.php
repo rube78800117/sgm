@@ -16,13 +16,15 @@ class MovementWarehouse extends Component
 {
 
     
-    public $reasonMove;
+    public $reasonMove, $date_out_move, $observation;
     public $line_id = 1, $station_id, $warehouse_id, $stations, $warehouses, $warehouse, $lines, $linewarehouse, $stationselect,$warehouseselect ;
     public $result, $stationsDest, $warehousesDest, $linewarehouseDest, $warehouseDest, $stationselectDest,$warehouseselectDest, $dataArray ;
   
     public $rules=[
-        'reasonMove'=>'required'
-      ];
+
+    //     'reasonMove'=>'required',
+    //     'date_out' => ['required', 'date', 'after_or_equal:' . Carbon::now()->subMonth()->toDateString(), 'before_or_equal:' . Carbon::now()->addMonth()->toDateString()],
+    ];
   
     public function render()
     {
@@ -38,6 +40,8 @@ class MovementWarehouse extends Component
 
   public function mount()
     {
+        $this->date_out_move = Carbon::now()->toDateString(); // Inicializa con la fecha actual en formato 'YYYY-MM-DD'
+
         $this->lines = Line::all();
         
        
@@ -72,18 +76,17 @@ class MovementWarehouse extends Component
 
 
 
-
-
-
-
-
-
-
     
     public function create_mov()
     {
         $rules = $this->rules;
-        $this->validate($rules);
+        $this->validate([
+            'reasonMove'=>'required',
+            'linewarehouse'=>'required',
+            'stationselect'=>'required',
+            'warehouseselect'=>'required',
+            'date_out_move' => ['required', 'date', 'after_or_equal:' . Carbon::now()->subMonth()->toDateString(), 'before_or_equal:' . Carbon::now()->addMonth()->toDateString()],
+        ]);
     
         try {
             DB::transaction(function () {
@@ -94,10 +97,10 @@ class MovementWarehouse extends Component
                 $order->reason = $this->reasonMove; 
                 $order->content = Cart::content(); 
                 $order->ot = 0;
-                $order->equipment = "mov";
-                $order->observation = "Obs movimiento";
+                $order->equipment = "N/E";
+                $order->observation = "S/N";
                 $order->destiny_mov_warehouse_id = $this->warehouse_id;
-                $order->items_out_date = Carbon::today();
+                $order->items_out_date = $this->date_out_move;
     
                 $order->approved_user_id = auth()->user()->id; 
     

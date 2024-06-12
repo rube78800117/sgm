@@ -13,7 +13,7 @@ class StatusOrder extends Component
 
 
 
-    public $order, $status, $val, $approved, $mov, $movement_type,  $articleOutStock;
+    public $order, $status, $val, $approved, $observation, $mov, $movement_type,  $articleOutStock;
     public function mount()
     {
         if ($this->order->status <= 2) {
@@ -53,8 +53,11 @@ class StatusOrder extends Component
 
 
     public function status_save($val) {
-
-        
+$this->validate([
+    'observation'=>'required',
+ 
+]);
+        // dd($this->observation);
 
         try {
             DB ::transaction(function () use ($val) {
@@ -92,6 +95,7 @@ class StatusOrder extends Component
     
                 $this->order->approved_user_id = auth()->user()->id;
                 $this->order->status = $val; // anulado o aprobado
+                $this->order->observation = $this->observation; // observacion por parte del administrador que resepciona
                 $this->order->save();
             });
         } catch (Exception $e) {

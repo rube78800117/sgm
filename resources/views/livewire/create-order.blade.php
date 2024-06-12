@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
+{{-- <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" /> --}}
 
-<div class="container  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12  grid grid-cols-5 gap-6">
+<div class="  max-w-7xl mx-auto  sm:px-6 lg:px-8 py-12  grid grid-cols-5 gap-6">
 
     <!-- component -->
     <div class="col-span-6 rounded-lg ">
@@ -225,32 +225,80 @@
 
 
 
-                <div>
-                    <div class="bg-withe rounded shadow p-6">
-                        <div class="mb-4 ">
-                            <x-jet-label
-                                value=" Razón, motivo o trabajo para el cual será destinado el insumo o repuesto." />
-
-                            <x-jet-input Type="text" wire:model.defer="reason" class=" w-full" />
-                            <x-jet-input-error for="reason" />
-                            {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
-
-
+               
+                    <div>
+                        <div class="bg-withe rounded shadow p-6">
+                            <div class="my-2 ">
+                                <x-jet-label
+                                    value=" Razón, motivo o trabajo para el cual será destinado el insumo o repuesto." />
+    
+                                <x-jet-input Type="text" wire:model.defer="reason" class=" w-full" />
+                                <x-jet-input-error for="reason" />
+                                {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
+    
+    
+                            </div>
+    
+    
+                            <div class="my-2 ">
+                                <div>
+                                    <x-jet-label value=" Orde de trabajo (OT)" />
+    
+                                    <x-jet-input Type="text" wire:model.defer="ot" class=" " />
+                                    <x-jet-input-error for="ot" />
+                                    {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
+    
+                                </div>
+                                <div class="my-2">
+                                    <x-jet-label value="Sistema, subsistema y/o equipo" />
+    
+                                    <x-jet-input Type="text" wire:model.defer="equipment" class="w-full" />
+                                    <x-jet-input-error for="equipment" />
+                                </div>
+    
+    
+                            </div>
+    
+                            <div class="mt-2">
+    
+    
+                                <x-jet-label value="Fecha del movimiento" />
+        
+                                <x-jet-input Type="date" wire:model.defer="date_out" class="rounded-lg border-gray-300 " />
+        
+                                <x-jet-input-error for="date_out" />
+        
+        
+        
+                            </div>
+    
+    
+    
+    
+    
+    
+    
+                            <div class="flex justify-end">
+    
+    
+                                <x-jet-button   
+                                    wire:loading.attr="disabled" 
+                                    wire:targuet="create_order"
+                                    wire:click="create_order" 
+                                    type="button"
+                                    class="focus:outline-none text-white text-sm m-2 py-2.5 px-5 rounded-md bg-red-500 hover:bg-red-600 hover:shadow-lg">
+                                    Enviar salida
+                                </x-jet-button>
+    
+    
+    
+    
+                            </div>
+    
+    
+    
                         </div>
-                        <div>
-
-                            <x-jet-button wire:loading.attr="disabled" wire:targuet="create_order" class="mt-6 mb-4"
-                                wire:click="create_order">
-                                Enviar salida
-                            </x-jet-button>
-                            <hr>
-
-                        </div>
-
-
-
                     </div>
-                </div>
 
 
             </div>

@@ -18,6 +18,7 @@ class Order extends Model
   const APROBADO = 4;
   const RECHAZADO = 5;
   const ANULADO = 6;
+  
   const SALIDA = 0;
   const MOVIMIENTO_ENTRE_ALMACENES = 7;
 
