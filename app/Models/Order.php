@@ -27,8 +27,65 @@ class Order extends Model
     return $this->belongsTo(User::class);
   }
 
+  public function warehouse()
+  {
+      return $this->belongsTo(Warehouse::class, 'warehouse_id', 'id');
+  }
+
+
+
+
+
+  public function warehouseDestiny()
+  {
+      return $this->belongsTo(Warehouse::class, 'destiny_mov_warehouse_id', 'id');
+  }
+
+  public function station()
+  {
+      return $this->hasOneThrough(Station::class, Warehouse::class, 'destiny_mov_warehouse_id', 'id', 'destiny_mov_warehouse_id', 'station_id');
+  }
+
   public function line()
   {
-    return $this->belongsTo(Line::class);
+      return $this->hasOneThrough(Line::class, Station::class, 'id', 'id', 'destiny_mov_warehouse_id', 'line_id');
   }
+
+  // Accesor para obtener el nombre de la línea
+  public function getLineNameAttribute()
+  {
+      return $this->line ? $this->line->name : null;
+  }
+
+  // Accesor para obtener otro atributo de la línea
+  public function getLineDescriptionAttribute()
+  {
+      return $this->line ? $this->line->description : null;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  // Accesor para obtener el nombre de la línea
+  public function getLineColorAttribute()
+  {
+      return $this->line ? $this->line->color : null;
+  }
+
+
+  public function getWarehouseNameAttribute()
+  {
+      return $this->warehouse_destiny ? $this->warehouse_destiny->name : null;
+  }
+  
+
+
 }

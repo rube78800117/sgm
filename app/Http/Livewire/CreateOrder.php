@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class CreateOrder extends Component
 {
 
-    public $reason, $ot, $equipment, $date_out ;
+    public $reason, $ot, $equipment, $date_out , $line_user;
     public $line_id = 1, $station_id, $warehouse_id, $stations, $warehouses, $warehouse, $lines, $linewarehouse, $stationselect,$warehouseselect ;
     public $rules=[
       'reason'=>'required'
@@ -44,6 +44,11 @@ class CreateOrder extends Component
               $order->ot = $this->ot;
               $order->equipment = $this->equipment;
               $order->observation = "No se registrado";
+              $order->origin_line_id = $this->line_user->name;
+              $order->origin_line_name = $this->line_user->name;
+              $order->destiny_mov_warehouse_name= " N/A";
+              $order->destiny_mov_line_name = "N/A";
+
               $order->destiny_mov_warehouse_id = $this->warehouse_id;
               $order->items_out_date = $this->date_out;
   
@@ -67,9 +72,26 @@ class CreateOrder extends Component
 
 
 
+    public function mount(){
+
+        
+        $line = Line::where('id', 'LIKE', auth()->user()->line_id);
+        $this->line_user = $line;
+
+        // $lineId=Line::where('id', 'LIKE' , (auth()->user()->line_id));
+        // $lineName=Line::find(auth()->user()->line_id);
 
 
+    }
 
+
+    public function updatedWarehouseselect($warehouse_id)
+    {
+        $this->warehouse_id = $warehouse_id;
+
+        $this->warehouse = Warehouse::where('id', 'LIKE', $this->warehouse_id)->first();
+        $warehouse = $this->warehouse;
+    }
 
 
 

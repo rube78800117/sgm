@@ -17,10 +17,10 @@ class Warehouse extends Model
         {
             return $this->morphOne(Image::class, 'imageable');
         }
-        public function station()
-        {
-                return $this->belongsTo('App\Models\Station');
-        }
+        // public function station()
+        // {
+        //         return $this->belongsTo('App\Models\Station');
+        // }
 
         public function existences()
         {
@@ -57,4 +57,16 @@ class Warehouse extends Model
         {
                 return $this->hasMany(OrderDetail::class);
         }
+
+
+        public function orders()
+        {
+            return $this->hasMany(Order::class, 'destiny_mov_warehouse_id', 'id');
+        }
+    
+        public function station()
+        {
+            return $this->belongsTo(Station::class, 'station_id', 'id');
+        }
+
 }

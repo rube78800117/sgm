@@ -17,13 +17,13 @@
                         <tr>
                             <!-- Columna visible en todas las pantallas -->
                             <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-
+                                class="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Origen
                             </th>
                             <!-- Columna oculta en pantallas pequeñas -->
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Origen del articulo
+                               
                             </th>
                             <!-- Columna oculta en pantallas pequeñas -->
                             <th
@@ -36,7 +36,7 @@
                                 unidad
                             </th>
                             <th
-                                class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                class="hidden sm:table-cell text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Cantidad
                             </th>
 
@@ -50,73 +50,110 @@
 
                         @forelse (Cart::content() as $item)
                             <tr>
-                                <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                             
+
+
+
+                                <td class="pl-4 w-4 sm:w-40 py-2 border-b border-gray-200 bg-white text-sm">
+                             
+
+
+                                    <div class="flex justify-between items-center  ">
+
+                                        {{-- icono svg --}}
+
+                                        <div class="mr-2">
+
+
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="32"
+                                                height="32" x="0" y="0" viewBox="0 0 512.001 512.001"
+                                                style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                class="fill-current text-{{ $item->options->line_color }}">
+                                                <g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <g>
+                                                            <path fill="currentcolor"
+                                                                d="M406.543,188.63c-3.085-3.35-7.428-5.255-11.981-5.255H186.954c-4.554,0-8.899,1.905-11.982,5.255    c-37.133,40.315-58.429,98.289-58.429,159.059c0,57.446,19.382,116.669,58.429,159.059c3.085,3.349,7.43,5.254,11.982,5.254    h207.607c4.553,0,8.898-1.905,11.982-5.254c38.929-42.261,58.43-101.378,58.43-159.059    C464.973,286.92,443.677,228.944,406.543,188.63z M274.468,334.16H149.529c2.67-45.034,18.595-87.191,44.775-118.203h80.164    V334.16z M307.049,334.16V215.957h80.163c26.182,31.012,42.106,73.169,44.776,118.203H307.049z"
+                                                                fill="#024820" data-original="#000000" style=""
+                                                                class="" />
+                                                        </g>
+                                                    </g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <g>
+                                                            <path fill="currentcolor"
+                                                                d="M495.299,13.917c-1.313-8.901-9.581-15.064-18.494-13.737L256.607,32.678c-8.942-19.27-28.464-32.673-51.068-32.673    c-28.368,0-51.888,21.103-55.717,48.433L30.439,66.056c-8.901,1.313-15.051,9.593-13.737,18.494    c1.195,8.094,8.151,13.914,16.095,13.914c0.792,0,1.592-0.057,2.399-0.178l119.612-17.654    c5.084,10.548,13.367,19.271,23.577,24.919v43.554h87.866l-33.563-23.473v-20.078c14.937-8.264,25.743-23.116,28.457-40.613    l220.416-32.53C490.463,31.098,496.613,22.818,495.299,13.917z M205.537,79.975c-13.065,0-23.694-10.629-23.694-23.694    s10.629-23.694,23.694-23.694c13.065,0,23.694,10.629,23.694,23.694C229.233,69.346,218.603,79.975,205.537,79.975z"
+                                                                fill="#024820" data-original="#000000" style=""
+                                                                class="" />
+                                                        </g>
+                                                    </g>
+
+                                                </g>
+                                            </svg>
+                                        </div>
+
+                                        {{-- FIN icono svg --}}
+                                        <div class="hidden  sm:w-24 sm:table-cell">
+                                            <h1 class="text-xs text-gray-700 mt-0 uppercase py-2 ">
+                                                {{ $item->options->warehouse }}
+                                            </h1>
+                                        </div>
+
+
+                                        
+                                    </div>
+
+
+
+                                </td>
+
+                                <td class=" py-2 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 w-12 h-12">
-                                            <img class="h-10 w-10 object-cover ml-2 mr-4"
+                                            <img class="h-10 w-10 object-cover ml-2 mr-1"
                                                 src=" {{ $item->options->image }} " alt="">
                                         </div>
                                     </div>
                                 </td>
 
 
-
-
-                                <td class="px-5 w-40 py-2 border-b border-gray-200 bg-white text-sm">
+                                <td class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-
-
-                                    <div class="flex">
-
-                                        {{-- icono svg --}}
-
-
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="32"
-                                            height="32" x="0" y="0" viewBox="0 0 512.001 512.001"
-                                            style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                            class="fill-current text-{{ $item->options->line_color }}">
-                                            <g>
-                                                <g xmlns="http://www.w3.org/2000/svg">
-                                                    <g>
-                                                        <path fill="currentcolor"
-                                                            d="M406.543,188.63c-3.085-3.35-7.428-5.255-11.981-5.255H186.954c-4.554,0-8.899,1.905-11.982,5.255    c-37.133,40.315-58.429,98.289-58.429,159.059c0,57.446,19.382,116.669,58.429,159.059c3.085,3.349,7.43,5.254,11.982,5.254    h207.607c4.553,0,8.898-1.905,11.982-5.254c38.929-42.261,58.43-101.378,58.43-159.059    C464.973,286.92,443.677,228.944,406.543,188.63z M274.468,334.16H149.529c2.67-45.034,18.595-87.191,44.775-118.203h80.164    V334.16z M307.049,334.16V215.957h80.163c26.182,31.012,42.106,73.169,44.776,118.203H307.049z"
-                                                            fill="#024820" data-original="#000000" style=""
-                                                            class="" />
-                                                    </g>
-                                                </g>
-                                                <g xmlns="http://www.w3.org/2000/svg">
-                                                    <g>
-                                                        <path fill="currentcolor"
-                                                            d="M495.299,13.917c-1.313-8.901-9.581-15.064-18.494-13.737L256.607,32.678c-8.942-19.27-28.464-32.673-51.068-32.673    c-28.368,0-51.888,21.103-55.717,48.433L30.439,66.056c-8.901,1.313-15.051,9.593-13.737,18.494    c1.195,8.094,8.151,13.914,16.095,13.914c0.792,0,1.592-0.057,2.399-0.178l119.612-17.654    c5.084,10.548,13.367,19.271,23.577,24.919v43.554h87.866l-33.563-23.473v-20.078c14.937-8.264,25.743-23.116,28.457-40.613    l220.416-32.53C490.463,31.098,496.613,22.818,495.299,13.917z M205.537,79.975c-13.065,0-23.694-10.629-23.694-23.694    s10.629-23.694,23.694-23.694c13.065,0,23.694,10.629,23.694,23.694C229.233,69.346,218.603,79.975,205.537,79.975z"
-                                                            fill="#024820" data-original="#000000" style=""
-                                                            class="" />
-                                                    </g>
-                                                </g>
-
-                                            </g>
-                                        </svg>
-
-                                        {{-- FIN icono svg --}}
-                                        <h1 class="text-xs  text-gray-700 mt-0 uppercase py-2 ">
-                                            {{ $item->options->warehouse }}
-                                        </h1>
-                                    </div>
-
-
-
-                                    </p>
-                                </td>
-
-                                <td class="hidden sm:table-cell px-5 py-2 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                    <p class="font-bold text-sm text-gray-900 mr=4 my-0 ">
+                                    <p class="text-xs font-medium  text-gray-900 mr=4 my-0 ">
                                         {{ $item->name }}</p>
 
+                                        @if (($item->options->id_dopp))
+                                        <p class=" text-gray-900 mr-2"></p>
+                                        <ul class="flex">
+                                           <i class="text-blue-500 mr-2 fas fa-key"></i> 
+                                           <li class="hidden sm:block text-gray-800 mr-2"> 
+                                                Dopplmayr:</li>
+                                            <li class=" text-gray-600   ">{{ $item->options->id_dopp }}</li>
+                                        </ul>
+                                    @endif
+                                    @if (($item->options->id_eetc))
+                                        <p class=" text-gray-900 mr-2"></p>
+                
+                                        <ul class="flex">
+                                           <i class="text-yellow-400 mr-2 fas fa-key"></i> <li class="hidden sm:block text-gray-800 mr-2">
+                                                 MiTeleferico:
+                                            </li>
+                                            <li class=" text-gray-600"> {{ $item->options->id_eetc }}</li>
+                                        </ul>
+                                    @endif
+                
+                                    @if (($item->options->id_zona))
+                                        <p class=" text-gray-900 mr-2"> </p>
+                                        <ul class="flex">
+                                            <i class="text-gray-400 mr-2 fas fa-key"></i><li class="hidden sm:block text-gray-800 mr-2">
+                                                Zona:</li>
+                                            <li class=" text-gray-600  ">{{ $item->options->id_zona }}</li>
+                                        </ul>
+                                    @endif
+                                        
 
-
-                                    <p class=" text-xs text-gray-700 mr=4 my-0 ">
+                                    {{-- <p class=" text-xs text-gray-700 mr=4 my-0 ">
                                         ID Dopp: {{ $item->options->id_dopp }}
                                     </p>
                                     <p class=" text-xs text-gray-700 mr=4 my-0 ">
@@ -124,16 +161,32 @@
                                     </p>
                                     <p class=" text-xs text-gray-700 mr=4 my-0 ">
                                         ID Mtto: {{ $item->options->id_zona }}
+                                    </p> --}}
                                     </p>
-                                    </p>
+
+
+
+                                    <div>
+                                        <td class=" sm:hidden px-2 py-2 border-b border-gray-200 bg-white text-xs">
+                                             <p class=" text-center text-gray-900 whitespace-no-wrap">
+                                                {{ $item->qty }}
+                                            </p>
+                                             <p class="text-gray-900 whitespace-no-wrap">
+                                                {{ $item->options->unit }}
+                                            </p>
+                                   
+        
+                                          
+                                        </td>
+                                    </div>
                                 </td>
-                                <td class="hidden sm:table-cell px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                                <td class="hidden sm:table-cell px-5 py-2 border-b border-gray-200 bg-white text-xs">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         {{ $item->options->unit }}
                                     </p>
                                 </td>
 
-                                <td class="hidden sm:table-cell px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                                <td class="hidden  sm:table-cell text-center px-5 py-2 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         {{ $item->qty }}
                                     </p>
@@ -190,19 +243,19 @@
     </div>
 
     <!-- This is an example component -->
-    <div class="col-span-6 ">
+    <div class="col-span-6 mx-6 sm:mx-0 ">
 
         <div class=" border-b border-gray-200 dark:border-gray-700 mb-4">
             <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 <li class="mr-2" role="presentation">
                     <button
-                        class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active "
+                        class="font-bold inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active "
                         id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
-                        aria-controls="profile" aria-selected="true">Salida</button>
+                        aria-controls="profile" aria-selected="true">Salida de almacenes</button>
                 </li>
                 <li class="mr-2" role="presentation">
                     <button
-                        class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 "
+                        class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-bold text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 "
                         id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
                         aria-controls="dashboard" aria-selected="false">Movimiento entre almacenes</button>
                 </li>
@@ -215,7 +268,7 @@
             </ul>
         </div>
         <div id="myTabContent">
-            <div class="px-12  bg-gray-50 p-4 rounded-lg dark:bg-gray-800 " id="profile" role="tabpanel"
+            <div class="px-4 sm:px-12  bg-gray-50 p-4 rounded-lg dark:bg-gray-800 " id="profile" role="tabpanel"
                 aria-labelledby="profile-tab">
                 <p class="text-gray-500 dark:text-gray-400 text-sm">SALIDA DE ALMACEN <strong
                         class="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>.
@@ -225,90 +278,88 @@
 
 
 
-               
-                    <div>
-                        <div class="bg-withe rounded shadow p-6">
-                            <div class="my-2 ">
-                                <x-jet-label
-                                    value=" Razón, motivo o trabajo para el cual será destinado el insumo o repuesto." />
-    
-                                <x-jet-input Type="text" wire:model.defer="reason" class=" w-full" />
-                                <x-jet-input-error for="reason" />
-                                {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
-    
-    
-                            </div>
-    
-    
-                            <div class="my-2 ">
-                                <div>
-                                    <x-jet-label value=" Orde de trabajo (OT)" />
-    
-                                    <x-jet-input Type="text" wire:model.defer="ot" class=" " />
-                                    <x-jet-input-error for="ot" />
-                                    {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
-    
-                                </div>
-                                <div class="my-2">
-                                    <x-jet-label value="Sistema, subsistema y/o equipo" />
-    
-                                    <x-jet-input Type="text" wire:model.defer="equipment" class="w-full" />
-                                    <x-jet-input-error for="equipment" />
-                                </div>
-    
-    
-                            </div>
-    
-                            <div class="mt-2">
-    
-    
-                                <x-jet-label value="Fecha del movimiento" />
-        
-                                <x-jet-input Type="date" wire:model.defer="date_out" class="rounded-lg border-gray-300 " />
-        
-                                <x-jet-input-error for="date_out" />
-        
-        
-        
-                            </div>
-    
-    
-    
-    
-    
-    
-    
-                            <div class="flex justify-end">
-    
-    
-                                <x-jet-button   
-                                    wire:loading.attr="disabled" 
-                                    wire:targuet="create_order"
-                                    wire:click="create_order" 
-                                    type="button"
-                                    class="focus:outline-none text-white text-sm m-2 py-2.5 px-5 rounded-md bg-red-500 hover:bg-red-600 hover:shadow-lg">
-                                    Enviar salida
-                                </x-jet-button>
-    
-    
-    
-    
-                            </div>
-    
-    
-    
+
+                <div>
+                    <div class="bg-withe rounded shadow p-6">
+                        <div class="my-2 ">
+                            <x-jet-label
+                                value=" Razón, motivo o trabajo para el cual será destinado el insumo o repuesto." />
+
+                            <x-jet-input Type="text" wire:model.defer="reason" class=" w-full" />
+                            <x-jet-input-error for="reason" />
+                            {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
+
+
                         </div>
+
+
+                        <div class="my-2 ">
+                            <div>
+                                <x-jet-label value=" Orde de trabajo (OT)" />
+
+                                <x-jet-input Type="text" wire:model.defer="ot" class=" " />
+                                <x-jet-input-error for="ot" />
+                                {{-- <textarea class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600  rounded-lg "></textarea> --}}
+
+                            </div>
+                            <div class="my-2">
+                                <x-jet-label value="Sistema, subsistema y/o equipo" />
+
+                                <x-jet-input Type="text" wire:model.defer="equipment" class="w-full" />
+                                <x-jet-input-error for="equipment" />
+                            </div>
+
+
+                        </div>
+
+                        <div class="mt-2">
+
+
+                            <x-jet-label value="Fecha del movimiento" />
+
+                            <x-jet-input Type="date" wire:model.defer="date_out"
+                                class="rounded-lg border-gray-300 " />
+
+                            <x-jet-input-error for="date_out" />
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="flex justify-end">
+
+
+                            <x-jet-button wire:loading.attr="disabled" wire:targuet="create_order"
+                                wire:click="create_order" type="button"
+                                class="focus:outline-none text-white text-sm m-2 py-2.5 px-5 rounded-md bg-red-500 hover:bg-red-600 hover:shadow-lg">
+                                Enviar salida
+                            </x-jet-button>
+
+
+
+
+                        </div>
+
+
+
                     </div>
+                </div>
 
 
             </div>
-            <div class=" px-12  bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden" id="dashboard" role="tabpanel"
+            <div class=" px-4 sm:px-12  bg-gray-50 p-4 rounded-lg font-bold dark:bg-gray-800 hidden" id="dashboard" role="tabpanel"
                 aria-labelledby="dashboard-tab">
                 <p class="text-gray-500 dark:text-gray-400 text-sm">MOVIMIENTO ENTRE ALMACENES <strong
                         class="font-medium text-gray-800 dark:text-white">Para el movimiento de articulos entre
                         almacenes </strong>llene los siguientes campos.</p>
 
-             @livewire('admin.movement-warehouse')
+                @livewire('admin.movement-warehouse')
 
 
 
@@ -324,16 +375,11 @@
             </div> --}}
         </div>
 
-        <p class="mt-5">This tabs component is part of a larger, open-source library of Tailwind CSS components.
-            Learn
-            more by going to the official <a class="text-blue-600 hover:underline" href="#"
-                target="_blank">Flowbite
-                Documentation</a>.</p>
+       
     </div>
 
 
-  
-<script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+
+    <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
 
 </div>
-

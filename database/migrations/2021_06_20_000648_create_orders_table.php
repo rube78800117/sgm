@@ -19,21 +19,27 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('Users');
 
-            $table->string('ot');
-            $table->string('equipment');
-            $table->text('observation');
+            $table->string('ot')->nullable();
+            $table->string('equipment')->nullable();
+            $table->text('observation')->nullable();
             $table->text('reason');
             $table->json('content');
-
+            
+            $table->unsignedBigInteger('origin_line_id')->nullable();
+            $table->foreign('origin_line_id')->references('id')->on('lines');
+       
+            $table->string('origin_line_name');
+            
             $table->unsignedBigInteger('destiny_mov_warehouse_id')->nullable();
             $table->foreign('destiny_mov_warehouse_id')->references('id')->on('Warehouses');
+            $table->string('destiny_mov_warehouse_name')->nullable();
+            $table->string('destiny_mov_line_name')->nullable();
 
             $table->enum('movement_type',[Order::SALIDA, Order::MOVIMIENTO_ENTRE_ALMACENES])->default(Order::SALIDA);
             $table->enum('status',[Order::PENDIENTE, Order::ENVIADO,  Order::REVISION, Order::APROBADO, Order::RECHAZADO, Order::ANULADO,])->default(Order::PENDIENTE);
 
-            $table->unsignedBigInteger('approved_user_id');
+            $table->unsignedBigInteger('approved_user_id')->nullable();
             $table->foreign('approved_user_id')->references('id')->on('Users');
-
             $table->date('items_out_date');       
            
            
