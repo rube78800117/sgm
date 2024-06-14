@@ -17,21 +17,6 @@
             </a>
         </div>
         <div class="">
-            {{-- <div class="relative">
-                <div
-                    class="{{($order->status >= 1 && $order->status != 6)?'bg-blue-400':'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
-                    <i class="fas fa-check text-white"></i>
-
-                </div>
-                <div class="absolute -left-1 mt-0.5">
-                    <p class="text-gray-700"> Pendiente</p>
-                </div>
-
-            </div>
-
-
-            <div class="{{($order->status >= 2 && $order->status != 6)?'bg-blue-400':'bg-gray-400' }} h-1 flex-1 mx-2">
-            </div> --}}
 
             {{-- Seccion approved --}}
             <div
@@ -106,12 +91,6 @@
             <div
                 class="{{ $order->status >= 6 && $order->status != 5 ? ' bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' : 'hidden' }} ">
 
-
-
-
-
-
-
                 <div class=" relative">
                     <div
                         class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
@@ -175,48 +154,78 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
 
 
         <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
             <div class="flex justify-end">
                 <p class="text-md  font-bold uppercase"><span class="font-bold">Número de solicitud </span>-
                     {{ $order->id }}</p>
-                    
+
+
+
+
+
+
+
+
+
+
             </div>
 
 
             @if ($order->movement_type == 7)
-                <p class="flex justify-end font-bold text-sm">MOVIMIENTO ENTRE ALMACENES</p>
+                <div class="">
+                    <p class="flex justify-end font-bold text-sm">MOVIMIENTO ENTRE ALMACENES</p>
+
+                    <p class="flex justify-end font-bold text-sm">ALMACEN DE DESTINO </p>
+                </div>
+                <span class="flex justify-end text-xs">{{ strtoupper($destination->station->line->name) }} -
+                    {{ strtoupper($destination->station->name) }} - {{ strtoupper($destination->name) }}</span>
+                <div>
+                    {{-- icono svg --}}
+                    <div class="flex justify-end mr-2">
+
+
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="32" height="32" x="0"
+                            y="0" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512 512"
+                            xml:space="preserve" class="fill-current text-{{ $destination->station->line->color }}">
+                            <g>
+                                <g xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path fill="currentcolor"
+                                            d="M406.543,188.63c-3.085-3.35-7.428-5.255-11.981-5.255H186.954c-4.554,0-8.899,1.905-11.982,5.255    c-37.133,40.315-58.429,98.289-58.429,159.059c0,57.446,19.382,116.669,58.429,159.059c3.085,3.349,7.43,5.254,11.982,5.254    h207.607c4.553,0,8.898-1.905,11.982-5.254c38.929-42.261,58.43-101.378,58.43-159.059    C464.973,286.92,443.677,228.944,406.543,188.63z M274.468,334.16H149.529c2.67-45.034,18.595-87.191,44.775-118.203h80.164    V334.16z M307.049,334.16V215.957h80.163c26.182,31.012,42.106,73.169,44.776,118.203H307.049z"
+                                            fill="#024820" data-original="#000000" style="" class="" />
+                                    </g>
+                                </g>
+                                <g xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path fill="currentcolor"
+                                            d="M495.299,13.917c-1.313-8.901-9.581-15.064-18.494-13.737L256.607,32.678c-8.942-19.27-28.464-32.673-51.068-32.673    c-28.368,0-51.888,21.103-55.717,48.433L30.439,66.056c-8.901,1.313-15.051,9.593-13.737,18.494    c1.195,8.094,8.151,13.914,16.095,13.914c0.792,0,1.592-0.057,2.399-0.178l119.612-17.654    c5.084,10.548,13.367,19.271,23.577,24.919v43.554h87.866l-33.563-23.473v-20.078c14.937-8.264,25.743-23.116,28.457-40.613    l220.416-32.53C490.463,31.098,496.613,22.818,495.299,13.917z M205.537,79.975c-13.065,0-23.694-10.629-23.694-23.694    s10.629-23.694,23.694-23.694c13.065,0,23.694,10.629,23.694,23.694C229.233,69.346,218.603,79.975,205.537,79.975z"
+                                            fill="#024820" data-original="#000000" style="" class="" />
+                                    </g>
+                                </g>
+
+                            </g>
+                        </svg>
+                        <div class="  flex justify-end">
+
+                        </div>
+                    </div>
+
+                    {{-- FIN icono svg --}}
+                </div>
+
+
                 <div class="flex">
                     <P class="font-bold text-sm">SOLICITANTE: </P> &nbsp <span class="text-sm">
                         {{ strtoupper($user->name) }} </span>
                 </div>
-                <div class="flex">
-                    <p class="font-bold text-sm">ALMACEN DE DESTINO: </p> &nbsp <span
-                        class="text-sm">{{ strtoupper($destination->station->line->name) }} -
-                        {{ strtoupper($destination->station->name) }} - {{ strtoupper($destination->name) }}</span>
-                </div>
+
                 <div class="flex">
                     <P class="font-bold text-sm">MOTIVO DEL MOVIMIENTO: </P> &nbsp <span class="text-sm">
                         {{ strtoupper($order->reasonMove) }} </span>
@@ -247,8 +256,6 @@
                     <P class="font-bold text-sm">FECHA DE SALIDA: </P> &nbsp <span class="text-sm">
                         {{ strtoupper($order->items_out_date) }} </span>
                 </div>
-
-
             @endif
 
             {{-- {{$order->movement_type}}
@@ -339,23 +346,24 @@
                 {{-- tabla de resumen de articulos ya solicitados --}}
 
 
-                
-             
+
+
 
 
                 <div class="bg-white rounded-lg shadow-lg px-6  py-4 mb-2 ">
-                    <p class="text-gray-700 text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS SOLICITADOS</span> </p>
+                    <p class="text-gray-700 text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS
+                            SOLICITADOS</span> </p>
                 </div>
 
 
-                <div class=" {{ $order->status == 4 ? 'bg-green-200' : 'hidden ' }} py-2 px-6 rounded-lg "> 
+                <div class=" {{ $order->status == 4 ? 'bg-green-200' : 'hidden ' }} py-2 px-6 rounded-lg ">
                     <div class="flex">
                         <P class="font-bold text-sm">OBSERVACIONES: </P> &nbsp <span class="text-sm">
                             {{ strtoupper($order->observation) }} </span>
                     </div>
                 </div>
 
-                <div class=" {{ $order->status == 6 ? 'bg-red-200' : 'hidden ' }} py-2 px-6 rounded-lg "> 
+                <div class=" {{ $order->status == 6 ? 'bg-red-200' : 'hidden ' }} py-2 px-6 rounded-lg ">
                     <div class="flex">
                         <P class="font-bold text-sm">OBSERVACIONES: </P> &nbsp <span class="text-sm">
                             {{ strtoupper($order->observation) }} </span>
@@ -370,81 +378,259 @@
                    
                 </div> --}}
 
-                <table class="border-separate border border-gray-200 w-full">
-                    <thead>
-                        <tr class="border-separate border border-gray-300">
-                            <th
-                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                Item</th>
-                            <th
-                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                Almacen</th>
-                            {{-- <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Linea
-                    </th> --}}
-                            <th
-                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                Cantidad</th>
-                            {{-- <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                    </th> --}}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($items as $item)
-                            <tr
-                                class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 border-separate border border-gray-400">
-                                <td
-                                    class="px-10 w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-
-                                    <div class="flex justify-start items-center">
 
 
 
 
-
-                                        <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}"
-                                            alt="">
+                {{-- star hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh --}}
 
 
 
-                                        <div class="font-bold text-sm text-gray-600">
-                                            <p class="flex justify-start items-center"> {{ $item->name }}</p>
-                                            <p class="flex justify-start items-center"> {{ $item->options->id_dopp }}
-                                            </p>
-                                            <p class="flex justify-start items-center"> {{ $item->options->id_eetc }}
-                                            </p>
+                <!-- component -->
+                <x-table-responsive>
+
+
+
+
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <!-- Columna visible en todas las pantallas -->
+                                <th
+                                    class="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Origen
+                                </th>
+                                <!-- Columna oculta en pantallas pequeñas -->
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+
+                                </th>
+                                <!-- Columna oculta en pantallas pequeñas -->
+                                <th
+                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Nombre del artículo
+                                </th>
+                                <!-- Columna oculta en pantallas pequeñas -->
+                                <th
+                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    unidad
+                                </th>
+                                <th
+                                    class="hidden sm:table-cell text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Cantidad
+                                </th>
+
+                                <!-- Columna oculta en pantallas pequeñas -->
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @forelse ($items as $item)
+                                <tr>
+
+
+
+
+                                    <td class="pl-4 w-4 sm:w-40 py-2 border-b border-gray-200 bg-white text-sm">
+
+
+
+                                        <div class="flex justify-between items-center  ">
+
+                                            {{-- icono svg --}}
+
+                                            <div class="mr-2">
+
+
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xmlns:svgjs="http://svgjs.com/svgjs" version="1.1"
+                                                    width="32" height="32" x="0" y="0"
+                                                    viewBox="0 0 512.001 512.001"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                    class="fill-current text-{{ $item->options->line_color }}">
+                                                    <g>
+                                                        <g xmlns="http://www.w3.org/2000/svg">
+                                                            <g>
+                                                                <path fill="currentcolor"
+                                                                    d="M406.543,188.63c-3.085-3.35-7.428-5.255-11.981-5.255H186.954c-4.554,0-8.899,1.905-11.982,5.255    c-37.133,40.315-58.429,98.289-58.429,159.059c0,57.446,19.382,116.669,58.429,159.059c3.085,3.349,7.43,5.254,11.982,5.254    h207.607c4.553,0,8.898-1.905,11.982-5.254c38.929-42.261,58.43-101.378,58.43-159.059    C464.973,286.92,443.677,228.944,406.543,188.63z M274.468,334.16H149.529c2.67-45.034,18.595-87.191,44.775-118.203h80.164    V334.16z M307.049,334.16V215.957h80.163c26.182,31.012,42.106,73.169,44.776,118.203H307.049z"
+                                                                    fill="#024820" data-original="#000000"
+                                                                    style="" class="" />
+                                                            </g>
+                                                        </g>
+                                                        <g xmlns="http://www.w3.org/2000/svg">
+                                                            <g>
+                                                                <path fill="currentcolor"
+                                                                    d="M495.299,13.917c-1.313-8.901-9.581-15.064-18.494-13.737L256.607,32.678c-8.942-19.27-28.464-32.673-51.068-32.673    c-28.368,0-51.888,21.103-55.717,48.433L30.439,66.056c-8.901,1.313-15.051,9.593-13.737,18.494    c1.195,8.094,8.151,13.914,16.095,13.914c0.792,0,1.592-0.057,2.399-0.178l119.612-17.654    c5.084,10.548,13.367,19.271,23.577,24.919v43.554h87.866l-33.563-23.473v-20.078c14.937-8.264,25.743-23.116,28.457-40.613    l220.416-32.53C490.463,31.098,496.613,22.818,495.299,13.917z M205.537,79.975c-13.065,0-23.694-10.629-23.694-23.694    s10.629-23.694,23.694-23.694c13.065,0,23.694,10.629,23.694,23.694C229.233,69.346,218.603,79.975,205.537,79.975z"
+                                                                    fill="#024820" data-original="#000000"
+                                                                    style="" class="" />
+                                                            </g>
+                                                        </g>
+
+                                                    </g>
+                                                </svg>
+                                            </div>
+
+                                            {{-- FIN icono svg --}}
+                                            <div class="hidden  sm:w-24 sm:table-cell">
+                                                <h1 class="text-xs text-gray-700 mt-0 uppercase py-2 ">
+                                                    {{ $item->options->warehouse }}
+                                                </h1>
+                                            </div>
+
+
 
                                         </div>
-                                    </div>
-                                </td>
 
 
-                                <td
-                                    class="bg-{{ $item->options->line_color }} text-sm px-10 w-full lg:w-auto p-3 text-gray-700 text-center border border-b block lg:table-cell relative lg:static">
 
-                                    <div class="font-bold ">
+                                    </td>
 
-                                        <p class="flex justify-center items-center text-xs">
-                                            {{ $item->options->warehouse }}</p>
-                                    </div>
+                                    <td class=" py-2 border-b border-gray-200 bg-white text-sm">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 w-12 h-12">
+                                                <img class="h-10 w-10 object-cover ml-2 mr-1"
+                                                    src=" {{ $item->options->image }} " alt="">
+                                            </div>
+                                        </div>
+                                    </td>
 
-                                </td>
+
+                                    <td
+                                        class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                        <p class="text-xs font-medium  text-gray-900 mr=4 my-0 ">
+                                            {{ $item->name }}</p>
+
+                                        @if ($item->options->id_dopp)
+                                            <p class=" text-gray-900 mr-2"></p>
+                                            <ul class="flex">
+                                                <i class="text-blue-500 mr-2 fas fa-key"></i>
+                                                <li class="hidden sm:block text-gray-800 mr-2">
+                                                    Dopplmayr:</li>
+                                                <li class=" text-gray-600   ">{{ $item->options->id_dopp }}</li>
+                                            </ul>
+                                        @endif
+                                        @if ($item->options->id_eetc)
+                                            <p class=" text-gray-900 mr-2"></p>
+
+                                            <ul class="flex">
+                                                <i class="text-yellow-400 mr-2 fas fa-key"></i>
+                                                <li class="hidden sm:block text-gray-800 mr-2">
+                                                    MiTeleferico:
+                                                </li>
+                                                <li class=" text-gray-600"> {{ $item->options->id_eetc }}</li>
+                                            </ul>
+                                        @endif
+
+                                        {{-- @if ($item->options->id_zona!== null)
+                                            <p class=" text-gray-900 mr-2"> </p>
+                                            <ul class="flex">
+                                                <i class="text-gray-400 mr-2 fas fa-key"></i>
+                                                <li class="hidden sm:block text-gray-800 mr-2">
+                                                    Zona:</li>
+                                                <li class=" text-gray-600  ">{{ $item->options->id_zona }}</li>
+                                            </ul>
+                                        @endif --}}
 
 
-                                <td
-                                    class="w-full lg:w-auto pl-20 p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                    <div class="font-bold ">
+                                        </p>
 
-                                        <p class="flex items-center text-xs"> {{ $item->qty }}</p>
-                                    </div>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    </td>
+
+
+                                    <td class=" sm:hidden px-2 py-2 border-b border-gray-200 bg-white text-xs">
+                                        <p class=" text-center text-gray-900 whitespace-no-wrap">
+                                            {{ $item->qty }}
+                                        </p>
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{ $item->options->unit }}
+                                        </p>
+
+
+
+                                    </td>
+
+                                    <td
+                                        class="hidden sm:table-cell px-5 py-2 border-b border-gray-200 bg-white text-xs">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{ $item->options->unit }}
+                                        </p>
+                                    </td>
+
+                                    <td
+                                        class="hidden  sm:table-cell text-center px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{ $item->qty }}
+                                        </p>
+                                    </td>
+
+
+                                </tr>
+                            @empty
+
+                                <div class="px-6 py-4">
+                                    No hay ningún
+                                </div>
+                            @endforelse
+
+
+                        </tbody>
+
+
+
+
+
+
+
+
+
+
+
+                    </table>
+
+
+
+
+
+                </x-table-responsive>
+
+
+
+
+
+
+
+
+                {{-- END  hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 <div class=" {{ $order->status >= 4 ? 'hidden ' : '' }}py-4">

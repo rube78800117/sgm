@@ -58,21 +58,6 @@ class Order extends Model
   }
 
   // Accesor para obtener otro atributo de la línea
-  public function getLineDescriptionAttribute()
-  {
-      return $this->line ? $this->line->description : null;
-  }
-
-
-
-
-
-
-
-
-
-
-
 
   // Accesor para obtener el nombre de la línea
   public function getLineColorAttribute()
@@ -86,6 +71,5 @@ class Order extends Model
       return $this->warehouse_destiny ? $this->warehouse_destiny->name : null;
   }
   
-
 
 }

@@ -34,23 +34,44 @@ class CreateOrder extends Component
   
       try {
           DB::transaction(function () {
-              $order = new Order(); 
-              $order->status = 2; 
-              $order->movement_type = '0';
-              $order->user_id = auth()->user()->id;
-              $order->reason = $this->reason; 
-              $order->content = Cart::content(); 
-              $order->approved_user_id = auth()->user()->id;
-              $order->ot = $this->ot;
-              $order->equipment = $this->equipment;
-              $order->observation = "No se registrado";
-              $order->origin_line_id = $this->line_user->name;
-              $order->origin_line_name = $this->line_user->name;
-              $order->destiny_mov_warehouse_name= " N/A";
-              $order->destiny_mov_line_name = "N/A";
 
-              $order->destiny_mov_warehouse_id = $this->warehouse_id;
-              $order->items_out_date = $this->date_out;
+
+            $order = new Order(); 
+            $order->status = 2; 
+            $order->movement_type = '0';
+            $order->user_id = auth()->user()->id;
+            $order->reason = $this->reason; 
+            $order->content = Cart::content(); 
+            $order->approved_user_id = auth()->user()->id;
+            $order->ot = $this->ot;
+            $order->equipment = $this->equipment;
+            $order->observation = "No registrado";
+          //   se identifica la linea del usuario para el registro ya que esta es la unica al que puede acceder 
+            $order->origin_line_id = $this->line_user->id;
+            $order->origin_line_name = $this->line_user->name;
+            $order->destiny_mov_warehouse_name= " N/A";
+            $order->destiny_mov_line_name = "N/A";
+// como es el una salida se asiga el mismo almacen para destino en una salida
+            $order->destiny_mov_warehouse_id = $this->warehouse_id; 
+            $order->items_out_date = $this->date_out;
+
+            //   $order = new Order(); 
+            //   $order->status = 2; 
+            //   $order->movement_type = '0';
+            //   $order->user_id = auth()->user()->id;
+            //   $order->reason = $this->reason; 
+            //   $order->content = Cart::content(); 
+            //   $order->approved_user_id = auth()->user()->id;
+            //   $order->ot = $this->ot;
+            //   $order->equipment = $this->equipment;
+            //   $order->observation = "No se registrado";
+            //   $order->origin_line_id = $this->line_user->name;
+            //   $order->origin_line_name = $this->line_user->name;
+            //   $order->destiny_mov_warehouse_name= " N/A";
+            //   $order->destiny_mov_line_name = "N/A";
+
+            //   $order->destiny_mov_warehouse_id = $this->warehouse_id;
+            //   $order->items_out_date = $this->date_out;
   
               $order->save();
   
@@ -72,17 +93,17 @@ class CreateOrder extends Component
 
 
 
-    public function mount(){
+  public function mount(){
 
         
-        $line = Line::where('id', 'LIKE', auth()->user()->line_id);
-        $this->line_user = $line;
+    $line = Line ::where('id', 'LIKE', auth()->user()->line_id)->first();
+    $this->line_user = $line;
 
-        // $lineId=Line::where('id', 'LIKE' , (auth()->user()->line_id));
-        // $lineName=Line::find(auth()->user()->line_id);
+    // $lineId=Line::where('id', 'LIKE' , (auth()->user()->line_id));
+    // $lineName=Line::find(auth()->user()->line_id);
 
 
-    }
+}
 
 
     public function updatedWarehouseselect($warehouse_id)

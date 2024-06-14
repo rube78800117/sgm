@@ -16,7 +16,7 @@ class MovementWarehouse extends Component
 {
 
     
-    public $reasonMove, $date_out_move, $observation;
+    public $reasonMove, $date_out_move, $observation, $line_user;
     public $line_id = 1, $station_id, $warehouse_id, $stations, $warehouses, $warehouse, $lines, $linewarehouse, $stationselect,$warehouseselect ;
     public $result, $stationsDest, $warehousesDest, $linewarehouseDest, $warehouseDest, $stationselectDest,$warehouseselectDest, $dataArray ;
   
@@ -43,6 +43,10 @@ class MovementWarehouse extends Component
         $this->date_out_move = Carbon::now()->toDateString(); // Inicializa con la fecha actual en formato 'YYYY-MM-DD'
 
         $this->lines = Line::all();
+    
+        $line = Line ::where('id', 'LIKE', auth()->user()->line_id)->first();
+        $this->line_user = $line;
+
         
        
     }
@@ -99,7 +103,12 @@ class MovementWarehouse extends Component
                 $order->ot = 0;
                 $order->equipment = "N/E";
                 $order->observation = "S/N";
+                $order->origin_line_id = $this->line_user->id;
+                $order->origin_line_name = $this->line_user->name;
+                $order->destiny_mov_warehouse_name= $this->warehouse->name;
+                $order->destiny_mov_line_name = $this->warehouse->station->line->name;
                 $order->destiny_mov_warehouse_id = $this->warehouse_id;
+
                 $order->items_out_date = $this->date_out_move;
     
                 $order->approved_user_id = auth()->user()->id; 
@@ -130,6 +139,7 @@ class MovementWarehouse extends Component
     }
 
    
+
 
 
 
