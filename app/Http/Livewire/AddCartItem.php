@@ -6,11 +6,14 @@ use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Article;
+use App\Models\Station;
 use App\Models\Warehouse;
+use Illuminate\Support\Facades\Auth;
 
 class AddCartItem extends Component
 { 
-  
+   
+   
 
     public $quantity;
     public $warehouse;
@@ -19,18 +22,22 @@ class AddCartItem extends Component
     public $article, $existence; 
     public $WarehouseId;
     public $line_color;
+    public $warehouse_line_id;
 
     
     public $qty = 1;
     public $options=[];
+  
+
+
+
+
 
     // protected $listeners=['render'];
     public function mount(){
         $this->quantity = qty_available($this->article->id,  $this->WarehouseId);
-           
 
-         
-            if ($this->article->image != null) {
+        if ($this->article->image != null) {
                 // $this->options['image'] = Storage::url($this->article->image->url); # code...
                     //  $this->options['image'] = asset('public_html/public/storage/'.$this->article->image->url); # code...
                 // Si se utilizando Laravel, y la imagen está almacenada en el directorio storage/app/public, por tanto se accede a las imagenes de la siguiente forma asset('storage/'.$this->article->image->url)
@@ -50,7 +57,10 @@ class AddCartItem extends Component
         $this->options['id_art'] = $this->article->id;
         $this->options['line_color'] = $this->line_color;
         $this->options['unit'] = $this->article->unit->name;
-     
+
+
+    
+
         return $this->quantity;
     }
 
@@ -94,7 +104,18 @@ class AddCartItem extends Component
 
 
     public function render()
+    
     {
-       return view('livewire.add-cart-item');
+
+         $user=auth()->user();
+        //  dd($user);
+
+      
+       
+
+        $user_line_id=auth()->user()->line->id;
+    //    dd( $user_line_id);
+       
+       return view('livewire.add-cart-item', compact('user', 'user_line_id'));
     }
 }

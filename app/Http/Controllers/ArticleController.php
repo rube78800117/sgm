@@ -15,9 +15,10 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
+        // LISTA  LOS ALMACENES DE UN ARTICULO DEPENDIENDO DE EL TIPO DE USUARIO AUTENTICADO
         $user = auth()->user();
 
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole('superadmin')) {
             // Si el usuario es admin, obtener todos los almacenes
             $warehouses = $article->warehouses;
         } else {

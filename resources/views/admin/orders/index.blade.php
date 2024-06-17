@@ -1,5 +1,5 @@
 <x-admin-layout>
-    @livewire('admin.index-order'))
+    @livewire('admin.index-order')
 
 
 

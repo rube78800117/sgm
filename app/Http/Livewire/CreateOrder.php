@@ -10,6 +10,7 @@ use App\Models\Station;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Auth 
 // use Exception;
 
 class CreateOrder extends Component
@@ -95,9 +96,11 @@ class CreateOrder extends Component
 
   public function mount(){
 
+   
+    $warehouse = Warehouse::find($this->warehouse_id);
         
-    $line = Line ::where('id', 'LIKE', auth()->user()->line_id)->first();
-    $this->line_user = $line;
+    // $line = Line ::where('id', 'LIKE', auth()->user()->line_id)->first();
+    // $this->line_user = $line;
 
     // $lineId=Line::where('id', 'LIKE' , (auth()->user()->line_id));
     // $lineName=Line::find(auth()->user()->line_id);
@@ -120,7 +123,11 @@ class CreateOrder extends Component
 
   public function render()
     {
-        return view('livewire.create-order');
+      $user=auth()->user();
+ 
+
+      $user_line_id=auth()->user()->line->id;
+        return view('livewire.create-order', compact('user'));
     }
 
 

@@ -500,7 +500,7 @@
 
                                     </div>
                                     {{-- @livewire('card-update', ['article' => $article, 'WarehouseId'=> $item->id]) --}}
-                                    @livewire('add-cart-item', ['article' => $article, 'WarehouseId' => $item->id, 'warehouses_name' => $item->name, 'line_color' => $item->station->line->color])
+                                    @livewire('add-cart-item', ['article' => $article, 'WarehouseId' => $item->id, 'warehouses_name' => $item->name, 'line_color' => $item->station->line->color,'warehouse_line_id'=>$item->station->line->id])
                                                       </div>
 
 

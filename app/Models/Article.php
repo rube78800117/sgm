@@ -29,7 +29,7 @@ class Article extends Model
     public function getStockAttribute()
     {
         $user = auth()->user();
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole('superadmin')) {
             return ArticleWarehouse::whereHas('article', function (Builder $query) {
                 $query->where('id', $this->id);
             })->sum('quantity');

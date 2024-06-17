@@ -1,5 +1,17 @@
 <div>
 
+  
+    <button wire:click="zone">
+zonas
+    </button>
+    <div class="flex justify-end">
+        <select name="" id="">
+            @foreach ($this->zone() as $line)
+                <option value=""> {{ $line->name}}
+                </option>
+            @endforeach
+        </select>
+    </div>
 
     <div class=" ">
 

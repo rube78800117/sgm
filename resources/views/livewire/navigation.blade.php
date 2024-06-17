@@ -51,7 +51,7 @@
                         @endauth
                     @endforeach
                        @auth
-                       @role('admin')
+                       @role('superadmin')
                        <x-jet-nav-link href="{{route('admin.index')}}" :active="request()->routeIs('admin.*') ">
                        <ul class="text-gray-200">Administrador</ul> 
                        </x-jet-nav-link>
@@ -168,7 +168,7 @@
                             </x-jet-dropdown-link>
 
 
-                            @role('admin')
+                            @role('admin|superadmin')
                        <x-jet-dropdown-link href="{{ route('admin.index') }}">
                                 Administrador
                              </x-jet-dropdown-link>
