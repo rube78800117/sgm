@@ -20,12 +20,12 @@
         <div class=" bg-grey-100 py-4 px-4 shadow-2xl rounded-lg   w-full md:w-3/4 lg:w-7/12">
           <h1 class="sm:block md:hidden font-bold text-2xl text-gray-800">Sistema de Gestión de Subalmacenes</h1>
             
-          <h1 class="hidden md:block font-bold text-4xl text-gray-800">Sistema de Gestión de Subalmacenes <br>
+          {{-- <h1 class="hidden md:block font-bold text-4xl text-gray-800">Sistema de Gestión de Subalmacenes <br>
             </h1>
-            
-          <p class="  text-sm font-bold text-gray-700 ">"Hay una fuerza motriz más poderosa que el vapor, la electricidad
-            y la energía atómica:</p>
-          <p class=" text-sm font-bold text-gray-700  ">Es la voluntad". Albert Einstein</p>
+             --}}
+          {{-- <p class="  text-sm font-bold text-gray-700 ">"Hay una fuerza motriz más poderosa que el vapor, la electricidad
+            y la energía atómica:</p> --}}
+          {{-- <p class=" text-sm font-bold text-gray-700  ">Es la voluntad". Albert Einstein</p> --}}
           
 
           
