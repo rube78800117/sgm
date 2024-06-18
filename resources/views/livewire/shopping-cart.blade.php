@@ -1,6 +1,9 @@
 <div class="container  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <h1>LISTA DE ARTICULOS SELECCIONADOS</h1>
+    <button wire:click="generateOrders">
+        mostrar carrito
+    </button>
     <section class="bg-white rounded-lg shadow-lg p-6 text-gray-700">
         <h1 class="text-lg font-semibold-semibold mb-6">MI CAJA </h1>
         @if (Cart::count())
@@ -48,7 +51,6 @@
                                     <div class="font-bold text-sm text-gray-600">
                                         <p class="flex justify-start items-center"> {{ $item->name }}</p>
                                         <p class="flex justify-start items-center"> {{ $item->options->id_dopp }} </p>
-
                                     </div>
                                 </div>
                             </td>

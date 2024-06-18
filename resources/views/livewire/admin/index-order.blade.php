@@ -1,13 +1,13 @@
 <div>
 
-  
+
     <button wire:click="zone">
-zonas
+        zonas
     </button>
     <div class="flex justify-end">
         <select name="" id="">
             @foreach ($this->zone() as $line)
-                <option value=""> {{ $line->name}}
+                <option value=""> {{ $line->name }}
                 </option>
             @endforeach
         </select>
@@ -342,18 +342,99 @@ zonas
 
                                             <td
                                                 class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200 bg-white text-sm">
-                                                <div>
-                                               <a href="{{route('admin.orders.show', $order)}}"
-                                                        class="text-blue-600 hover:text-blue-400 ">
+
+                                                <div class="flex justify-between">
+                                                    {{-- <div class="text-green-600 hover:text-green-400 ">
+
+
                                                         <p class="text-xl flex justify-center">
-                                                            <i class="fas fa-chevron-circle-right"></i>
+                                                            <i class="fas fa-expand"></i>
                                                         </p>
-                                                        <p class="text-md flex justify-center">Ver mas</p>
-                                                    </a>
+                                                        <p class="text-md flex justify-center">Pre View</p>
+
+                                                    </div> --}}
+
+
+
+
+
+                                                    {{-- div del icono y fondos de color automaticos segun linea --}}
+
+                                                    <div x-data="{ open: false }" class="relative">
+                                                        <button @click="open = !open"
+                                                            class="text-green-600 hover:text-green-400">
+
+                                                            {{-- <template x-if="open">
+                                                                <i class="fas fa-compress "></i>
+                                                            </template> --}}
+                                                            {{-- <template x-if="!open">
+                                                                <i class="fas fa-expand"></i>
+                                                         
+                                                            </template> --}}
+
+
+
+
+
+                                                            <!-- Elemento que se muestra/oculta basado en el valor de 'open' -->
+                                                            <i x-show="!open" class="items-center justify-center  p-2  fas fa-list-ul"
+                                                                style="display: none;"></i>
+
+
+
+
+
+                                                        </button>
+                                                        <!-- Contenido emergente -->
+                                                        <div x-show="open" @click.outside="open = false"
+                                                            @click.away="open = false"
+                                                            x-transition:enter="transition ease-out duration-200"
+                                                            x-transition:enter-start="opacity-0 transform scale-95"
+                                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                                            x-transition:leave="transition ease-in duration-75"
+                                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                                            x-transition:leave-end="opacity-0 transform scale-95"
+                                                            class="w-96  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                            style="display: none;">
+                                                            <!-- Contenido del menú emergente -->
+                                                            <div class="p-4 text-xs">
+
+
+
+
+
+                                                                <p class="text-gray-500 text-sm">Listado:</p>
+
+                                                                <hr>
+                                                                @livewire('mycomponents.card-item-alt', ['order' => $order])
+
+
+
+
+
+
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div>
+                                                        <a href="{{ route('admin.orders.show', $order) }}"
+                                                            class="text-blue-600 hover:text-blue-400 ">
+                                                            <p class="text-xl flex justify-center">
+                                                                <i class="fas fa-chevron-circle-right"></i>
+                                                            </p>
+                                                            <p class="text-sm flex justify-center">Ver mas</p>
+                                                        </a>
+
+                                                    </div>
 
                                                 </div>
-
-
 
 
 
@@ -364,22 +445,22 @@ zonas
 
                                             </td>
                                         </tr>
-                                    @empty
+                                        @empty
 
                                             <div class="px-6 py-4">
                                                 No hay ningún
                                             </div>
-                                    @endforelse
+                                        @endforelse
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
-                        </x-table-responsive>
+                            </x-table-responsive>
+
+                        </div>
+
 
                     </div>
-
-
-                </div>
 
 
                     {{-- END-------------------------------------------------------------------------------------------- --}}

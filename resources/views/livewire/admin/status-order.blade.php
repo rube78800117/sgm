@@ -234,6 +234,26 @@
                     <P class="font-bold text-sm">FECHA DEL MOVIMIENTO: </P> &nbsp <span class="text-sm">
                         {{ strtoupper($order->items_out_date) }} </span>
                 </div>
+
+                <div class="px-2 text-xs">
+    
+
+
+                    @switch($order->status)
+                    @case(4)
+                    <br> Aprovado por: {{approved($order->approved_user_id)->name}}
+                    @break
+                    @case(6)
+                    <br> Cancelado por: {{approved($order->approved_user_id)->name}}
+                    @break
+                    @default
+
+                    @endswitch
+
+
+                </div>
+
+
             @else
                 <p class="flex justify-end font-bold text-sm">SALIDA DE ALMACEN</p>
                 <div class="flex">
@@ -256,6 +276,44 @@
                     <P class="font-bold text-sm">FECHA DE SALIDA: </P> &nbsp <span class="text-sm">
                         {{ strtoupper($order->items_out_date) }} </span>
                 </div>
+
+
+                <div class=" {{ $order->status >= 4 ? 'hidden ' : '' }}py-4">
+
+
+
+                    @switch($order->status)
+                    @case(4)<P class="font-bold text-sm">REVISADO POR: </P> &nbsp 
+
+                    <br>  {{approved($order->approved_user_id)->name}}
+                    @break
+                    @case(6)
+                    <br> {{approved($order->approved_user_id)->name}}
+                    @break
+                    @default
+                    @endswitch
+
+
+
+                    
+{{--                     
+                    <span class="text-sm"> {{ strtoupper($order->approved_user) }} </span> --}}
+                </div>
+
+
+
+
+            
+           
+
+
+                   
+
+
+
+
+
+
             @endif
 
             {{-- {{$order->movement_type}}

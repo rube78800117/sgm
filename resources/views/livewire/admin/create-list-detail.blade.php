@@ -1,19 +1,15 @@
 <div>
 
 
-    {!! Toastr::message() !!}
+
 
     <div class="container mx-auto">
-        {{ Session::get('key') }}
+
 
         <div class="grid sm:grid-cols-12 mb-1 gap-4 grid-cols-4">
             {{-- nivel 1 --}}
             <div class="col-span-12 sm:col-span-5 md:col-span-5 pb-4 mt-4 bg-white rounded-xl shadow-2xl">
-                {{-- <div class="col-span-1 flex flex-col  w-full mb-1">
-                    <label for="first-name" class="block text-sm font-medium text-gray-700">Proveedor
-                    </label>
-                </div> --}}
-
+          
 
                 {{-- nivel 1 STAR SECCION DE INPUTS datos PROVEEDOR --}}
                 <div class="px-2 py-4  sm:p-2 ">
@@ -98,10 +94,7 @@
                 {{-- nivel 1 STAR SECCION DE INPUTS datos GENERALES --}}
                 <div class=" col-span-12 sm:col-span-5 row-span-1  gap-4">
 
-                    {{-- <div class="col-span-8 w-full mb-1">
-                        <label for="first-name" class=" text-sm font-medium text-gray-700">Formulario
-                        </label>
-                    </div> --}}
+       
 
                     <div class="col-span-5 bg-white">
 

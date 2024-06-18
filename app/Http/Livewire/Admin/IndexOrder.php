@@ -32,6 +32,7 @@ class IndexOrder extends Component
     public $rechazadoreg;
     public $anuladoreg;
     public $lineSelect;
+    public $open;
 
 
 

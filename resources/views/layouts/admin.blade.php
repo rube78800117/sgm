@@ -131,10 +131,10 @@
 
 
 
-          {{-------------------------- aside -------------------------------------------}}
-         @livewire('admin.layout-component.aside')
-    
-       {{-------------------------- aside -------------------------------------------}}
+            {{-- ------------------------ aside ----------------------------------------- --}}
+            {{-- @livewire('admin.layout-component.aside') --}}
+
+            {{-- ------------------------END aside ----------------------------------------- --}}
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
@@ -169,8 +169,7 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                                            <span class="align-middle"><i
-                                                    class="mdi mdi-monitor me-2"></i>System</span>
+                                            <span class="align-middle"><i class="mdi mdi-monitor me-2"></i>System</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -251,64 +250,74 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-                  
-                        <div class=" min-h-screen bg-gray-100">
-                            {{-- @livewire('navigation-menu') --}}
-                            <!-- Page Heading -->
+
+                    <div class=" min-h-screen bg-gray-100">
 
 
 
-                            <div class="shadow-lg ">
-                                @if (isset($header))
-                                    <header class="bg-gray-200 shadow-xl">
-                                        <div class="container py-6">
-                                            {{ $header }}
-                                        </div>
-                                    </header>
-                                @endif
-                                <!-- Page Content -->
-                                <main>
-                                    {{ $slot }}
-                                </main>
-                            </div>
+                        {{-- ------------------------------------------------ menu de navegacion ----------------------------------------- --}}
+                        @livewire('navigation-menu')
 
-                            @stack('modals')
-                            @livewireScripts
+                        {{-- ------------------------------------------------END menu de navegacion ----------------------------------------- --}}
 
 
 
 
 
-                            <script>
-                                window.addEventListener('alerttoastr', event => {
-                                    toastr[event.detail.type](event.detail.message,
-                                        event.detail.title ?? ''), toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": true,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "3000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+
+                        <!-- Page Heading -->
 
 
 
-
-                                });
-                            </script>
-
-                            @stack('script')
+                        <div class="shadow-lg ">
+                            @if (isset($header))
+                                <header class="bg-gray-200 shadow-xl">
+                                    <div class="container py-6">
+                                        {{ $header }}
+                                    </div>
+                                </header>
+                            @endif
+                            <!-- Page Content -->
+                            <main>
+                                {{ $slot }}
+                            </main>
                         </div>
 
+                        @stack('modals')
+                        @livewireScripts
+
+
+
+
+                         <script>
+                            window.addEventListener('alerttoastr', event => {
+                                toastr[event.detail.type](event.detail.message,
+                                    event.detail.title ?? ''), toastr.options = {
+                                    "closeButton": false,
+                                    "debug": false,
+                                    "newestOnTop": false,
+                                    "progressBar": true,
+                                    "positionClass": "toast-top-right",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "3000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                }
+
+
+
+
+                            });
+                        </script> 
+
+                        @stack('script')
+                    </div>
 
 
 
@@ -326,7 +335,8 @@
 
 
 
-                        {{-- <p>
+
+                    {{-- <p>
                 Sample page.<br />For more layout options, refer
                 <a
                   href="https://demos.pixinvent.com/materialize-html-admin-template/documentation//layouts.html"
@@ -335,45 +345,44 @@
                   >Layout docs</a
                 >.
               </p> --}}
-                    </div>
-                    <!-- / Content -->
+                </div>
+                <!-- / Content -->
 
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl">
-                            <div
-                                class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
-                                <div class="mb-2 mb-md-0">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script>
-                                    , made with <span class="text-danger"><i
-                                            class="tf-icons mdi mdi-heart"></i></span> by
-                                    <a href="https://pixinvent.com" target="_blank"
-                                        class="footer-link fw-medium">Pixinvent</a>
-                                </div>
-                                <div class="d-none d-lg-inline-block">
-                                    <a href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/"
-                                        target="_blank" class="footer-link me-4">Documentation</a>
-                                </div>
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl">
+                        <div
+                            class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with <span class="text-danger"><i class="tf-icons mdi mdi-heart"></i></span> by
+                                <a href="https://pixinvent.com" target="_blank"
+                                    class="footer-link fw-medium">Pixinvent</a>
+                            </div>
+                            <div class="d-none d-lg-inline-block">
+                                <a href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/"
+                                    target="_blank" class="footer-link me-4">Documentation</a>
                             </div>
                         </div>
-                    </footer>
-                    <!-- / Footer -->
+                    </div>
+                </footer>
+                <!-- / Footer -->
 
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
+                <div class="content-backdrop fade"></div>
             </div>
-            <!-- / Layout page -->
+            <!-- Content wrapper -->
         </div>
+        <!-- / Layout page -->
+    </div>
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
 
-        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-        <div class="drag-target"></div>
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
 

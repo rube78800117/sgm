@@ -1,5 +1,11 @@
 <div x-data>
 
+    {!! Toastr::message() !!}
+
+    <div class="container mx-auto">
+        {{ Session::get('key') }}
+
+</div>
     <div class="flex justify-between">
         <div class="my-2">
             <p class="font-semibold text-base mb-2">Stock disponible:</p>
@@ -116,3 +122,7 @@
 
  
 </div>
+
+
+
+
