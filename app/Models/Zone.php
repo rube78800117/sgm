@@ -13,5 +13,10 @@ class Zone extends Model
         return $this->hasMany('App\Models\Line');
     }
 
+    // public function lines()
+    // {
+    //     return $this->belongsToMany(Line::class, 'zone_line', 'zone_id', 'line_id');
+    // }
+
     
 }

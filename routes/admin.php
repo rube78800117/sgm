@@ -31,7 +31,7 @@ use App\Models\User;
 
 // Route::get('',[ HomeController::class, 'index']);
 Route::get('/', ShowArticles::class)->name('admin.index');
-
+Route::get('articles/pdf', [ArticleController::class, 'pdf'])->name('admin.pdf.articles');
 Route::get('articles/create', CreateArticle::class)->name('admin.articles.create');
 Route::get('brands/create', CreateBrand::class)->name('admin.brands.create');
 

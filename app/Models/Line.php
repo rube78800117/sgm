@@ -29,9 +29,7 @@ class Line extends Model
     public function zone(){
         return $this->belongsTo('App\Models\Zone');
     }
-    
-    //    public function users() {
-    //     return $this->hasMany(User::class);
+    // public function zones(){
+    //  return $this->belongsToMany(Zone ::class, 'zone_line', 'line_id', 'zone_id');
     // }
-
 }

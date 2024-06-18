@@ -46,6 +46,9 @@ class Article extends Model
                     $query->where('id', $zoneId);
                 })
                 ->sum('quantity');
+
+
+
         }
     }
 

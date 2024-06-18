@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ArticleController extends Controller
 {
@@ -43,4 +44,12 @@ class ArticleController extends Controller
        
 
     }
+
+
+    public function pdf(){
+        $articles=Article::all();
+        $pdf=PDF::loadView('livewire.admin.pdf.articles', compact('articles'));
+        return $pdf->stream();
+    }
+    
 }
