@@ -21,18 +21,79 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
         rel="stylesheet" />
-
+{{-- 
     <link rel="stylesheet" href="../../assets/vendor/fonts/materialdesignicons.css" />
     <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" /> 
+    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
+ --}}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/materialdesignicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+    
+    <!-- Menu waves for no-customizer fix -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+    
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" />
+    
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-statistics.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-analytics.css') }}" />
+
+
+{{-- 
     <!-- Menu waves for no-customizer fix -->
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    {{-- <link rel="stylesheet" href="../../assets/css/demo.css" /> --}}
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -42,14 +103,31 @@
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-statistics.css" />
-    <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-analytics.css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-analytics.css" /> --}}
     <!-- Helpers -->
-    <script src="../../assets/vendor/js/helpers.js"></script>
+
+
+
+
+
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+    <!-- Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+
+
+
+
+
+
+
+
+    {{-- <script src="../../assets/vendor/js/helpers.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
     <script src="../../assets/vendor/js/template-customizer.js"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../../assets/js/config.js"></script>
+    <script src="../../assets/js/config.js"></script> --}}
 
     {{-- sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss --}}
     {{-- <meta charset="utf-8">
@@ -125,6 +203,10 @@
 </head>
 
 <body>
+
+
+
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -173,7 +255,8 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                                            <span class="align-middle"><i class="mdi mdi-monitor me-2"></i>System</span>
+                                            <span class="align-middle"><i
+                                                    class="mdi mdi-monitor me-2"></i>System</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -287,7 +370,7 @@
                             </main>
                         </div>
 
-                        
+
                     </div>
 
 
@@ -306,23 +389,13 @@
 
 
 
-
-                    {{-- <p>
-                Sample page.<br />For more layout options, refer
-                <a
-                  href="https://demos.pixinvent.com/materialize-html-admin-template/documentation//layouts.html"
-                  target="_blank"
-                  class="fw-bold"
-                  >Layout docs</a
-                >.
-              </p> --}}
                 </div>
                 <!-- / Content -->
 
                 <!-- Footer -->
                 <footer class="content-footer footer bg-footer-theme">
                     <div class="container-xxl">
-                   pie de pagina                  
+                        pie de pagina
                     </div>
                 </footer>
                 <!-- / Footer -->
@@ -334,20 +407,6 @@
         <!-- / Layout page -->
     </div>
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-
-    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-    <div class="drag-target"></div>
-    </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -355,14 +414,11 @@
     @stack('modals')
 
 
-
-    
     @livewireScripts
 
 
-
-{{-- script para mensajes de session --}}
-     <script>
+    {{-- script para mensajes de session --}}
+    <script>
         window.addEventListener('alerttoastr', event => {
             toastr[event.detail.type](event.detail.message,
                 event.detail.title ?? ''), toastr.options = {
@@ -387,7 +443,7 @@
 
 
         });
-    </script> 
+    </script>
 
 
 
@@ -421,34 +477,59 @@
 
 
 
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
+{{-- <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>    cambia los contenidos de las etiquetas de texto a valores definidos por esta libreria automaticamente --}}
+<script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+<!-- endbuild -->
 
+<!-- Vendors JS -->
+<script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
+
+<!-- Main JS -->
+<script src="{{ asset('assets/js/main.js') }}"></script>
+
+<!-- Page JS -->
+<script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 
 
 
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+
+
+    {{-- <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../../assets/vendor/libs/popper/popper.js"></script>
     <script src="../../assets/vendor/js/bootstrap.js"></script>
     <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
     <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script> --}}
+
+
     {{-- <script src="../../assets/vendor/libs/i18n/i18n.js"></script>    cambia los contenidos de las etiquetas de texto a valores definidos por esta libreria automaticamente --}}
-    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="../../assets/vendor/js/menu.js"></script>
+    {{-- <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script> --}}
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
+    {{-- <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../../assets/vendor/libs/swiper/swiper.js"></script> --}}
 
     <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
+    {{-- <script src="../../assets/js/main.js"></script> --}}
 
     <!-- Page JS -->
-    <script src="../../assets/js/dashboards-analytics.js"></script>
+    {{-- <script src="../../assets/js/dashboards-analytics.js"></script> --}}
 </body>
 
 </html>
