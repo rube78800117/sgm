@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="../../assets/vendor/fonts/materialdesignicons.css" />
     <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
-    <!-- <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" /> -->
+    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" /> 
 
     <!-- Menu waves for no-customizer fix -->
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
@@ -32,13 +32,17 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../../assets/css/demo.css" />
+    {{-- <link rel="stylesheet" href="../../assets/css/demo.css" /> --}}
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css" />
 
     <!-- Page CSS -->
-
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-statistics.css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-analytics.css" />
     <!-- Helpers -->
     <script src="../../assets/vendor/js/helpers.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
@@ -132,7 +136,7 @@
 
 
             {{-- ------------------------ aside ----------------------------------------- --}}
-            {{-- @livewire('admin.layout-component.aside') --}}
+            @livewire('admin.layout-component.aside')
 
             {{-- ------------------------END aside ----------------------------------------- --}}
             <!-- Layout container -->
@@ -256,7 +260,7 @@
 
 
                         {{-- ------------------------------------------------ menu de navegacion ----------------------------------------- --}}
-                        @livewire('navigation-menu')
+                        {{-- @livewire('navigation-menu') --}}
 
                         {{-- ------------------------------------------------END menu de navegacion ----------------------------------------- --}}
 
@@ -283,40 +287,7 @@
                             </main>
                         </div>
 
-                        @stack('modals')
-                        @livewireScripts
-
-
-
-
-                         <script>
-                            window.addEventListener('alerttoastr', event => {
-                                toastr[event.detail.type](event.detail.message,
-                                    event.detail.title ?? ''), toastr.options = {
-                                    "closeButton": false,
-                                    "debug": false,
-                                    "newestOnTop": false,
-                                    "progressBar": true,
-                                    "positionClass": "toast-top-right",
-                                    "preventDuplicates": false,
-                                    "onclick": null,
-                                    "showDuration": "300",
-                                    "hideDuration": "1000",
-                                    "timeOut": "3000",
-                                    "extendedTimeOut": "1000",
-                                    "showEasing": "swing",
-                                    "hideEasing": "linear",
-                                    "showMethod": "fadeIn",
-                                    "hideMethod": "fadeOut"
-                                }
-
-
-
-
-                            });
-                        </script> 
-
-                        @stack('script')
+                        
                     </div>
 
 
@@ -351,22 +322,7 @@
                 <!-- Footer -->
                 <footer class="content-footer footer bg-footer-theme">
                     <div class="container-xxl">
-                        <div
-                            class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with <span class="text-danger"><i class="tf-icons mdi mdi-heart"></i></span> by
-                                <a href="https://pixinvent.com" target="_blank"
-                                    class="footer-link fw-medium">Pixinvent</a>
-                            </div>
-                            <div class="d-none d-lg-inline-block">
-                                <a href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-                            </div>
-                        </div>
+                   pie de pagina                  
                     </div>
                 </footer>
                 <!-- / Footer -->
@@ -384,7 +340,91 @@
     <!-- Drag Target Area To SlideIn Menu On Small Screens -->
     <div class="drag-target"></div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    @stack('modals')
+
+
+
+    
+    @livewireScripts
+
+
+
+{{-- script para mensajes de session --}}
+     <script>
+        window.addEventListener('alerttoastr', event => {
+            toastr[event.detail.type](event.detail.message,
+                event.detail.title ?? ''), toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+
+
+
+        });
+    </script> 
+
+
+
+
+    @stack('script')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- / Layout wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -394,17 +434,21 @@
     <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
     <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
-
+    {{-- <script src="../../assets/vendor/libs/i18n/i18n.js"></script>    cambia los contenidos de las etiquetas de texto a valores definidos por esta libreria automaticamente --}}
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
     <script src="../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 
     <!-- Main JS -->
     <script src="../../assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="../../assets/js/dashboards-analytics.js"></script>
 </body>
 
 </html>
