@@ -278,7 +278,7 @@
                 </div>
 
 
-                <div class=" {{ $order->status >= 4 ? 'hidden ' : '' }}py-4">
+                <div class=" {{ $order->status >= 4 ? 'hidden' : '' }}py-4">
 
 
 

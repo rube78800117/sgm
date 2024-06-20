@@ -62,7 +62,7 @@ class CreateArticle extends Component
         $article->name = $this->name;
         $article->slug = $this->slug;
         $article->category_id = $this->subcategory_id;
-        $article->department_id = $this->category_id;
+        // $article->department_id = $this->category_id;
         $article->description = $this->description;
         $article->stock_min = $this->stock_min;
         $article->trademark_id = $this->brandselect;
