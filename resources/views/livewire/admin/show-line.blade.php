@@ -1,18 +1,19 @@
 
-<div class="container mt-12">
-    <x-jet-form-section submit="save">
-        <x-slot name="title">
-            Crear nueva Estacion
+<div class="container form-control mt-12">
+    <x-jet-form-section submit="save" class="">
+        <x-slot name="title" class="">
+            <p class="font-bold form-control">  Crear nueva Estacion</p>
+          
         </x-slot>
 
 
-        <x-slot name="description">
-            Complete la siguiente informacion para crear una nueva Estacion de esta Linea
+        <x-slot name="description" class="form-control">
+           <span class="form-control">Complete la siguiente informacion para crear una nueva Estacion de esta Linea</span> 
         </x-slot>
                   
 
         <x-slot name="form">
-            <div class="col-span-6 sm:col-span-4">
+            <div class=" form-control col-span-6 sm:col-span-4">
                 <x-jet-label>
                     Nombre Estacion
                 </x-jet-label>
@@ -24,7 +25,7 @@
                 <x-jet-label>
                     Slug
                 </x-jet-label>
-                <x-jet-input disabled wire:model="createForm.slug" type="text" class="w-full mt-1 bg-gray-100"/>
+                <x-jet-input disabled wire:model="createForm.slug" type="text" class="w-full mt-1"/>
                 <x-jet-input-error for="createForm.slug"/>
             </div>
            
@@ -42,7 +43,7 @@
 
         <x-slot name="actions">
             <x-jet-action-message class=" text-green-400 mr-3" on="saved">
-                Estación creada exitosamente
+                <span class="form-control"> Estación creada exitosamente</span>
             </x-jet-action-message>
             <x-jet-button>
                 Agregar
@@ -53,17 +54,17 @@
 
 
 
-<x-jet-action-section>
-    <x-slot name="title">
-     Lista de Estaciones de esta Linea
+<x-jet-action-section class="form-control">
+    <x-slot name="title" >
+     <p class="form-control"> Lista de Estaciones de esta Linea</p>
     </x-slot> 
 
     <x-slot name="description">
-    Aqui encontrará todas las estaciones agregadas para esta Linea
+    <span class="form-control">Aqui encontrará todas las estaciones agregadas para esta Linea</span>
     </x-slot> 
 
-    <x-slot name="content">
-    <table class="text-gray-600">
+    <x-slot name="content" class="form-control">
+    <table class="form-control">
 
             <thead class="border-b  border-gray-600">
                 <tr class="text-left">
@@ -71,7 +72,7 @@
                     <th class="py-2 ">Accion</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-300">
+            <tbody class="divide-y  form-control">
                 @foreach ($stations as $station)
                     <tr>
                         <td class="py-2">

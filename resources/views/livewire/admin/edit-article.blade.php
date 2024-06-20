@@ -1,6 +1,6 @@
 
-<div>
-        <header class="bg-white ">
+<div class="form-control">
+        <header class=" ">
             <div class="max-w-7xl mx-auto    text-gray-700">
                         <div class="flex justify justify-end py-2 items-center">
                             {{-- <h1 class="font-bold text-sm  text-gray-700"">
@@ -19,7 +19,7 @@
 
 
 
-                <div class=" bg-gray-100 shadow-xl my-2  max-w-4xl mx-auto px-4 sm:px-6 lg:py-2  text-gray-700">
+                <div class=" form-control shadow-xl my-2  max-w-4xl mx-auto px-4 sm:px-6 lg:py-2 ">
                                     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
                                     <h1 class=" text-sm font-semibold "> 
                                   EDITAR ARTICULO
@@ -27,10 +27,11 @@
 
 
                                     {{-- dropzone --}}
-                                    <div class="mb-4" wire:ignore>
-                                        <form action="{{route('admin.articles.files', $article)}}"
+                                    <div class="form-control mb-4" wire:ignore>
+                                        <form action="{{route('admin.articles.files', $article)}}  "
+                                      
                                         method="POST"
-                                        class="dropzone"
+                                        class="bg-gray-400 dropzone "
                                         id="my-awesome-dropzone">
                                         </form>
                                     </div> 
@@ -40,7 +41,7 @@
 
 
                                     @if ($article->image)
-                                        <section class="bg-white shadow-xl rounded-lg p-2 mb-4">
+                                        <section class="form-control shadow-xl rounded-lg p-2 mb-4">
                                                     <h1 class="text-sm text-center font-semibold mb-2">
                                                         Imagen del artículo {{$imagecontador}}
                                                     </h1>
@@ -79,7 +80,7 @@
 
 
                 
-                    <div class="grid grid-cols-2 gap-6 mb-4">
+                    <div class="form-control grid grid-cols-2 gap-6 mb-4">
 
                         {{-- CATEGORIA --}}
                         <div>
@@ -110,7 +111,7 @@
                     </div>
                     
 
-                    <div class="mb-4">
+                    <div class="form-control mb-4">
                         {{-- NOMBRE --}}
                         <div>
                             <x-jet-label value="Nombre"/>
@@ -145,7 +146,7 @@
                     </div>
 
 
-                    <div>
+                    <div class="form-control">
                         <div>
                             <x-jet-label value="Grupo del artículo"/>
                             <x-jet-input type="text"

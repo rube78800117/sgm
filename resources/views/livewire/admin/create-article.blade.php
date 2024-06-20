@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:py-8 py-12 text-gray-700">
+<div class=" form-control max-w-4xl mx-auto px-4 sm:px-6 lg:py-8 py-12 text-gray-700">
     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
     <h1 class=" text-sm  font-semibold mb-8"> 
     CREA UN NUEVO ARTICULO
@@ -79,12 +79,12 @@
     </div>
        
 
-    <div class="mb-4">
+    <div class="form-control mb-4">
          {{-- NOMBRE --}}
         <div>
             <x-jet-label value="Nombre"/>
             <x-jet-input type="text"
-            class="w-full"
+            class="form-control w-full"
             wire:model="name"
             placeholder="Ingrese el nombre del artículo"/>
             <x-jet-input-error for="name"/>
@@ -92,20 +92,20 @@
                    
 
         {{-- SLUG --}}
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <x-jet-label value="Slug"/>
             <x-jet-input type="text"
             disabled
-            class="w-full bg-gray-200"
+            class="w-full form-control "
             wire:model="slug"
             placeholder="Slug del artículo"/>
             <x-jet-input-error for="slug"/>
-       </div>      
+       </div>       --}}
        {{-- DESCRIPCION --}}
        <div>
            <x-jet-label value="Descripción"/>
            <x-jet-input type="text"
-           class="w-full"
+           class="w-full form-control "
            wire:model="description"
            placeholder="Ingrese la descripción del artículo"/>
            <x-jet-input-error for="description"/>
@@ -113,38 +113,37 @@
                   
     </div>
 
-    <div class="grid grid-cols-3 gap-6 mb-4 ">
+    <div class=" form-control grid grid-cols-3 gap-6 mb-4 ">
           {{--IDs  --}}
-       <div class="">
+       <div class="form-control">
             <x-jet-label value="ID de MiTeleférico"/>
             <x-jet-input type="text"
-            class="w-full "
+            class="w-full form-control  "
             wire:model="id_eetc"
             placeholder="Ingrese el ID de Mi Teleférico"/>
             <x-jet-input-error for="id_eetc"/>
         </div>
 
-        <div class="">
+        <div class="form-control">
             <x-jet-label value="ID Doppelmayr"/>
             <x-jet-input type="text"
-            class="w-full "
+            class="w-full form-control"
             wire:model="id_dopp"
             placeholder="Ingrese el ID de Dopplmayr"/>
             <x-jet-input-error for="id_dopp"/>
         </div>
 
-        <div class="">
+        <div class="form-control">
             <x-jet-label  value="ID de zona"/>
             <x-jet-input type="text"
           
-            class="w-full "
+            class="w-full form-control "
             wire:model="id_zona"
             placeholder="Ingrese el ID de zona"/>
             <x-jet-input-error for="id_zona"/>
                 <div>
-                <x-button-enlace color='blue' class="ml-auto" wire:click="IDgenerate" >
-                    Generar ID
-                    
+                <x-button-enlace color='blue' class="my-2 ml-auto" wire:click="IDgenerate" >
+                    Generar ID 
                 </x-button-enlace> 
                 </div>
         </div>
@@ -173,7 +172,7 @@
         <div class="">
             <x-jet-label value="Stock minimo para este artículo"/>
             <x-jet-input type=" number "
-            class="w-full "
+            class="w-full form-control"
             wire:model="stock_min"
             placeholder="Ingrese el Stock mínimo"/>
             <x-jet-input-error for="stock_min"/>
@@ -205,10 +204,19 @@
 
                 <label for="type" class=" text-sm font-medium text-gray-700">Seleccione una Marca</label>
                     <div class=" form-group col-span-2 flex justify-between">
-                       
-                        <select wire:model="brandselect" placeholder="Seleccione una marca"
-                            autocomplete="type"
-                            class="form-control rounded-md shadow-sm border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 w-full mb-1 mt-1    sm:text-sm     py-2 px-3 border 0 bg-white  focus:outline-none  ">
+
+
+
+
+
+
+
+{{--                        
+                        <select wire:model="brandselect" placeholder="Seleccione una marca" --}}
+                        
+                        <select class="w-full form-control border-gray-300 focus:border-indigo-200 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" 
+                        wire:model="brandselect"
+                            autocomplete="type">
                           
                             @foreach ($brands as $brand)
                             <option value="{{$brand->id}} ">{{$brand->name}}</option>
