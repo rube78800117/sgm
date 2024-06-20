@@ -19,9 +19,10 @@ class CreateZoneLineTable extends Migration
          
             $table->unsignedBigInteger('zone_id');
             $table->unsignedBigInteger('line_id');
-            
+
             $table->timestamps();
 
+            
             // Foreign keys
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
             $table->foreign('line_id')->references('id')->on('lines')->onDelete('cascade');

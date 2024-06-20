@@ -160,7 +160,7 @@
              
 
                 <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-                        <a href="{{route('admin.articles.edit', $article)}}" class="text-blue-600 hover:text-blue-700 ">
+                        <a href="{{route('admin.articles.edit',1)}}" class="text-blue-600 hover:text-blue-700 ">
                         <p class="text-xl flex justify-center">
                         <i class="fas fa-edit"></i> </p> <p class="text-md flex justify-center"> Editar</p> </a> 
                         
