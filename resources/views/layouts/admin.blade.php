@@ -21,39 +21,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
         rel="stylesheet" />
-{{-- 
+    {{-- 
     <link rel="stylesheet" href="../../assets/vendor/fonts/materialdesignicons.css" />
     <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
     <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
  --}}
 
 
- 
+
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/materialdesignicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
-    
+
     <!-- Menu waves for no-customizer fix -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
-    
+
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"
+        class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-    
+
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" />
-    
+
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-statistics.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-analytics.css') }}" />
 
 
-{{-- 
+    {{-- 
     <!-- Menu waves for no-customizer fix -->
     <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
 
@@ -236,8 +237,13 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="../../assets/img/avatars/1.png" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+
+                                        <img class="h-10 w-10 rounded-full object-cover"
+                                            src="{{ Auth::user()->profile_photo_url }}"
+                                            alt="{{ Auth::user()->name }}" />
+
+                                        {{-- <img src="../../assets/img/avatars/1.png" alt
+                                            class="w-px-40 h-auto rounded-circle" /> --}}
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -246,13 +252,18 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="../../assets/img/avatars/1.png" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img class="h-10 w-10 rounded-full object-cover"
+                                                            src="{{ Auth::user()->profile_photo_url }}"
+                                                            alt="{{ Auth::user()->name }}" />
+
+                                                        {{-- <img src="../../assets/img/avatars/1.png" alt
+                                                            class="w-px-40 h-auto rounded-circle" /> --}}
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
+                                                    <small
+                                                        class="text-muted">{{ Auth::user()->getRoleNames()->first() }}</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -261,7 +272,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('profile.show') }}">
                                             <i class="mdi mdi-account-outline me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -286,12 +297,24 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="javascript:void(0);">
-                                            <i class="mdi mdi-power me-2"></i>
+
+
+                                        <!-- Authentication -->
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                    this.closest('form').submit();"> <i class="mdi mdi-power me-2"></i>
+                                                {{ __('Log Out') }}
+                                            </x-jet-responsive-nav-link>
+                                        </form>
+                                        {{-- <a class="dropdown-item" href="{{ route('logout') }}">
+                                           
                                             <span class="align-middle">Log Out</span>
-                                        </a>
+                                        </a> --}}
                                     </li>
-                                
+
                                 </ul>
                             </li>
                             <!--/ User -->
@@ -335,7 +358,7 @@
                             <!-- Page Content -->
                             <main>
 
-                        
+
 
                                 {{ $slot }}
 
@@ -437,28 +460,28 @@
 
 
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
-<script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
-<script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
-{{-- <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>    cambia los contenidos de las etiquetas de texto a valores definidos por esta libreria automaticamente --}}
-<script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-<script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-<!-- endbuild -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>    cambia los contenidos de las etiquetas de texto a valores definidos por esta libreria automaticamente --}}
+    <script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+    <!-- endbuild -->
 
-<!-- Vendors JS -->
-<script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
+    <!-- Vendors JS -->
+    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
 
-<!-- Main JS -->
-<script src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- Main JS -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<!-- Page JS -->
-<script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
+    <!-- Page JS -->
+    <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 
 
 

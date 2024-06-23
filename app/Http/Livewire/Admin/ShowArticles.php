@@ -18,18 +18,20 @@ class ShowArticles extends Component
     }
     public function render()
     {
-
-        $articles = Article::where('name', 'LIKE','%'.$this->search.'%')
+        $articlesTotal = Article::all();
+        $articlesFound = Article::where('name', 'LIKE','%'.$this->search.'%');
+        $articles=$articlesFound
         ->orWhere('id_dopp', 'LIKE','%'.$this->search.'%')
         ->orWhere('id_zona', 'LIKE', '%'.$this->search.'%')
         ->orWhere('id_eetc', 'LIKE', '%'.$this->search.'%')
-        
-       
         ->paginate(10);
+        
+      
+        
 
   
        
        
-        return view('livewire.admin.show-articles', compact('articles'))->layout('layouts.admin');
+        return view('livewire.admin.show-articles', compact('articles', 'articlesTotal','articlesFound'))->layout('layouts.admin');
     }
 }

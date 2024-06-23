@@ -14,6 +14,8 @@
 // }
 
 namespace App\Http\Livewire\Admin;
+
+use App\Models\Location;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Warehouse;
@@ -24,9 +26,11 @@ class ShowSector extends Component
 {
     public $warehouse, $sector, $categ, $department, $sectors, $subcategory, $newSector;
     public $columns = 1;
+    public $locations;
     public $levels = 1;
     public $columnsData = [];
     public $combinedArray = [];
+    public $locationName;
 
     protected $listeners = ['delete'];
 
@@ -41,12 +45,13 @@ class ShowSector extends Component
 
     protected $rules = [
         'createForm.name' => 'required',
-        // 'createForm.slug'=>'required|unique:categories,slug',
+        // 'createForm.'=>'required|unique:categories,slug',
+        'combinedArray' => 'required|array',
     ];
 
     protected $validationAttributes = [
         'createForm.name' => 'nombre',
-
+        'combinedArray' => 'generar columnas y niveles',
         'editForm.name' => 'nombre',
     ];
 
@@ -62,7 +67,11 @@ class ShowSector extends Component
     public function getSectors()
     {
         $this->sectors = Sector::where('warehouse_id', $this->warehouse->id)->get();
-        // dd($this->sectors );
+    }
+
+    public function getLocations($sectorId)
+    {
+        $this->locations = Location::where('sector_id', $sectorId)->get();
     }
 
     public function updatedCreateFormName($value)
@@ -101,7 +110,12 @@ class ShowSector extends Component
         }
 
         $this->reset('createForm'); // Resetear el formulario
+        $this->combinedArray = '';
         $this->getSectors(); // Obtener la lista de sectores actualizada
+        $this->combinedArray = [];
+        $this->columns = '';
+        $this->levels = '';
+        $this->generate();
     }
 
     // category es en nuestro caso  es la subcategoria y Departamento  la categoria
@@ -110,28 +124,9 @@ class ShowSector extends Component
     {
         $rules = [
             'editForm.name' => 'required',
-
-            // 'editForm.slug' => 'required|unique:sectors,id,' . $this->sector->id,
-
-            // 'editImage'=>'image|max:1024',
         ];
 
-        // if ($this->editImage) {
-        //     $rules['editImage'] = 'required|image|max:1024';
-        // }
-
         $this->validate($rules);
-
-        // if ($this->editImage) {
-        //     // Elimina el archivo anterior
-        //     Storage::delete($this->department->image->url);
-
-        //     // Guarda el nuevo archivo
-        //     $this->editForm['image'] = $this->editImage->store('categories');
-
-        //     // Actualiza el nombre del archivo en la tabla polimórfica
-        //     $this->department->image()->update(['url' => $this->editForm['image']]);
-        // }
 
         $this->sector->update($this->editForm);
         $this->reset(['editForm']);
@@ -140,17 +135,20 @@ class ShowSector extends Component
 
     public function delete(Sector $sector)
     {
+        $sector->locations()->delete();
         $sector->delete();
         $this->getSectors();
     }
 
     public function edit(Sector $sector)
     {
-        // dd($subcategory);
+        //    dd($sector);
         $this->resetValidation();
+
         $this->sector = $sector;
         $this->editForm['open'] = true;
         $this->editForm['name'] = $sector->name;
+        $this->editForm['locations'] = $sector->locations()->pluck('id', 'name')->toArray();
     }
 
     public function generate()
@@ -189,6 +187,51 @@ class ShowSector extends Component
         //  dd($combinedArray);
     }
 
+    public function editLocation($locationId)
+    {
+        $location = Location::find($locationId);
+    }
+
+    public function updateLocation($locationId, $name)
+    {
+        $location = Location::find($locationId);
+        $location->update(['name' => $name]);
+        // $this->dispatchBrowserEvent('notify', 'Localización actualizada correctamente.');
+        $this->update();
+
+    }
+
+    public function deleteLocation($locationId)
+    {
+        Location::find($locationId)->delete();
+        $this->dispatchBrowserEvent('notify', 'Localización eliminada correctamente.');
+        $this->getSectors();
+        // $this->getLocations($this->sector->id);
+    }
+
+    public function removeLocation($locationId)
+    {
+        $this->deleteLocation($locationId);
+        $this->edit($this->sector);
+    }
+
+    public function addLocation()
+    {
+        $this->validate([
+            'locationName' => 'required|string|max:255',
+        ]);
+
+        Location::create([
+            'name' => $this->locationName,
+            'sector_id' => $this->sector->id,
+        ]);
+
+        $this->dispatchBrowserEvent('notify', 'Localización agregada correctamente.');
+        // $this->locationName = '';
+        $this->getSectors();
+     
+       $this->edit($this->sector);
+    }
     public function render()
     {
         return view('livewire.admin.show-sector')->layout('layouts.admin');

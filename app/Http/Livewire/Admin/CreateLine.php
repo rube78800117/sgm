@@ -12,7 +12,8 @@ class CreateLine extends Component
     // use WithFileUploads;
 
     public $lines, $line, $station, $cadenacolor, $zones;
-
+    public $selectedColor = null;
+    protected $listeners = ['colorSelected' => 'updateSelectedColor'];
     public $createForm=[
         'name'=>null,
         'slug'=>null,
@@ -80,7 +81,7 @@ class CreateLine extends Component
 
     public function edit(Line $line)
     {
-      
+    //    dd($line);
         $this->resetValidation();
         $this->line = $line;
         $this->editForm['open'] = true;
@@ -88,7 +89,7 @@ class CreateLine extends Component
         $this->editForm['slug'] = $line->slug;
         $this->editForm['acronym'] = $line->acronym;
         $this->editForm['color'] = $line->color;
-        $this->editForm['zone_select'] = $line->zone_select;
+        $this->editForm['zone_id'] = $line->zone_id;
     
     }
 
@@ -98,10 +99,10 @@ class CreateLine extends Component
     {
         $rules = [
             'editForm.name' => 'required',
-            'editForm.slug' => 'required|unique:lines,slug,' . $this->line->id,
+            'editForm.slug' => 'required|unique:lines,slug,'.$this->line->id,
             'editForm.acronym' => 'required',
             'editForm.color' => 'required',
-            'editForm.zone_select' => 'required',
+            'editForm.zone_id' => 'required',
            
         ];
     
@@ -110,17 +111,26 @@ class CreateLine extends Component
         $this->validate($rules);
     
       
-    
+    // dd($this->editForm);
         $this->line->update($this->editForm);
         $this->reset(['editForm']);
         $this->getLines();
+
+
+
     }
 
 
 
 
 
+ public function updateSelectedColor($color){
+    // dd($color);
+    $this->selectedColor = $color;
+    $this->createForm['color'] = $color;
+    $this->editForm['color'] = $color;
 
+ }
 
 
 

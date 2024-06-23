@@ -8,7 +8,7 @@
             <!-- Layout container -->
             <div class="my-2">
                 <!-- Navbar -->
-                {{-- 
+{{--                 
         <nav
           class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
           id="layout-navbar">
@@ -390,13 +390,13 @@
                                             <div
                                                 class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                                                 <div>
-                                                    <p class="mb-2">Articulos listados</p>
+                                                    <p class="mb-2">Total de Registrados</p>
 
 
 
 
 
-                                                    <h4 class="mb-2">{{ $articles->count() }}</h4>
+                                                    <h4 class="mb-2">{{ $articlesTotal->count() }}</h4>
                                                     <p class="mb-0">
                                                         <span class="me-2">5k orders</span><span
                                                             class="badge rounded-pill bg-label-success">+5.7%</span>
@@ -414,8 +414,8 @@
                                             <div
                                                 class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
                                                 <div>
-                                                    <p class="mb-2">Website Sales</p>
-                                                    <h4 class="mb-2">$674,347.12</h4>
+                                                    <p class="mb-2">Registros encontrados</p>
+                                                    <h4 class="mb-2">{{$articlesFound->count()}}</h4>
                                                     <p class="mb-0">
                                                         <span class="me-2">21k orders</span><span
                                                             class="badge rounded-pill bg-label-success">+12.4%</span>
@@ -429,7 +429,7 @@
                                             </div>
                                             <hr class="d-none d-sm-block d-lg-none" />
                                         </div>
-                                        <div class="col-sm-6 col-lg-3">
+                                        {{-- <div class="col-sm-6 col-lg-3">
                                             <div
                                                 class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
                                                 <div>
@@ -460,7 +460,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -492,7 +492,7 @@
                             <div class="input-group input-group-floating">
                                 <span class="input-group-text"><i class='fas fa-search'></i></span>
                                 <div class="form-floating">
-                                  <input wire:model="search" type="text" class="form-control" id="basic-addon21" placeholder="Search.." aria-label="Username" aria-describedby="basic-addon21" />
+                                  <input wire:model="search" type="text" class="form-control" id="basic-addon21" placeholder="" aria-label="Username" aria-describedby="basic-addon21" />
                                   <label for="basic-addon21">Que estas buscando...?</label>
                                 </div>
                                 <span class="form-floating-focused"></span>
@@ -568,7 +568,7 @@
                                                 <th>Unid.Medida</th>
                                                 <th>Categoria</th>
                                                 <th>Sub categoría</th>
-                                                <th class="">Stock Minimo</th>
+                                                <th class="">Stock Min</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -638,9 +638,7 @@
                                                     <td>
                                                         {{ $article->stock_min }}
                                                     </td>
-                                                    <td><span
-                                                            class="badge rounded-pill bg-label-primary me-1">Active</span>
-                                                    </td>
+                                               
                                                     <td>
                                                         <div class="dropdown">
                                                             <button type="button"
