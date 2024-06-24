@@ -1,15 +1,15 @@
-<div>
+<div class="form-control">
     <div class="container mx-auto">
         <div class="grid grid-cols-12 gap-6">
             {{-- nivel 1 --}}
-            <div class="col-span-5  mt-4">
+            <div class="form-control col-span-5  mt-4">
                 <div class="col-span-1 flex flex-col  w-full mb-1">
-                    <label for="first-name" class="block text-sm font-medium text-gray-700">Proveedor
+                    <label for="first-name" class="block text-sm font-medium ">Proveedor
                     </label>
                 </div>
-                <div class="px-2 py-8 bg-white sm:p-6">
-
-                    @livewire('mycomponents.selectvendor')
+                <div class=" px-2 py-8 sm:p-6">
+{{-- 
+                    @livewire('mycomponents.selectvendor') --}}
                 </div>
 
 

@@ -39,7 +39,7 @@ class CreateListDetail extends Component
     public $article;
     public $search, $idsearch; //vARIABLES PARA EL BUSCADOR DE PRODUCTOS
     public $types_voucher = 3;
-    public $lines, $lineselect = 1,$key=-1, $stations, $warehouses, $sectors,$location ,$locations, $stationselect, $warehouseselect, $sectorselect, $locationselect, $linewarehouse;
+    public $lines, $lineselect = 1,$key=-1, $lineSelected, $stations, $warehouses, $sectors,$location ,$locations, $stationselect, $warehouseselect, $sectorselect, $locationselect, $linewarehouse;
     protected $listeners = ['updatedart' => 'updatedart', 'variableEnviada'];
 
     public $idart = 1;  //se establese como articulo seleccionado el primer producto por defecto para la vista detaill 
@@ -397,7 +397,27 @@ class CreateListDetail extends Component
     }
 
 
+    public function updatedLineselect($line_id)
+    {
+        $this->line_id = $line_id;
 
+        $this->lineSelected = Line::where('line_id', 'LIKE', $this->line_id)->get();
+        $stations = $this->stations;
+        $stationselect="";
+        $warehouseselect="";
+        $locationselect="";
+        $locationselect="";
+
+    }
+
+
+
+
+
+
+
+
+    
 
     public function updatedLinewarehouse($line_id)
     {

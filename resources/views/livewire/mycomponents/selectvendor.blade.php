@@ -1,4 +1,4 @@
-<div class="relative mb-4" x-data="{ isVisible: false, open: true}" @click.away="isVisible = false">
+<div class="form-control relative mb-4" x-data="{ isVisible: false, open: true}" @click.away="isVisible = false">
     <div x-show="open">
         <input wire:model="searchText" @focus="isVisible = true" type="text"
             class=" rounded-md shadow-sm border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 w-full mb-1"

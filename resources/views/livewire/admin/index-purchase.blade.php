@@ -7,7 +7,7 @@
 
             <x-slot name="header">
        
-                <div class="container flex justify-between">
+                <div class="form-control container flex justify-between">
                    <div>
                      <h2 class="py-2 font-semibold text-sm  leading-tight">
                       INGRESO DE STOCK DE INSUMOS O REPUESTOS {{Session::get('key')}}
@@ -35,7 +35,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">SGM /</span>Lista de materiales</h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">SGM /</span>Listas de ingresos</h4>
 
         <!-- Product List Widget -->
 
@@ -425,7 +425,7 @@
 
 
      <!-- component -->
-    <div class="container bg-gray-100 shadow-md  ">
+    {{-- <div class="container bg-gray-100 shadow-md  ">
         <div class="px-6 pb-2  ">
             <x-jet-label value="Búsqueda por Nombre, ID, Nro de Documento"/>
             <x-jet-input class="w-3/4 border-gray-400" 
@@ -433,8 +433,7 @@
             type="text" placeholder="¿Que estas buscando...?"></x-jet>
     </div>
        
-     
-             <x-table-responsive>
+             {{-- <x-table-responsive>
  
              
                  
@@ -526,14 +525,8 @@
                                      <i class="fas fa-chevron-circle-right"></i> </p> <p class="text-md flex justify-center"> Ir</p> </a> 
                                 </td>
 
-{{-- 
-                                 <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
-                                        <a href="{{route('admin.purchases.show', $purchase->id)}}" class="text-blue-600 hover:text-blue-700 ">
-                                         <p class="text-xl flex justify-center"> >>
-                                            </p> <p class="text-md flex justify-center"> Ver mas</p> </a> 
-                                          <i class="fas fa-glasses"></i>
-                                 </td> --}}
- 
+
+                          
                              </tr>  
                              @endforeach
                             
@@ -557,8 +550,8 @@
                      @endif
                      
              </x-table-responsive>
-                     
-    </div>              
+                      --}}
+    {{--</div> --}}             
            
 
  
