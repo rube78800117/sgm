@@ -7,7 +7,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 class IndexPurchase extends Component
 {
-   
+    
+
     use WithPagination;
     public $search, $idsearch;
 
@@ -25,13 +26,18 @@ class IndexPurchase extends Component
     public function render()
     {
 
-        $purchases = Purchase::where('id', 'LIKE','%'.$this->search.'%')
+   
+
+
+        $purchasesTotal=Purchase::all();
+        $purchasesFound = Purchase::where('id', 'LIKE','%'.$this->search.'%');
+        $purchases = $purchasesFound
         ->orWhere('description', 'LIKE','%'.$this->search.'%')
         ->orWhere('ndocument', 'LIKE', '%'.$this->search.'%')
         ->orderBy('created_at', 'desc')
-        ->paginate(12);
+        ->paginate(10);
        
        
-        return view('livewire.admin.index-purchase', compact('purchases'))->layout('layouts.admin');
+        return view('livewire.admin.index-purchase', compact('purchases','purchasesTotal', 'purchasesFound'))->layout('layouts.admin');
     }
 }

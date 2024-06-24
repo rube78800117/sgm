@@ -11,10 +11,12 @@
 
 
 
-    {{-- 
+                    {{-- 
                      <x-jet-nav-link href="{{ $nav_link['route']  }}" :active="$nav_link['active'] ">
-                        <ul class="text-gray-200">{{ $nav_link['name'] }}</ul> 
-                     </x-jet-nav-link>   --}}
+                     <ul class="text-gray-200">{{ $nav_link['name'] }}</ul> 
+                     </x-jet-nav-link>   
+                     --}}
+
 
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
@@ -270,8 +272,7 @@
 
 
             {{-- ROLES Y PERMISOS --}}
-      
-            <li class="menu-item">
+                <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-shield-outline"></i>
                     <div data-i18n="Roles & Permissions">Roles & Permisos</div>
@@ -430,10 +431,6 @@
 
 
             {{-- 
-
-
-
-
             <li class="menu-header fw-medium mt-4">
                 <span class="menu-header-text">Apps &amp; Pages</span>
             </li>
@@ -1420,8 +1417,7 @@
             <li class="menu-item">
                 <a href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/" target="_blank"
                     class="menu-link">
-              
-                    <i class="menu-icon tf-icons mdi mdi-cog"></i>
+                        <i class="menu-icon tf-icons mdi mdi-cog"></i>
                     <div data-i18n="Documentation">Configuracion</div>
                 </a>
             </li>
