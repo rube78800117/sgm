@@ -12,17 +12,39 @@
 
 
                 {{-- nivel 1 STAR SECCION DE INPUTS datos PROVEEDOR --}}
-                <div class="px-2 py-4  sm:p-2 ">
+                <div class="  px-2 py-4  sm:p-2 ">
 
 
 
                     {{-- %%%%%%%%%%%%%%%%% STAR SECCION SELECTED PROVEEDOR %%%%%%%%%%%%%%%%%%%%%% --}}
-                    <div class="relative mt-4 mb-2" x-data="{ isVisible: false, open: true }" @click.away="isVisible = false">
-                        <div x-show="open">
-                            <input wire:model="searchText" @focus="isVisible = true" type="text" name="proveedor_id"
+                    <div class="form-control relative mt-4 mb-2" x-data="{ isVisible: false, open: true }" @click.away="isVisible = false">
+                        <div x-show="open" class=" form-control border-0">
+
+
+
+                            <div class="  card-body">
+                                <div class=" form-floating mb-2">
+                                    <input wire:model="searchText" @focus="isVisible = true" type="text"
+                                        class="  form-control rounded-md " id="floatingcod_document"
+                                        placeholder="Codigo Documento" name="proveedor_id"
+                                        aria-describedby="floatingcod_documentHelp" />
+                                    <label for="floatingcod_document">Proveedor...</label>
+                                    <span class="form-floating-focused"></span>
+                                    <x-jet-input-error for="searchText" />
+
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+                            {{-- <input wire:model="searchText" @focus="isVisible = true" type="text" name="proveedor_id"
                                 class=" rounded-md shadow-sm border-gray-400 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 w-full mb-1"
                                 placeholder="Proveedor...">
-                            <x-jet-input-error for="proveedor_id" />
+                            <x-jet-input-error for="proveedor_id" /> --}}
                         </div>
 
 
@@ -32,27 +54,29 @@
 
                         {{-- ************ STAR CARGA EL SELECT CON LOS ITEMS DE PROVEEDORES**************** --}}
                         <x-card x-show="isVisible" style="display: none"
-                            class="absolute w-full max-h-40 overflow-scroll border-b border-gray-400 overscroll-contain">
-                            @foreach ($items as $item)
-                                <div class=" text-sm w-full bg-gray-100 p-1 mb-1 rounded-md hover:bg-gray-200 cursor-pointer pl-2 font-semibold"
-                                    {{-- **LA UNCION CHOOOSE CARGA EL VALOR SELECCIONODO A UNA MATRIS: selectedIds[]** --}}
-                                    wire:click="choose({{ $item->id }}, '{{ $item->name }}')"
-                                    @click="isVisible = false, open = false">
-                                    {{ $item->name }}
+                            class="form-control z-20 absolute w-full max-h-40 overflow-scroll   ">
+                            <div class="form-control">
+                                @foreach ($items as $item)
+                                    <div class="form-control  text-sm w-full  p-1 mb-1 rounded-md  cursor-pointer pl-2 font-semibold"
+                                        {{-- **LA UNCION CHOOOSE CARGA EL VALOR SELECCIONODO A UNA MATRIS: selectedIds[]** --}}
+                                        wire:click="choose({{ $item->id }}, '{{ $item->name }}')"
+                                        @click="isVisible = false, open = false">
+                                        {{ $item->name }}
 
-                                </div>
-                            @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
                         </x-card>
                         {{-- ************ END CARGA EL SELECT CON LOS ITEMS DE PROVEEDORES**************** --}}
 
                         {{-- ********* STAR Botones emerjentes despues de seleccionar un item --}}
-                        <div class="flex flex-wrap flex-1 gap-1 ">
+                        <div class=" flex flex-wrap flex-1 gap-1 ">
                             <span class="">{{ $label }} </span>
                             @foreach ($selectedItems as $selected)
                                 <div class="grid grid-cols-1">
                                     <div>
                                         <span @click=" open = true"
-                                            class="transition-all bg-green-400 hover:bg-red-400 rounded p-1 text-sm text-white font-bold cursor-pointer"
+                                            class="transition-all bg-green-400 hover:bg-red-400 rounded p-1 text-sm font-bold cursor-pointer"
                                             wire:click="remove({{ $selected->id }})">
                                             {{ $selected->name_company }}
                                         </span>
@@ -96,7 +120,7 @@
 
 
 
-                    <div class="col-span-5 ">
+                    <div class="col-span-5  z-10">
 
 
                         <div class="   mt-2  rounded-xl shadow-xl">
@@ -106,12 +130,30 @@
 
 
                                 <div class=" form-group px-2">
-                                    <label class=" text-sm font-medium text-gray-700">Nombre o descripcion del
-                                        ingreso</label>
+
+
+
+                                    <div class="card-body">
+                                        <div class="form-floating mb-2">
+                                            <input wire:model.defer="purchase_description" type="text"
+                                                class="form-control rounded-md " name="purchase_description"
+                                                id="floatingcod_document"
+                                                placeholder="Aclaración o descripcion del ingreso"
+                                                aria-describedby="floatingcod_documentHelp" />
+                                            <label for="floatingcod_document">Aclaración o descripcion del
+                                                ingreso"</label>
+                                            <span class="form-floating-focused"></span>
+                                            <x-jet-input-error for="purchase_description" />
+
+                                        </div>
+
+                                    </div>
+
+                                    {{--             
                                     <input wire:model.defer="purchase_description" type="text"
                                         name="purchase_description" placeholder="Aclaración o descripcion del ingreso"
                                         class="form-control rounded-md shadow-sm border-gray-400 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 w-full  sm:text-sm ">
-                                    <x-jet-input-error for="purchase_description" />
+                                    <x-jet-input-error for="purchase_description" /> --}}
                                 </div>
 
 
@@ -229,9 +271,9 @@
 
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="64 " height="64"
-                                    x="0" y="0" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512 512"
-                                    xml:space="preserve" {{-- class="fill-current text-{{ $item->options->line_color }}"> --}}
-                                    class="fill-current text-{{ $lineSelected->color }}">
+                                    x="0" y="0" viewBox="0 0 512.001 512.001"
+                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                    {{-- class="fill-current text-{{ $item->options->line_color }}"> --}} class="fill-current text-{{ $lineSelected->color }}">
                                     <g>
                                         <g xmlns="http://www.w3.org/2000/svg">
                                             <g>
@@ -358,7 +400,7 @@
                     @livewire('admin.import-survey')
 
                     <hr>
-                    Detalle de articulos agregados:
+
 
 
 
@@ -506,7 +548,7 @@
                                                     <td class=" py-2 text-sm">
 
 
-{{-- 
+                                                        {{-- 
                                                         @if (!empty($itemAdd['article_id_dopp']))
                                                         <p class=" text-gray-900 mr-2"></p>
                                                         <ul class="flex">
@@ -550,27 +592,27 @@
                                                         @if (!empty($itemAdd['article_id_dopp']))
                                                             <p class=" "><i
                                                                     class="text-blue-500  fas fa-key"></i>
-                                                                    {{ $itemAdd['article_id_dopp'] }}</p>
+                                                                {{ $itemAdd['article_id_dopp'] }}</p>
                                                         @endif
                                                         @if (!empty($itemAdd['article_id_eetc']))
                                                             <p class=" "><i
                                                                     class="text-yellow-400  fas fa-key"></i>
-                                                                    {{ $itemAdd['article_id_eetc'] }}</p>
+                                                                {{ $itemAdd['article_id_eetc'] }}</p>
                                                         @endif
                                                         @if (!empty($itemAdd['article_id_zona']))
                                                             <p class=" "><i
                                                                     class="text-gray-400  fas fa-key"></i>
-                                                                    {{ $itemAdd['article_id_zona'] }}</p>
+                                                                {{ $itemAdd['article_id_zona'] }}</p>
                                                         @endif
 
                                                     </td>
 
 
                                                     <td class="text-xs">
-                                                         {{ $itemAdd['unit_name'] }}
+                                                        {{ $itemAdd['unit_name'] }}
                                                     </td>
                                                     <td class="text-xs">
-                                                         {{ $itemAdd['quantity'] }}
+                                                        {{ $itemAdd['quantity'] }}
                                                     </td>
 
 
@@ -586,15 +628,15 @@
 
 
                                                                 <div wire:click="removeIttem({{ $key }})"
-                                                                class=" text-red-400 hover:text-red-600 cursor-pointer">
-                                                                <p class="text-xl flex justify-center">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </p>
-                                                                <p
-                                                                    class=" text-red-400 hover:text-red-600 text-md flex justify-center">
-                                                                    Borrar
-                                                                </p>
-                                                            </div>
+                                                                    class=" text-red-400 hover:text-red-600 cursor-pointer">
+                                                                    <p class="text-xl flex justify-center">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </p>
+                                                                    <p
+                                                                        class=" text-red-400 hover:text-red-600 text-md flex justify-center">
+                                                                        Borrar
+                                                                    </p>
+                                                                </div>
                                                                 {{-- <a class="dropdown-item"
                                                     href="{{ route('admin.articles.edit', $item->id) }}"><i
                                                         class="mdi mdi-pencil-outline me-1"></i>
@@ -666,42 +708,32 @@
                         </div>
                         <!-- / Content -->
 
-                        <!-- Footer -->
-                        <footer class="content-footer footer bg-footer-theme">
-                            <div class="container-xxl">
-                                <div
-                                    class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
-                                    <div class="mb-2 mb-md-0">
-                                        ©
-                                        <script>
-                                            document.write(new Date().getFullYear());
-                                        </script>
-                                        , made with <span class="text-danger"><i
-                                                class="tf-icons mdi mdi-heart"></i></span>
-                                        by
-                                        <a href="https://pixinvent.com" target="_blank"
-                                            class="footer-link fw-medium">Pixinvent</a>
-                                    </div>
-                                    <div class="d-none d-lg-inline-block">
-                                        <a href="https://themeforest.net/licenses/standard" class="footer-link me-4"
-                                            target="_blank">License</a>
-                                        <a href="https://1.envato.market/pixinvent_portfolio" target="_blank"
-                                            class="footer-link me-4">More Themes</a>
 
-                                        <a href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/"
-                                            target="_blank" class="footer-link me-4">Documentation</a>
 
-                                        <a href="https://pixinvent.ticksy.com/" target="_blank"
-                                            class="footer-link d-none d-sm-inline-block">Support</a>
-                                    </div>
-                                </div>
+                        <!-- Content wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {{-- info art --}}
+                        {{-- BUSCADOR SEARCH-COUNT  BUSCA LOS ARTICULOS  --}}
+                        <div class="col-span-12 md:col-span-7 mt-2 py-2  ">
+                            <div class="mx-4">
+                               @livewire('search-count')
+                               
+                               <x-jet-input-error  class="mt-2" for="id_art" />
+  
                             </div>
-                        </footer>
-                        <!-- / Footer -->
-
-                        <div class="content-backdrop fade"></div>
-                    </div>
-                    <!-- Content wrapper -->
+                           
 
 
 
@@ -709,212 +741,74 @@
 
 
 
+                            <div class="card-body">
+                                <form class="form-repeater" data-select2-id="34">
+                                    <div data-repeater-list="group-a" data-select2-id="33">
+                                        <div data-repeater-item="" data-select2-id="32">
+                                            <div class="row mb-3 mb-sm-0" data-select2-id="31">
+                                                <div class="mb-3 col-sm-4" data-select2-id="30">
 
+                                                    <div class="form-floating">
+                                                        <input wire:model.defer="quantity"
+                                                            placeholder="Ingrese la cantidad..." type="text"
+                                                            class="form-control rounded-lg" id="qty"
+                                                            aria-describedby="floatingInputFilledHelp" />
+                                                        <button wire:click="$set('quantity', '')"
+                                                            class="absolute inset-y-0 -right-1  p-3 rounded-r-lg flex items-center bg-blue-500 text-white focus:outline-none hover:text-gray-600 transition-colors"
+                                                            type="button">
+                                                            <i class="text-md fas fa-times"></i>
+                                                        </button>
+                                                        <label for="floatingInputFilled">Escriba la
+                                                            cantidad</label>
+                                                        <span class="form-floating-focused"></span>
+                                                    </div>
+                                                    <div id="floatingInputFilledHelp" class="form-text">
+                                                        Escriba la cantidad para el ingreso
+                                                    </div>
 
-
-
-
-                    <x-table-responsive>
-
-                        @if ($selectedArticles)
-                            <table class="min-w-full leading-normal">
-                                <thead>
-                                    <tr>
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            #
-                                        </th>
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            ID´s
-                                        </th>
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Nombre
-                                        </th>
-
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Unidad
-                                        </th>
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Cantidad
-                                        </th>
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Almacén
-                                        </th>
-
-
-                                        <th
-                                            class="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Acciones
-                                        </th>
-
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($selectedArticles as $key => $itemAdd)
-                                        <tr class="text-left " wire:key="{{ $key }}">
-
-
-                                            <td class="px-5 py-1 border-b border-gray-200  text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap">
-                                                    {{ $key + 1 }}</p>
-                                                {{--
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        {{$itemAdd->id_eetc}}
-                                    </p>
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        {{$itemAdd->id_zona}}
-                                    </p> --}}
-                                            </td>
-
-
-                                            <td class="px-5 py-1 border-b border-gray-200  text-sm">
-
-
-                                                <p class="text-gray-900  flex justify-start ">
-
-
-
-                                                    @if (!empty($itemAdd['article_id_dopp']))
-                                                        <p class=" text-gray-900 mr-2"></p>
-                                                        <ul class="flex">
-                                                            <li class=" text-gray-800 mr-2"><i
-                                                                    class="text-blue-500 mr-2 fas fa-key"> </i>
-                                                                Dopp:</li>
-                                                            <li class=" text-gray-900 font-bold  ">
-                                                                {{ $itemAdd['article_id_dopp'] }}</li>
-                                                        </ul>
-                                                    @endif
-
-
-                                                    @if (!empty($itemAdd['article_id_eetc']))
-                                                        <p class=" text-gray-900 mr-2"></p>
-
-                                                        <ul class="flex">
-                                                            <li class=" text-gray-800 mr-2">
-                                                                <i class="text-yellow-400 mr-2 fas fa-key"></i> MiT:
-                                                            </li>
-                                                            <li class=" text-gray-900 font-bold ">
-                                                                {{ $itemAdd['article_id_eetc'] }}</li>
-                                                        </ul>
-                                                    @endif
-
-
-
-                                                    @if (!empty($itemAdd['article_id_zona']))
-                                                        <p class=" text-gray-900 mr-2"> </p>
-                                                        <ul class="flex">
-                                                            <li class=" text-gray-800 mr-2"><i
-                                                                    class="text-gray-400 mr-2 fas fa-key"></i>
-                                                                Zona:</li>
-                                                            <li class=" text-gray-900 font-bold ">
-                                                                {{ $itemAdd['article_id_zona'] }}</li>
-                                                        </ul>
-                                                    @endif
-
-
-                                                </p>
-
-
-
-
-
-
-
-
-
-
-                                            </td>
-
-
-
-
-                                            <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap">
-                                                    {{ $itemAdd['article_name'] }}
-                                                </p>
-                                            </td>
-                                            <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap">
-                                                    {{ $itemAdd['unit_name'] }}
-                                                </p>
-                                            </td>
-
-
-                                            <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap">
-                                                    {{ $itemAdd['quantity'] }}
-                                                </p>
-                                            </td>
-
-
-                                            {{-- <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        {{$itemAdd['warehouse_name'] }}
-                                    </p>
-                                </td> --}}
-
-
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                {{-- <a href="{{route('admin.articles.edit', $article)}}" class=""> --}}
-
-                                                <div wire:click="removeIttem({{ $key }})"
-                                                    class=" text-red-400 hover:text-red-600 cursor-pointer">
-                                                    <p class="text-xl flex justify-center">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </p>
-                                                    <p
-                                                        class=" text-red-400 hover:text-red-600 text-md flex justify-center">
-                                                        Borrar
-                                                    </p>
+                                                    <x-jet-input-error for="quantity" />
                                                 </div>
+                                                <div>
+                                                    <button wire:click.prevent="addArticle()"
+                                                    class="btn btn-primary waves-effect waves-light" data-repeater-create="">Add
+                                                    article</button>
+                                                </div>
+                                                <div class="mb-3 col-sm-8">
+                                                    <div class="form-floating form-floating-outline">
 
+                                                        @livewire('info-article')
 
-                                            </td>
-
-
-
-
-
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        @else
-                            <div class="px-6 py-4">
-                                No hay ningún registro
-
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <div>
+                                        <button wire:click.prevent="addArticle()"
+                                        class="btn btn-primary waves-effect waves-light" data-repeater-create="">Add
+                                        article</button>
+                                    </div> --}}
+                                </form>
                             </div>
-                        @endif
 
 
 
-                        {{-- @if ($itemAdds->hasPages())
-                    <div class="px-6 py-4">
-                        {{$itemAdds->links()}}
-
-                    </div>
-                    @endif --}}
-
-                    </x-table-responsive>
 
 
-                    {{-- info art --}}
-                    {{-- BUSCADOR SEARCH-COUNT  BUSCA LOS ARTICULOS  --}}
-                    <div class="col-span-12 md:col-span-7 mt-2 py-2 ">
-                        @livewire('search-count')
-                        <x-jet-input-error for="id_art" />
-                    </div>
 
 
-                    <div class="flex justify-items-stretch mt-6 ">
+
+
+
+
+
+
+
+
+                        </div>
+
+
+                        {{-- <div class="flex justify-items-stretch mt-6 ">
 
                         <div>
 
@@ -963,63 +857,64 @@
 
 
                         </div>
+                    </div> --}}
+                        <div class="col-span-12 md:col-span-5 pb-2">
+                            {{-- @livewire('info-article') --}}
+
+                        </div>
+
+
+
+
+
+
+                        {{-- END info art --}}
+                        <!--End component -->
                     </div>
-                    <div class="col-span-12 md:col-span-5 pb-2">
-                        @livewire('info-article')
-
-                    </div>
+                </div>
+                {{-- %%%%%%%%%%%%%%%%%%%% END LISTA DE ARTICULOS DETALLES %%%%%%%%%%%%%%%%%%%% --}}
 
 
-
-
-
-
-                    {{-- END info art --}}
-                    <!--End component -->
+                <div class=" justify-end inline-block mr-2 m-2">
+                    <button wire:click="storeOrder" type="button"
+                        class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg flex items-center">
+                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                        </svg>
+                        GUARDAR LISTA Y ACTUALIZAR STOCK
+                    </button>
                 </div>
             </div>
-            {{-- %%%%%%%%%%%%%%%%%%%% END LISTA DE ARTICULOS DETALLES %%%%%%%%%%%%%%%%%%%% --}}
+        </div>
 
 
-            <div class=" justify-end inline-block mr-2 m-2">
-                <button wire:click="storeOrder" type="button"
-                    class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg flex items-center">
-                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                    </svg>
-                    GUARDAR LISTA Y ACTUALIZAR STOCK
-                </button>
-            </div>
+
+
+
+        <div>
+
+
+
+            @push('script')
+                @push('script')
+                    <script>
+                        function resetStationSelect() {
+                            var selectIds = ['stationselect', 'warehouseselect', 'sectorselect', 'locationselect'];
+                            selectIds.forEach(function(id) {
+                                var selectElement = document.getElementById(id);
+                                if (selectElement) {
+                                    selectElement.value = ""; // Restablece el valor del select a vacío
+                                }
+                            });
+                        }
+                    </script>
+                @endpush
+            @endpush
+
+
+
+
         </div>
     </div>
-
-
-
-
-
-    <div>
-
-
-        @push('script')
-            @push('script')
-                <script>
-                    function resetStationSelect() {
-                        var selectIds = ['stationselect', 'warehouseselect', 'sectorselect', 'locationselect'];
-                        selectIds.forEach(function(id) {
-                            var selectElement = document.getElementById(id);
-                            if (selectElement) {
-                                selectElement.value = ""; // Restablece el valor del select a vacío
-                            }
-                        });
-                    }
-                </script>
-            @endpush
-        @endpush
-
-
-
-
-    </div>
-</div>
