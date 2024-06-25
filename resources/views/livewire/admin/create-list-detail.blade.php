@@ -218,19 +218,21 @@
 
                     </div>
 
-                    <div>
-                        <p>{{$lineselect->name}}</p>
+                    <div class="flex flex-col items-center justify-center w-full space-y-2">
+                        @if (!empty($lineSelected))
+                              <div class=""> <p class=" font-bold ">{{$lineSelected->name}}</p></div> 
+                               
                         <div class="mr-2">
 
 
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                 xmlns:svgjs="http://svgjs.com/svgjs" version="1.1"
-                                width="32" height="32" x="0" y="0"
+                                width="64 " height="64" x="0" y="0"
                                 viewBox="0 0 512.001 512.001"
                                 style="enable-background:new 0 0 512 512"
                                 xml:space="preserve" {{-- class="fill-current text-{{ $item->options->line_color }}"> --}}
-                                class="fill-current text-{{ $line->color }}">
+                                class="fill-current text-{{ $lineSelected->color }}">
                                 <g>
                                     <g xmlns="http://www.w3.org/2000/svg">
                                         <g>
@@ -252,12 +254,16 @@
                                 </g>
                             </svg>
                         </div>
+                        @else
+                           <span>Seleccione una linea</span>
+                        @endif
+                     
 
                     </div>
 
                     <div class="col-span-2 md:col-span-2 ">
                         <p class="mb-2 font-bold">Datos de ubicacion física para el ingreso</p>
-                        <div class="form-floating mb-2">
+                        {{-- <div class="form-floating mb-2">
                             <select wire:model="linewarehouse" placeholder="Tipo Documento" name="linewarehouse"
                                 class="form-select" id="linewarehouse" aria-label="Floating label select example">
                                 <option value="">Seleccione una Ubicación</option>
@@ -270,7 +276,7 @@
                             <label for="floatingSelectFilled">Ubicación</label>
                             <span class="form-floating-focused"></span>
                             <x-jet-input-error for="linewarehouse" />
-                        </div>
+                        </div> --}}
 
                         <div class="form-floating mb-2">
                             <select wire:model="stationselect" placeholder="Tipo Documento" name="stationselect"
@@ -347,7 +353,7 @@
 
 
             {{-- %%%%%%%%%%%%%%%%%%%% STAR LISTA DE ARTICULOS DETALLES %%%%%%%%%%%%%%%%%%%% --}}
-            <div class=" ">
+            <div class="form-control col-span-12 sm:col-span-12 md:col-span-12   mt-4  rounded-xl shadow-2xl ">
                 <!-- component -->
                 <div class="py-4">
                     @livewire('admin.import-survey')
@@ -403,7 +409,7 @@
                                         <tr class="text-left " wire:key="{{ $key }}">
 
 
-                                            <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
+                                            <td class="px-5 py-1 border-b border-gray-200  text-sm">
                                                 <p class="text-gray-900 whitespace-no-wrap">
                                                     {{ $key + 1 }}</p>
                                                 {{--
@@ -416,7 +422,7 @@
                                             </td>
 
 
-                                            <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
+                                            <td class="px-5 py-1 border-b border-gray-200  text-sm">
 
 
                                                 <p class="text-gray-900  flex justify-start ">
@@ -571,7 +577,7 @@
                                         placeholder="Ingrese la cantidad..." />
 
                                     <button wire:click="$set('quantity', '')"
-                                        class="absolute inset-y-0 right-0 px-3 py-2 bg-gray-200 text-gray-600 hover:text-green-800 focus:outline-none rounded-r-lg">
+                                        class="absolute inset-y-0 right-0 px-3 py-2  text-gray-600 hover:text-green-800 focus:outline-none rounded-r-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                             fill="currentColor">
                                             <path fill-rule="evenodd"
@@ -624,7 +630,7 @@
             {{-- %%%%%%%%%%%%%%%%%%%% END LISTA DE ARTICULOS DETALLES %%%%%%%%%%%%%%%%%%%% --}}
 
 
-            <div class="flex justify-end inline-block mr-2 m-2">
+            <div class=" justify-end inline-block mr-2 m-2">
                 <button wire:click="storeOrder" type="button"
                     class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg flex items-center">
                     <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\MovementController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CountController;
 use App\Http\Livewire\Admin\CreateCounts;
+use App\Http\Livewire\Admin\IndexPurchase;
 use App\Http\Livewire\Admin\ShowSector;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Session;
@@ -31,7 +32,8 @@ use App\Models\User;
 
 // Route::get('',[ HomeController::class, 'index']);
 Route::get('/', ShowArticles::class)->name('admin.index');
-Route::get('articles/pdf', [ArticleController::class, 'pdf'])->name('admin.pdf.articles');
+Route::get('articulos/pdf', [ArticleController::class, 'pdf'])->name('admin.pdf.articles');
+Route::get('ingresos/pdf', [IndexPurchase::class, 'pdf'])->name('admin.pdf.purchases');
 Route::get('articles/create', CreateArticle::class)->name('admin.articles.create');
 Route::get('brands/create', CreateBrand::class)->name('admin.brands.create');
 

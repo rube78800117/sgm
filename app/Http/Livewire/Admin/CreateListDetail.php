@@ -15,6 +15,7 @@ use App\Models\Sector;
 use App\Models\Station;
 use App\Models\Type_voucher;
 use App\Models\Warehouse;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Error;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Support\Facades\App;
@@ -47,7 +48,7 @@ class CreateListDetail extends Component
     public $nombre_art = "Seleccione un articulo";
     public $id_art, $id_dopp_art, $id_eetc_art, $id_zona_art;
     public $unit;
-    public $cod_document =' 01/2022', $purchase_description= 'Primeros ingresos', $state_id = 1, $voucher_select = 3, $proveedor_id;
+    public $cod_document =' 06/2024', $purchase_description= 'Primeros ingresos', $state_id = 1, $voucher_select = 3, $proveedor_id;
     public $savem;
     public $variableRecibida;
 
@@ -146,9 +147,11 @@ class CreateListDetail extends Component
         $this->validate([
             'quantity' => 'required|numeric|min:1|max:9999',
 
-            'linewarehouse' => 'required',
+            // 'linewarehouse' => 'required',
             'stationselect' => 'required',
             'warehouseselect' => 'required',
+            'sectorselect' => 'required',
+            'locationselect' => 'required',
             'id_art' => 'required',
 
 
@@ -399,14 +402,10 @@ class CreateListDetail extends Component
 
     public function updatedLineselect($line_id)
     {
-        $this->line_id = $line_id;
-
-        $this->lineSelected = Line::where('line_id', 'LIKE', $this->line_id)->get();
-        $stations = $this->stations;
-        $stationselect="";
-        $warehouseselect="";
-        $locationselect="";
-        $locationselect="";
+        
+        $this->lineSelected = Line::where('id', $line_id)->first();
+        $this->updatedLinewarehouse($this->lineSelected->id);
+    // $this->linewarehouse= $this->lineSelected;
 
     }
 
@@ -421,9 +420,9 @@ class CreateListDetail extends Component
 
     public function updatedLinewarehouse($line_id)
     {
-        $this->line_id = $line_id;
+        
 
-        $this->stations = Station::where('line_id', 'LIKE', $this->line_id)->get();
+        $this->stations = Station::where('line_id',  $line_id)->get();
         $stations = $this->stations;
         $stationselect="";
         $warehouseselect="";
@@ -435,9 +434,9 @@ class CreateListDetail extends Component
 
     public function updatedStationselect($station_id)
     {
-        $this->station_id = $station_id;
+    
 
-        $this->warehouses = Warehouse::where('station_id', 'LIKE', $this->station_id)->get();
+        $this->warehouses = Warehouse::where('station_id', 'LIKE', $station_id)->get();
         $warehouses = $this->warehouses;
     }
 
@@ -446,7 +445,7 @@ class CreateListDetail extends Component
     {
         $this->warehouse_id = $warehouse_id;
 
-        $this->warehouse = Warehouse::where('id', 'LIKE', $this->warehouse_id)->first();
+        $this->warehouse = Warehouse::where('id', 'LIKE', $warehouse_id)->first();
         $warehouse = $this->warehouse;
 
         $this->sectors = Sector::where('warehouse_id', 'LIKE', $this->warehouse_id)->get();
@@ -459,19 +458,23 @@ class CreateListDetail extends Component
 
     public function updatedSectorselect($sector_id)
   
-    {  $this->sector_id = $sector_id;
-        $this->locations = Location::where('sector_id', 'LIKE', $this->sector_id)->get();
+    {  
+        $this->locations = Location::where('sector_id', 'LIKE', $sector_id)->get();
         $locations = $this->locations;
     }
     public function updatedLocationselect($location_id)
   
-    {  $this->location_id = $location_id;
-        $this->location = Location::where('id', 'LIKE', $this->location_id)->first();
+    {  
+        $this->location = Location::where('id', 'LIKE', $location_id)->first();
         $location = $this->location;
     }
    
    
-
+    public function pdf(){
+        $articles=Article::all();
+        $pdf=PDF::loadView('livewire.admin.pdf.articles', compact('articles'));
+        return $pdf->stream();
+    }
 
 
 

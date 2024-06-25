@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Purchase;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
 class IndexPurchase extends Component
 {
     
@@ -40,4 +41,13 @@ class IndexPurchase extends Component
        
         return view('livewire.admin.index-purchase', compact('purchases','purchasesTotal', 'purchasesFound'))->layout('layouts.admin');
     }
+
+
+    public function pdf(){
+        $purchases=Purchase::all();
+        $pdf=PDF::loadView('livewire.admin.pdf.purchases', compact('purchases'));
+        return $pdf->stream();
+    }
+
+
 }
