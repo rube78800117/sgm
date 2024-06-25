@@ -1,18 +1,18 @@
 <div>
     
 
-    <div class="container bg-gray-100 shadow-md  ">
+    <div class=" container  shadow-md  ">
                  <div>
                     
-                    <h1 class="py-4 w-full font-bold text-sm text-gray-800 text-center leading-tight mb-2">DETALLE DE RELEVAMIENTO</h1>
+                    <h1 class="py-4 w-full font-bold text-sm  text-center leading-tight mb-2">DETALLE DE RELEVAMIENTO</h1>
 
-                        <h1 class="w-full font-bold text-sm text-gray-800 leading-tight mb-2">ID: {{$count->id}}</h1>
-                        <h1 class="w-full  text-sm text-gray-700 leading-tight mb">Nombre Relevamiento:  {{$count->name}}</h1>
-                        <h1 class="w-full text-sm text-gray-700 leading-tight">Descripción:  {{$count->Obs}}</h1>
+                        <h1 class="w-full font-bold text-sm  leading-tight mb-2">ID: {{$count->id}}</h1>
+                        <h1 class="w-full  text-sm  leading-tight mb">Nombre Relevamiento:  {{$count->name}}</h1>
+                        <h1 class="w-full text-sm  leading-tight">Descripción:  {{$count->Obs}}</h1>
                          
                             
                         @if ($count->status == 1)
-                        <h1 class="w-full text-sm text-gray-700 leading-tight">Estado: CERRADO</h1>
+                        <h1 class="w-full text-sm  leading-tight">Estado: CERRADO</h1>
                         @elseif ($count->status == 2)
                             ABIERTO
                         @else
@@ -21,10 +21,10 @@
                         
                         
 
-                        <h1 class="w-full text-sm text-gray-700 leading-tight">Creado por:   {{$count->user->name}}</h1>
-                        <h1 class="w-full text-sm text-gray-700 leading-tight">De almacén:  {{$count->warehouse->name}}</h1>
-                        <h1 class="w-full text-sm text-gray-700 leading-tight">Linea:  {{$count->warehouse->station->line->name}}</h2>
-                        <h1 class="w-full text-sm text-gray-700 leading-tight">Fecha de creación:  {{$count->created_at->format('d-m-Y') }}</h1>
+                        <h1 class="w-full text-sm  leading-tight">Creado por:   {{$count->user->name}}</h1>
+                        <h1 class="w-full text-sm  leading-tight">De almacén:  {{$count->warehouse->name}}</h1>
+                        <h1 class="w-full text-sm  leading-tight">Linea:  {{$count->warehouse->station->line->name}}</h2>
+                        <h1 class="w-full text-sm  leading-tight">Fecha de creación:  {{$count->created_at->format('d-m-Y') }}</h1>
                     </div>
                   
                 
@@ -92,7 +92,7 @@
                  
 
 
-                        <td class="px-5 py-1 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-1 border-b border-gray-200  text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 {{$key+1}}</p>
                             {{--
@@ -103,7 +103,7 @@
                                 {{$itemAdd->id_zona}}
                             </p> --}}
                         </td>
-                        <td class="px-5 w-40 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 w-40 py-5 border-b border-gray-200 text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
 
 
@@ -127,7 +127,7 @@
                             </p>
                         </td>
                 
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-gray-200  text-sm">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 w-12 h-12">
                                     @if ($item->article->image != null)
@@ -175,7 +175,7 @@
 
 
 
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-gray-200  text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 {{$item->quantity}}
                             </p>
