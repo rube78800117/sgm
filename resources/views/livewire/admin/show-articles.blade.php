@@ -1,6 +1,6 @@
 <div class=" form-control ">
 
-    <!-- INDEX DE ARTICULOS  Layout wrapper -->
+    <!-- INDEX DE ARTICULOS  Layout wrapper         I N D E X                   I N D E X   -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
 

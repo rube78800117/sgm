@@ -79,6 +79,7 @@
                                                     {{ $location->id }} - {{ $location->name }}
                                                 </label>
                                             </div>
+                                  
                                                 {{-- <span>{{ $location->id }}</span> - <span>{{ $location->name }}</span> --}}
                                             </div>
                                         @endforeach
@@ -88,7 +89,7 @@
                                 @endif
 
                             </div>
-
+                            <div class="mb-3">{!! DNS2D::getBarcodeHTML("productCode", 'QRCODE') !!} sss</div>
 
                         </div>
 

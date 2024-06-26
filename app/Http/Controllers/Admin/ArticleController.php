@@ -47,7 +47,7 @@ class ArticleController extends Controller
 
 
     public function pdf(){
-        $articles=Article::all();
+        $articles=Article::limit(10)->get();
         $pdf=PDF::loadView('livewire.admin.pdf.articles', compact('articles'));
         return $pdf->stream();
     }
