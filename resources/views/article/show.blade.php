@@ -458,26 +458,17 @@
                                             @livewire('mycomponents.location-article', ['locationId' => $item->pivot->location_id], key($item->id))
 
 
-
-
-
-
-
-
-
                                         </div>
                                     </div>
 
                                     <!-- Share Project Modal -->
 
-
-
-
-
-
+                                    <div class="flex justify-end"> @livewire('admin.change-location', ['articleWarehouse_id' => $item->pivot->id, 'item'=>$item], key($item->id))
+                                    </div>
+                                    
                                 </div>
 
-                                @livewire('admin.change-location', ['item' => $item])
+
                                 <div class="mt-4">
                                     <p class="text-xm font-semibold my-2">{{ $item->name }}</p>
                                     <div class="flex space-x-2 text-gray-700 text-sm">
@@ -502,7 +493,7 @@
 
 
 
-                                        
+
                                         </div>
 
 
@@ -515,7 +506,7 @@
 
                             </div>
 
-                           
+
                         </div>
                     @endif
                 @endforeach
@@ -528,6 +519,7 @@
     </div>
 
     </div>
+
 </x-app-layout>
 
 <!--/ Share Project Modal -->
