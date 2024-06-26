@@ -230,7 +230,7 @@
                                         </ul>
                                     @endif
                                     {{-- aaaaaaaaaaaaaaaaaaa
-                                   @foreach ( $article->locations as $item)
+                                   @foreach ($article->locations as $item)
                                       {{ $item->name}}
                                    @endforeach
 
@@ -391,24 +391,19 @@
 
                 @foreach ($warehouses as $item)
                     @if ($item->pivot->quantity == 0)
-           
                         {{-- No mostrar nada de este almacén --}}
                     @else
-                
-                                
-                                     
-
-                         <div class=" bg-gray-200 rounded-2xl text-gray-500 items-center h-15 w-full shadow-xl">
+                        <div class=" bg-gray-200 rounded-2xl text-gray-500 items-center h-15 w-full shadow-xl">
 
 
                             {{-- tarjeta de almaccenpara el articulo --}}
-                            <div  class="  relative bg-gray-100  py-4 px-6 rounded-2xl w-128   shadow-2xl">
+                            <div class="  relative bg-gray-100  py-4 px-6 rounded-2xl w-128   shadow-2xl">
 
                                 {{-- div del icono y fondos de color automaticos segun linea --}}
 
                                 <div x-data="{ open: false }" class="relative">
-                                    <button @click="open = !open" 
-                                    class="border-4 bg-{{ $item->station->line->color }} text-gray-400 flex items-center justify-center absolute rounded-full h-15 w-15 shadow-xl left-0 -top-10 focus:outline-none">
+                                    <button @click="open = !open"
+                                        class="border-4 bg-{{ $item->station->line->color }} text-gray-400 flex items-center justify-center absolute rounded-full h-15 w-15 shadow-xl left-0 -top-10 focus:outline-none">
 
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -440,9 +435,7 @@
 
                                     </button>
                                     <!-- Contenido emergente -->
-                                    <div x-show="open" 
-                                        @click.outside="open = false"
-                                        @click.away="open = false"
+                                    <div x-show="open" @click.outside="open = false" @click.away="open = false"
                                         x-transition:enter="transition ease-out duration-200"
                                         x-transition:enter-start="opacity-0 transform scale-95"
                                         x-transition:enter-end="opacity-100 transform scale-100"
@@ -453,28 +446,38 @@
                                         style="display: none;">
                                         <!-- Contenido del menú emergente -->
                                         <div class="p-4 text-sm">
-                                    
-                                         
-                                      
 
-                                           
-                                                <p class="text-gray-500 text-sm"> Fecha de control:</p> <span class="text-gray-700 font-bold ">{{$item->pivot->control_date}}</span>  <hr> 
-                                                
-                                                @livewire('mycomponents.location-article', ['locationId' => $item->pivot->location_id], key($item->id))
-                                                
-             
-                                      
-                                          
-                                    
-                                    
-                                       
-                                           
-                                          
+
+
+
+
+                                            <p class="text-gray-500 text-sm"> Fecha de control:</p> <span
+                                                class="text-gray-700 font-bold ">{{ $item->pivot->control_date }}</span>
+                                            <hr>
+
+                                            @livewire('mycomponents.location-article', ['locationId' => $item->pivot->location_id], key($item->id))
+
+
+
+
+
+
+
+
+
                                         </div>
                                     </div>
 
+                                    <!-- Share Project Modal -->
+
+
+
+
+
 
                                 </div>
+
+                                @livewire('admin.change-location', ['item' => $item])
                                 <div class="mt-4">
                                     <p class="text-xm font-semibold my-2">{{ $item->name }}</p>
                                     <div class="flex space-x-2 text-gray-700 text-sm">
@@ -495,19 +498,24 @@
 
                                     <div class="flex space-x-2">
 
+                                        <div>
 
+
+
+                                        
+                                        </div>
 
 
                                     </div>
                                     {{-- @livewire('card-update', ['article' => $article, 'WarehouseId'=> $item->id]) --}}
-                                    @livewire('add-cart-item', ['article' => $article, 'WarehouseId' => $item->id, 'warehouses_name' => $item->name, 'line_color' => $item->station->line->color,'warehouse_line_id'=>$item->station->line->id])
-                                                      </div>
+                                    @livewire('add-cart-item', ['article' => $article, 'WarehouseId' => $item->id, 'warehouses_name' => $item->name, 'line_color' => $item->station->line->color, 'warehouse_line_id' => $item->station->line->id])
+                                </div>
 
 
 
                             </div>
 
-
+                           
                         </div>
                     @endif
                 @endforeach
@@ -521,3 +529,5 @@
 
     </div>
 </x-app-layout>
+
+<!--/ Share Project Modal -->

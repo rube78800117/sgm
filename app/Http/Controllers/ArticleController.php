@@ -11,7 +11,7 @@ use App\Models\Location;
 
 class ArticleController extends Controller
 {
-    public $article, $color;
+    public $article, $color, $open;
 
     public function show(Article $article)
     {

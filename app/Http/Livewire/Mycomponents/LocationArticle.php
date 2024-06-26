@@ -8,7 +8,7 @@ use Livewire\Component;
 class LocationArticle extends Component
 {
 
-    public $locationId;
+    public $locationId, $open;
     public $locationWare;
 
     public function mount($locationId)
