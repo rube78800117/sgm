@@ -146,7 +146,7 @@
             {{-- boton y lick para eliminacion y continuar --}}
 
             <div class=" mt-6 flex justify-end">
-                <a class="  text-sm mt-3 cursor-pointer hover:underline inline-block" wire:click="destroy">
+                <a class=" text-red-600 text-sm mt-3 cursor-pointer hover:underline inline-block" wire:click="destroy">
                     <i class="fas fa-trash"></i>
                     VACIAR TODA TU CAJA
                 </a>

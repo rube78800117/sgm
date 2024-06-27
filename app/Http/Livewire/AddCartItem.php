@@ -29,7 +29,7 @@ class AddCartItem extends Component
 
     public $qty = 1;
     public $options = [];
-
+    public $factor = 1;
     // protected $listeners=['render'];
     public function mount()
     {
@@ -80,6 +80,7 @@ class AddCartItem extends Component
                 'options' => $this->options,
                 // 'warehouse' => $this->existence->warehouse->name,
             ]);
+
             $this->quantity = qty_available($this->article->id, $this->WarehouseId);
             $this->reset('qty');
             $this->emitTo('dropdown-cart', 'render');
@@ -161,7 +162,7 @@ class AddCartItem extends Component
     public function alertError($key)
     {
         $this->dispatchBrowserEvent('alerttoastr', 
-                ['type' => 'error',  'message' => 'Debe seleccionar articulos de almacenes de la '.'{{Str::camel($key)}} '  .', las solicitudes se realizan uno por linea, si es necesario vuelva a empesar']);
+                ['type' => 'error',  'message' => 'Debe seleccionar articulos de almacenes de la '.$key.', las solicitudes se realizan uno por linea, si es necesario vacie su caja y vuelva a empesar']);
              
     }
    
