@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class LocationArticle extends Component
 {
-
+    protected $listeners = ['prueba' => 'prueba'];
     public $locationId, $open;
     public $locationWare;
 
@@ -18,8 +18,15 @@ class LocationArticle extends Component
     }
 
    
+    public function prueba($value){
+        $this->locationId = $value;
+      
+    }
+
     public function render()
-    {
+    { 
+
         return view('livewire.mycomponents.location-article');
+
     }
 }

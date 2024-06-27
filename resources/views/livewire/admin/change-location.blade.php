@@ -45,7 +45,11 @@
                             </div>
                             <span>Linea: {{ $item->station->line->name }}</span> <br>
                             <span>Estación: {{ $item->station->name }}</span> <br>
-                            <span>Almacén: {{ $item->name }}</span>
+                            <span>Almacén: {{ $item->name }}</span><br>
+                            <span>Articulo: {{ $articleWarehouse->article->name }} </span><br>
+                            <span>Categoria: {{ $articleWarehouse->article->category->department->name }} </span><br>
+                            <span>Subcategoria: {{ $articleWarehouse->article->category->name }} </span><br>
+                            <span>Stock: {{ $articleWarehouse->quantity }}</span>
                             <hr>
                         </div>
                         <P Class="font-bold">Editar localizacion del articulo</P>
@@ -71,9 +75,9 @@
                                 @if (!is_null($locations))
                                     <ul>
                                         @foreach ($locations as $location)
-                                            <div class="flex justify-start">
+                                            <div class="">
 
-                                            <div class="form-radio">
+                                            <div class="flex justify-start form-radio">
                                                 <input class="form-radio-input" type="radio" value="{{ $location->id }}" wire:model="selectedLocations">
                                                 <label class="form-radio-label" for="defaultRadio1">
                                                     {{ $location->id }} - {{ $location->name }}
@@ -89,11 +93,11 @@
                                 @endif
 
                             </div>
-                            <div class="mb-3">{!! DNS2D::getBarcodeHTML("productCode", 'QRCODE') !!} sss</div>
+                           
 
                         </div>
 
-                        {{ $articleWarehouse }}
+                        {{-- {{ $articleWarehouse }} --}}
 
                     </x-slot>
 

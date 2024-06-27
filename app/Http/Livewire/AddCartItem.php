@@ -16,6 +16,8 @@ use Illuminate\Support\Str;
 
 class AddCartItem extends Component
 {
+    protected $listeners = ['render'];
+    
     public $quantity;
     public $warehouse;
 

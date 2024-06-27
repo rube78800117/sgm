@@ -23,7 +23,7 @@ class ChangeLocation extends Component
         ArticleWarehouse::where('id', $this->articleWarehouse_id)
             ->update(['location_id' => $value]);
         
-        $this->emitTo('admin.show-article', 'render');
+        // $this->emitTo('mycomponents.location-article', 'prueba', $value);
     }
 
     public function mount(Warehouse $item)
