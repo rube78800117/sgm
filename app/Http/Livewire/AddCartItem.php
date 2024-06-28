@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 class AddCartItem extends Component
 {
     protected $listeners = ['render'];
-    
+
     public $quantity;
     public $warehouse;
 
@@ -62,15 +62,22 @@ class AddCartItem extends Component
     }
 
 
-    
-    
-   
+
+    public function validateQty()
+    {
+        if (!is_null($this->qty) && $this->qty > 0) {
+          
+             $this->addItem();
+        }
+        else {
+        //    dd("la cantidad debe ser mayor a 0");
+             $this->alertErrorQuantity();
+        }
+    }
 
     public function addItem()
     {
-
-        if (Cart::count()==0) {
-        
+        if (Cart::count() == 0) {
             Cart::add([
                 'id' => $this->WarehouseId,
                 'name' => $this->article->name,
@@ -85,45 +92,34 @@ class AddCartItem extends Component
             $this->reset('qty');
             $this->emitTo('dropdown-cart', 'render');
             // $this->emitTo('add-cart-item','render');
-
-
         } else {
-          
-       
-        $warehouseOrderFirst=Warehouse::find(Cart::content()->first()->id);
-        $line_id_first_item = $warehouseOrderFirst->station->line->id;
-        $warehouseOrder=Warehouse::find($this->WarehouseId);
-        $line_id_item = $warehouseOrder->station->line->id;
+            $warehouseOrderFirst = Warehouse::find(Cart::content()->first()->id);
+            $line_id_first_item = $warehouseOrderFirst->station->line->id;
+            $warehouseOrder = Warehouse::find($this->WarehouseId);
+            $line_id_item = $warehouseOrder->station->line->id;
 
-
-        if ($line_id_first_item!=$line_id_item ) {
-           
-            // $this->alertInfo();
+            if ($line_id_first_item != $line_id_item) {
+                // $this->alertInfo();
                 // dd("no esta permitido otro almacen que sea diferente al atual");
-       
-            $this->alertError($warehouseOrderFirst->station->line->name);
-        
-        
-        } else {
-            Cart::add([
-                'id' => $this->WarehouseId,
-                'name' => $this->article->name,
-                'qty' => $this->qty,
-                'price' => 0,
-                'weight' => 550,
-                'options' => $this->options,
-                // 'warehouse' => $this->existence->warehouse->name,
-            ]);
-            $this->quantity = qty_available($this->article->id, $this->WarehouseId);
-            $this->reset('qty');
-            $this->emitTo('dropdown-cart', 'render');
-            // $this->emitTo('add-cart-item','render');
+
+                $this->alertError($warehouseOrderFirst->station->line->name);
+            } else {
+                Cart::add([
+                    'id' => $this->WarehouseId,
+                    'name' => $this->article->name,
+                    'qty' => $this->qty,
+                    'price' => 0,
+                    'weight' => 550,
+                    'options' => $this->options,
+                    // 'warehouse' => $this->existence->warehouse->name,
+                ]);
+                $this->quantity = qty_available($this->article->id, $this->WarehouseId);
+                $this->reset('qty');
+                $this->emitTo('dropdown-cart', 'render');
+                // $this->emitTo('add-cart-item','render');
+            }
         }
     }
-    }
-
-
-
 
     public function increment()
     {
@@ -139,40 +135,30 @@ class AddCartItem extends Component
     {
         $user = auth()->user();
         //  dd($user);
-
         $user_line_id = auth()->user()->line->id;
         //    dd( $user_line_id);
-
         return view('livewire.add-cart-item', compact('user', 'user_line_id'));
     }
 
-
-
-
     // mensages de alerta
-   
+
     public function alertSuccess()
     {
-        $this->dispatchBrowserEvent('alerttoastr', 
-                ['type' => 'success',  'message' => 'Se guardo y se actualizó correctamente']);
-              
+        $this->dispatchBrowserEvent('alerttoastr', ['type' => 'success', 'message' => 'Se guardo y se actualizó correctamente']);
     }
-   
-   
+
     public function alertError($key)
     {
-        $this->dispatchBrowserEvent('alerttoastr', 
-                ['type' => 'error',  'message' => 'Debe seleccionar articulos de almacenes de la '.$key.', las solicitudes se realizan uno por linea, si es necesario vacie su caja y vuelva a empesar']);
-             
+        $this->dispatchBrowserEvent('alerttoastr', ['type' => 'error', 'message' => 'Debe seleccionar articulos de almacenes de la ' . $key . ', las solicitudes se realizan uno por linea, si es necesario vacie su caja y vuelva a empesar']);
     }
-   
-   
+
     public function alertInfo()
     {
-        $this->dispatchBrowserEvent('alerttoastr', 
-                ['type' => 'info',  'message' => 'Se agrego correctamente!']);
-            
+        $this->dispatchBrowserEvent('alerttoastr', ['type' => 'info', 'message' => 'Se agrego correctamente!']);
     }
-   
-      
+
+    public function alertErrorQuantity()
+    {
+        $this->dispatchBrowserEvent('alerttoastr', ['type' => 'error', 'message' => 'No hay stock disponible de este almacen, por favor seleccione otro almacen']);
+    }
 }

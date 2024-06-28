@@ -57,8 +57,8 @@
                             wire:model="qty" step="1" x-bind:disabled="$wire.qty === 1"
                             x-on:change="$wire.qty = Math.floor(Math.max(Number($event.target.value), 1))">
                     @else
-                        <input class="mx-2 rounded-lg border-0" type="number" step="0.01" min="0"
-                            max="{{ $quantity }}" wire:model="qty" x-bind:disabled="$wire.qty === 0.1"
+                        <input class="mx-2 rounded-lg border-0" type="number" step="0.1" min="0"
+                            max="{{ $quantity }}" wire:model="qty" x-bind:disabled="$wire.qty <= 0.02"
                             x-on:change="$wire.qty = parseFloat(Math.max($event.target.value, 0)).toFixed(2)">
                     @endif
                     {{-- Boton " + " Incrementa --}}
@@ -78,7 +78,7 @@
 
 
             <div class=" mt-3 flex">
-                <x-button-enlace color="yellow" x-bind:disabled=" $wire.qty > $wire.quantity" class="w-full"
+                <x-button-enlace color="yellow" x-bind:disabled="$wire.qty > $wire.quantity" class="w-full"
                     wire:click="addItem" wire:loading.attr="disabled" wire:target="addItem">
                     Agregar
                 </x-button-enlace>
@@ -108,10 +108,13 @@
                                 x-bind:disabled="$wire.qty === 1"
                                 x-on:change="$wire.qty = Math.floor(Math.max(Number($event.target.value), 1))">
                         @else
-                            <input class="mx-2 rounded-lg border-0" type="number" step="0.01" min="0"
-                                max="{{ $quantity }}" wire:model="qty" x-bind:disabled="$wire.qty === 0.1"
+                            <input class="mx-2 rounded-lg border-0" type="number" step="0.1" min="0"
+                                max="{{ $quantity }}" wire:model="qty" x-bind:disabled="$wire.qty <= 0.02"
                                 x-on:change="$wire.qty = parseFloat(Math.max($event.target.value, 0)).toFixed(2)">
                         @endif
+
+
+
 
 
 
@@ -125,7 +128,7 @@
 
 
                         {{-- Boton " + " Incrementa --}}
-                        <x-jet-secondary-button x-bind:disabled=" $wire.qty >= $wire.quantity"
+                        <x-jet-secondary-button x-bind:disabled="$wire.qty >= $wire.quantity"
                             wire:loading.attr="disabled" wire:target="increment" wire:click="increment">
                             <i class=" text-md fas fa-plus"></i>
                         </x-jet-secondary-button>
@@ -141,7 +144,7 @@
 
 
                 <div class=" mt-3 flex">
-                    <x-button-enlace color="yellow" x-bind:disabled=" $wire.qty > $wire.quantity" class="w-full"
+                    <x-button-enlace color="yellow" x-bind:disabled="$wire.qty > $wire.quantity || $wire.qty <= 0" class="w-full"
                         wire:click="addItem" wire:loading.attr="disabled" wire:target="addItem">
                         Agregar
                     </x-button-enlace>

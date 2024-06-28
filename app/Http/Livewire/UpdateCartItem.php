@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Article;
 use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Monolog\Handler\IFTTTHandler;
@@ -20,8 +21,12 @@ class UpdateCartItem extends Component
 
     public function increment()
     {
+        if (Article::find($this->id_art)->type_id == 1) {
+            $this->qty = $this->qty + 1;
+        } else {
+            $this->qty = $this->qty + 0.1;
+        }
 
-        $this->qty = $this->qty + 1;
         Cart::update($this->rowId, $this->qty);
 
         //    $this->emit('render');
@@ -30,15 +35,17 @@ class UpdateCartItem extends Component
 
     public function decrement()
     {
-        
-        $this->qty = $this->qty - 1;
+        if (Article::find($this->id_art)->type_id == 1) {
+            $this->qty = $this->qty - 1;
+        } else {
+            $this->qty = $this->qty - 0.1;
+        }
+
         Cart::update($this->rowId, $this->qty);
 
         // $this->emit('render');
         //  $this->emitTo('dropdown-cart', 'render');
     }
-
-   
 
     public function render()
     {
