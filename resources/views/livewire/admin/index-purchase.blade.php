@@ -265,7 +265,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    href="{{route('admin.purchases.show', $purchase)}}"><i
+                                                    href="{{route('admin.purchases.show', $purchase->id)}}"><i
                                                         class="mdi mdi-pencil-outline me-1"></i>
                                                     Ver</a>
 
