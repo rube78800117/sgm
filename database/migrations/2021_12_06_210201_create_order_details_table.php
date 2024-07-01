@@ -26,7 +26,7 @@ class CreateOrderDetailsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
             
-            $table->integer('quantity');
+            $table->decimal('quantity', 10, 2);
             $table->timestamps();
         });
     }

@@ -17,9 +17,9 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->unsignedBigInteger('sector_id')->nullable();
-            $table->foreign('sector_id')->references ('id')->on ('sectors')-> onDelete('set null');
+            
+            $table->unsignedBigInteger('sector_id');
+            $table->foreign('sector_id')->references ('id')->on ('sectors')->onDelete('cascade');
          });
     }
 

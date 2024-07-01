@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('id_eetc');
             $table->text('name');
             $table->text('description');
-            $table->integer('stock_min')->default(4);
+            $table->integer('stock_min')->default(5);
             $table->string('slug');
 
             //STAR TABLAS AGREGADAS DE TABLA CATALOGO

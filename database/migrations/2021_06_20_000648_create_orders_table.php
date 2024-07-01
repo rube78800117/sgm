@@ -21,7 +21,9 @@ class CreateOrdersTable extends Migration
 
             $table->string('ot')->nullable();
             $table->string('equipment')->nullable();
-            $table->text('observation')->nullable();
+            $table->text('observation');
+            $table->text('observation_origin')->nullable();
+            $table->text('observation_destiny')->nullable();
             $table->text('reason');
             $table->json('content');
             
@@ -36,12 +38,14 @@ class CreateOrdersTable extends Migration
             $table->string('destiny_mov_line_name')->nullable();
 
             $table->enum('movement_type',[Order::SALIDA, Order::MOVIMIENTO_ENTRE_ALMACENES])->default(Order::SALIDA);
-            $table->enum('status',[Order::PENDIENTE, Order::ENVIADO,  Order::REVISION, Order::APROBADO, Order::RECHAZADO, Order::ANULADO,])->default(Order::PENDIENTE);
+            $table->enum('status',[Order::PENDIENTE, Order::ENVIADO,  Order::REVISION, Order::APROBADO, Order::APROBADO_EN_DESTINO, Order::ANULADO,])->default(Order::PENDIENTE);
 
             $table->unsignedBigInteger('approved_user_id')->nullable();
             $table->foreign('approved_user_id')->references('id')->on('Users');
+            $table->unsignedBigInteger('destiny_aprov_user_id')->nullable();
+            $table->foreign('destiny_aprov_user_id')->references('id')->on('Users');
             $table->date('items_out_date');       
-           
+            $table->date('destiny_aprov_date');
            
             // $table->json('equipmentDescription');
             

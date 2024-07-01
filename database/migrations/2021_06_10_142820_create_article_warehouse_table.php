@@ -15,7 +15,7 @@ class CreateArticleWarehouseTable extends Migration
     {
         Schema::create('article_warehouse', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity');
+            $table->decimal('quantity', 10, 2);
             $table->integer('accumulated_request');
             $table->unsignedBigInteger('article_id')->nullable();
             $table->foreign('article_id')-> references ('id')->on('articles')-> onDelete('set null');
@@ -27,6 +27,7 @@ class CreateArticleWarehouseTable extends Migration
             $table->unsignedBigInteger('user_control')->nullable();
             $table->foreign('user_control')-> references ('id')->on('users')-> onDelete('set null');
             $table->date('control_date')->nullable();
+            $table->date('caducity_date')->nullable();
 
 
            

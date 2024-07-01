@@ -16,7 +16,7 @@ class Order extends Model
   const ENVIADO = 2;
   const REVISION = 3;
   const APROBADO = 4;
-  const RECHAZADO = 5;
+  const APROBADO_EN_DESTINO = 5;
   const ANULADO = 6;
   
   const SALIDA = 0;

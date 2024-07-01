@@ -18,7 +18,7 @@ class CreatePurchaseDetailsTable extends Migration
             $table->foreignId('purchase_id')->nullable()->constrained();
             $table->foreignId('article_id')->nullable()->constrained();
             $table->string('article_name');
-            $table->integer('quantity');
+            $table->decimal('quantity', 10, 2);
             $table->date('due_date')->nullable();
             $table->string('max_storage_time')->nullable();
             $table->foreignId('warehouse_id')->nullable()->constrained();

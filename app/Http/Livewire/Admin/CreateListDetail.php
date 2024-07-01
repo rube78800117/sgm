@@ -15,7 +15,8 @@ use App\Models\Sector;
 use App\Models\Station;
 use App\Models\Type_voucher;
 use App\Models\Warehouse;
-use Barryvdh\DomPDF\Facade\Pdf;
+
+
 use Error;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Support\Facades\App;
@@ -470,13 +471,7 @@ class CreateListDetail extends Component
     }
    
    
-    public function pdf(){
-        $articles=Article::all();
-        $pdf=PDF::loadView('livewire.admin.pdf.articles', compact('articles'));
-        return $pdf->stream();
-    }
-
-
+    
 
 
 

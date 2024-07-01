@@ -18,8 +18,8 @@ class CreateSectorsTable extends Migration
             $table->id();
             $table->string('name');
            
-            $table->unsignedBigInteger('warehouse_id')->nullable();
-            $table->foreign('warehouse_id')-> references ('id')->on('warehouses')-> onDelete('set null');
+            $table->unsignedBigInteger('warehouse_id');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
             
         });
     }
