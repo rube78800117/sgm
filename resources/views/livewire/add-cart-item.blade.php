@@ -13,7 +13,11 @@
 
         </div>
         <div class="my-2">
-            <p class="font-semibold text-base mb-2">{{ $quantity }} </p>
+            @if ($article->type_id == 1)
+                <p class="font-semibold text-base mb-2">{{ $quantity }} </p>
+            @else
+                <p class="font-semibold text-base mb-2">{{ number_format($quantity, 2) }} </p>
+            @endif
         </div>
 
     </div>
@@ -79,7 +83,7 @@
 
             <div class=" mt-3 flex">
                 <x-button-enlace color="yellow" x-bind:disabled="$wire.qty > $wire.quantity" class="w-full"
-                    wire:click="addItem" wire:loading.attr="disabled" wire:target="addItem">
+                    wire:click="validateQty" wire:loading.attr="disabled" wire:target="validateQty">
                     Agregar
                 </x-button-enlace>
             </div>
@@ -145,7 +149,7 @@
 
                 <div class=" mt-3 flex">
                     <x-button-enlace color="yellow" x-bind:disabled="$wire.qty > $wire.quantity || $wire.qty <= 0" class="w-full"
-                        wire:click="addItem" wire:loading.attr="disabled" wire:target="addItem">
+                        wire:click="validateQty" wire:loading.attr="disabled" wire:target="validateQty">
                         Agregar
                     </x-button-enlace>
                 </div>

@@ -61,17 +61,17 @@ class AddCartItem extends Component
         $this->options['warehouse'] = $warehouse->name;
     }
 
-
-
     public function validateQty()
     {
+        // !is_null($this->qty) && $this->qty > 0
+        // empty($qty) || !is_numeric($qty)
         if (!is_null($this->qty) && $this->qty > 0) {
-          
-             $this->addItem();
-        }
-        else {
-        //    dd("la cantidad debe ser mayor a 0");
-             $this->alertErrorQuantity();
+            //
+          $this->addItem();   
+        } else {
+            // //    dd("la cantidad debe ser mayor a 0");
+            //      $this->alertErrorQuantity();
+           $this->alertErrorQuantityInvalid();
         }
     }
 
@@ -160,5 +160,10 @@ class AddCartItem extends Component
     public function alertErrorQuantity()
     {
         $this->dispatchBrowserEvent('alerttoastr', ['type' => 'error', 'message' => 'No hay stock disponible de este almacen, por favor seleccione otro almacen']);
+    }
+
+    public function alertErrorQuantityInvalid()
+    {
+        $this->dispatchBrowserEvent('alerttoastr', ['type' => 'error', 'message' => 'La cantidad seleccionada es invalida']);
     }
 }

@@ -207,6 +207,11 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="{{ route('admin.orders.movements.index') }}" class="menu-link">
+                            <div data-i18n="eCommerce">Todos los movimientos</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="{{ route('admin.orders.index') }}" class="menu-link">
                             <div data-i18n="CRM">Solicitudes linea</div>
                         </a>

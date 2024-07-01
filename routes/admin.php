@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\MovementController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CountController;
+use App\Http\Controllers\Admin\Orders\OrderMovementController;
 use App\Http\Livewire\Admin\CreateCounts;
 use App\Http\Livewire\Admin\IndexPurchase;
 use App\Http\Livewire\Admin\ShowSector;
@@ -68,6 +69,14 @@ Route::get('reports', [ReportController::class,'index'])->name('admin.reports.in
 
 
 Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
+
+
+
+
+
+
+
+
 Route::get('orders/{order}', [OrderController::class, 'show'])->name('admin.orders.show');
 
 Route::get('config', [ConfigController::class, 'index'])->name('admin.config');
@@ -100,6 +109,15 @@ Route::get('redirect', function () {
 
 //     return view('admin.purchases.create');
 // });
+
+
+
+
+
+// Route::get('', [OrderMovementController::class, 'index'])->name('admin.movement.index');
+
+Route::get('movements', [ OrderMovementController::class, 'index' ] )->name('admin.orders.movements.index');
+
 
 
 
