@@ -71,7 +71,7 @@ class IndexOrderMovement extends Component
     public function render()
     {
         //   $this->orders=Order::all();
-        $this->orders = Order::whereIn('status', [4,5])
+        $this->orders = Order::whereIn('status', [2,3,4,5])
             ->where('movement_type', '7')
             ->get();
         return view('livewire.admin.index-order-movement');

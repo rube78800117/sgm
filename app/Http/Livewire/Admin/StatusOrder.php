@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\OrderDetail;
 use App\Models\Warehouse;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class StatusOrder extends Component
@@ -21,7 +22,7 @@ class StatusOrder extends Component
       
         $this->status = $this->order->status;
         $this->orLineColor($this->order->origin_line_id);
-        $this->line_destiny_color($this->order->destiny_mov_warehouse_id);
+        $this->destinyLineColor($this->order->destiny_mov_warehouse_id);
     }
 
     public function render()
@@ -51,8 +52,8 @@ class StatusOrder extends Component
 
     public function destinyLineColor($id){
 
-        $line = Line::find($id);
-        $this->line_destiny_color=$line->color;
+        $warehouse = Warehouse::find($id);
+        $this->line_destiny_color=$warehouse->station->line->color;
 
     }
 
@@ -74,7 +75,8 @@ class StatusOrder extends Component
 
                 $this->order->destiny_aprov_user_id = auth()->user()->id;
                 $this->order->status = $val; // anulado o aprobado
-                $this->order->observation_destiny = $this->observation_destiny; // observacion por parte del administrador que aprueba o anula el pedido
+                $this->order->observation_destiny = $this->observation_destiny; // observacion de rcepcion por parte del administrador de la linea de  destino
+                $this->order->destiny_aprov_date = Carbon::now(); //fecha de aprovacion o recepcion en destino
                 $this->order->save();
             });
         } catch (Exception $e) {

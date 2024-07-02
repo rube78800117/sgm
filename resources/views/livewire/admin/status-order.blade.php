@@ -20,8 +20,7 @@
 
             {{-- Seccion approved --}}
 
-            <div
-                class="{{ $order->status >= 6 && $order->status <= 6 ? 'hidden' : ' bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' }}">
+            <div class=" {{ $order->status >= 6 && $order->status <= 6 ? 'hidden' : '  rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' }}">
 
 
                 {{-- <div
@@ -33,7 +32,7 @@
                         class="{{ $order->status >= 2 && $order->status <= 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
-                            <p class="text-gray-700"> Recibido</p>
+                            <p class="">Recibido</p>
                         </div>
 
                     </div>
@@ -55,7 +54,7 @@
                         class="{{ $order->status >= 3 && $order->status <= 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
-                            <p class="text-gray-700"> Revision</p>
+                            <p class=""> Revision</p>
                         </div>
                     </div>
 
@@ -75,7 +74,7 @@
                         class="{{ $order->status >= 4 && $order->status <= 5 ? 'bg-green-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
-                            <p class="text-gray-700"> Aprobado</p>
+                            <p class=""> Aprobado</p>
                         </div>
                     </div>
 
@@ -97,7 +96,7 @@
                             class="{{ $order->status >= 5 && $order->status <= 5 ? 'bg-green-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                             <i class="fas fa-check text-white"></i>
                             <div class="absolute -bottom-6 mt-0.5">
-                                <p class="text-gray-700"> Recepcionado</p>
+                                <p class=""> Recepcionado</p>
                             </div>
                         </div>
 
@@ -123,7 +122,7 @@
                         class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
-                            <p class="text-gray-700"> Recibido</p>
+                            <p class=""> Recibido</p>
                         </div>
 
                     </div>
@@ -145,7 +144,7 @@
                         class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
-                            <p class="text-gray-700"> Revision</p>
+                            <p class=""> Revision</p>
                         </div>
                     </div>
 
@@ -169,7 +168,7 @@
 
                         <i class=" text-2xl fas fa-times text-white"></i>
                         <div class="absolute -bottom-6 -left-1.5 mt-0.5">
-                            <p class="text-gray-700"> Anulado</p>
+                            <p class=""> Anulado</p>
                         </div>
                     </div>
 
@@ -184,7 +183,7 @@
         </div>
 
 
-        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
+        <div class="rounded-lg shadow-lg px-6 py-4 mb-6">
             <div class="flex justify-end">
                 <p class="text-md  font-bold uppercase"><span class="font-bold">Número de solicitud </span>-
                     {{ $order->id }}</p>
@@ -344,7 +343,7 @@
 
         <div class="items-center justify-items-center ">
 
-            <div class="bg-white rounded-lg shadow-lg px-6 py-2 mb-6 ">
+            <div class=" rounded-lg shadow-lg px-6 py-2 mb-6 ">
 
                 {{-- envia inf to save with radio button --}}
                 {{-- <form wire:submit.prevent="update()">
@@ -385,14 +384,14 @@
 
 
 
-                <div class="bg-white rounded-lg shadow-lg p-6 ">
-                    <div class="grid grid-col-2 gap-6 text-gray-700">
-                        <div class="grid grid-col-2 gap-6 text-gray-700">
+                <div class=" rounded-lg shadow-lg p-6 ">
+                   
+                        <div class="grid grid-col-2 gap-6 ">
                             <div>
-                                <p class="text-gray-700  font-semibold"><i
+                                <p class=" font-semibold"><i
                                         class="text-yellow-600 fas fa-info-circle"></i>&nbsp Instrucciones para el
                                     control adecuado de Stock en almacenes.</p>
-                                <p class="text-justify text-gray-600">
+                                <p class="text-justify ">
                                     <spam class="text-blue-700 font-semibold">Enviado: </spam> La solicitud ya fue
                                     enviada al administrador, las cantidades disponibles ya fueron actualizadas, por lo
                                     tanto usted puede disponer del o los articulos estrictamente del almacen que lo
@@ -401,7 +400,7 @@
                                     respectivo almacen.
                                 </p>
 
-                                <p class="text-justify text-gray-600  ">
+                                <p class="text-justify   ">
                                     <spam class="text-blue-700 font-semibold">Revision: </spam> El administrador puede
                                     anular o aprobar esta solicitud en coordinacion con el solicitante, esto para
                                     mantener un control adecuado de stock en los diferentes almacenes. Tome en cuenta
@@ -412,51 +411,71 @@
                             </div>
 
                         </div>
-                    </div>
+                   
                 </div>
 
                 {{-- tabla de resumen de articulos ya solicitados --}}
 
 
-                {{-- @if($order->destiny_mov_warehouse_id)
+                {{-- @if ($order->destiny_mov_warehouse_id)
                 @php
                     $destinyWarehouse = \App\Models\Warehouse::find($order->destiny_mov_warehouse_id);
                     $line_color = $destinyWarehouse ? $destinyWarehouse->station->line->color : 'white';
                 @endphp
                 @endif --}}
-{{-- {{dd(orLine($order->origin_line_id) )}} --}}
+                {{-- {{dd(orLine($order->origin_line_id) )}} --}}
 
 
-{{-- <button wire:click="orLine({{$order->origin_line_id}})"> ir color</button> --}}
+                {{-- <button wire:click="orLine({{$order->origin_line_id}})"> ir color</button> --}}
 
                 {{-- <p class="text-gray-500 text-sm mt-2">Nombre de línea de origen: </p>
                 <span class="text-gray-700 text-sm ">{{ orLine($order->origin_line_id) }}</span> --}}
 
-                <div class="bg-white rounded-lg shadow-lg px-6  py-4 mb-2 ">
-                    <p class="text-gray-700 text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS
-                            SOLICITADOS</span> </p>
-                </div>
-                <p class="text-gray-500 text-sm mt-2">Color de línea de origen: </p>
+
+
                 {{-- {{originLineColor($order->origin_line_id )}} --}}
-                <div class=" {{ $order->status >= 4 ? 'bg-green-200' : 'hidden ' }} py-2 px-6 rounded-lg ">
+                <div
+                    class=" {{ $order->status >= 3 ? 'bg-green-100' : 'hidden ' }} text-gray-800 mb-2 py-2 px-6 rounded-lg ">
                     <div class="flex">
-                        <div> <i class="fas fa-truck text-{{$line_origin_color ?? 'white'}}"></i> </div>
-                        <P class="font-bold text-sm">OBSERVACIONES: </P> &nbsp <span class="text-sm">
+                        <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
+                            {{ $order->user->name }} </p>
+                        <div> <i class="pr-2 fas fa-caret-square-right text-{{ $line_origin_color ?? 'white' }}"> </i>
+                        </div>
+                        <P class="font-bold text-sm"> MOTIVO: </P> &nbsp <span class="text-sm">
+                            {{ strtoupper($order->reason) }} </span>
+                    </div>
+                </div>
+                <div
+                    class=" {{ $order->status >= 4 && $order->status != 6 ? 'bg-green-100' : 'hidden ' }} text-gray-800 mb-2 py-2 px-6 rounded-lg ">
+                    <div class="flex">
+                        <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
+                            {{ \App\Models\User::find($order->approved_user_id)->name }} </p>
+                        <div> <i class="pr-2 fas fa-check-circle text-{{ $line_origin_color ?? 'white' }}"> </i>
+                        </div>
+                        <P class="font-bold text-sm"> ORIGEN: </P> &nbsp <span class="text-sm">
                             {{ strtoupper($order->observation_origin) }} </span>
                     </div>
                 </div>
-                <div class=" {{ $order->status == 5 ? 'bg-green-200' : 'hidden ' }} py-2 px-6 rounded-lg ">
+                <div
+                    class=" {{ $order->status == 5 ? 'bg-green-100' : 'hidden ' }} text-gray-800 py-2 px-6 rounded-lg ">
                     <div class="flex">
-                        <div><i class="fas fa-truck text-{{$oder->line_destiny_color ?? 'white'}}"></i> </div>
-                        <P class="font-bold text-sm">RECEPCION: </P> &nbsp <span class="text-sm">
+                        <p class="pr-2"><i class="fas fa-user text-{{ $line_destiny_color }}"></i>
+                            {{ \App\Models\User::find($order->destiny_aprov_user_id)->name }} </p>
+                        <div><i class="pr-2 fas fa-check-circle text-{{ $line_destiny_color ?? 'white' }}"> </i>
+                        </div>
+                        <P class="font-bold text-sm"> RECEPCION DESTINO: </P> &nbsp <span class="text-sm">
                             {{ strtoupper($order->observation_destiny) }} </span>
                     </div>
                 </div>
-             
-                <div class=" {{ $order->status == 6 ? 'bg-red-200' : 'hidden ' }} py-2 px-6 rounded-lg ">
+
+                <div
+                    class=" {{ $order->status == 6 ? 'bg-red-100' : 'hidden ' }} text-gray-800 py-2 px-6 rounded-lg ">
                     <div class="flex">
-                        <P class="font-bold text-sm">OBSERVACIONES: </P> &nbsp <span class="text-sm">
-                            {{ strtoupper($order->observation) }} </span>
+                        <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
+                            {{ \App\Models\User::find($order->approved_user_id)->name }} </p>
+                        <i class="pr-2 fas fa-cancel text-red-500"> </i>
+                        <P class="font-bold text-sm"> OBSERVACIONES: </P> &nbsp <span class="text-sm">
+                            {{ strtoupper($order->observation_origin) }} </span>
                     </div>
                 </div>
                 {{-- <div class=" {{ $order->status >= 4 && $order->status <= 4 ? 'text-green-300' : 'hidden'}}py-4"><span class="">
@@ -477,36 +496,40 @@
 
 
                 <!-- component -->
+
                 <x-table-responsive>
 
 
+                    <div class="form-control border-0 rounded-lg shadow-lg px-2  py-4 mb-2 ">
+                        <p class=" text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS
+                                SOLICITADOS</span> </p>
+                    </div>
 
-
-                    <table class="min-w-full leading-normal">
+                    <table class="form-control border-0 min-w-full leading-normal">
                         <thead>
                             <tr>
                                 <!-- Columna visible en todas las pantallas -->
                                 <th
-                                    class="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="px-2 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
                                     Origen
                                 </th>
                                 <!-- Columna oculta en pantallas pequeñas -->
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
 
                                 </th>
                                 <!-- Columna oculta en pantallas pequeñas -->
                                 <th
-                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
                                     Nombre del artículo
                                 </th>
                                 <!-- Columna oculta en pantallas pequeñas -->
                                 <th
-                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
                                     unidad
                                 </th>
                                 <th
-                                    class="hidden sm:table-cell text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="hidden sm:table-cell text-center px-5 py-3 border-b-2 border-gray-200   text-xs font-semibold  uppercase tracking-wider">
                                     Cantidad
                                 </th>
 
@@ -524,7 +547,7 @@
 
 
 
-                                    <td class="pl-4 w-4 sm:w-40 py-2 border-b border-gray-200 bg-white text-sm">
+                                    <td class="pl-4 w-4 sm:w-40 py-2 border-b border-gray-200  text-sm">
 
 
 
@@ -566,7 +589,7 @@
 
                                             {{-- FIN icono svg --}}
                                             <div class="hidden  sm:w-24 sm:table-cell">
-                                                <h1 class="text-xs text-gray-700 mt-0 uppercase py-2 ">
+                                                <h1 class="text-xs  mt-0 uppercase py-2 ">
                                                     {{ $item->options->warehouse }}
                                                 </h1>
                                             </div>
@@ -579,7 +602,7 @@
 
                                     </td>
 
-                                    <td class=" py-2 border-b border-gray-200 bg-white text-sm">
+                                    <td class=" py-2 border-b border-gray-200  text-sm">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-12 h-12">
                                                 <img class="h-10 w-10 object-cover ml-2 mr-1"
@@ -590,29 +613,29 @@
 
 
                                     <td
-                                        class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">
-                                        <p class="text-xs font-medium  text-gray-900 mr=4 my-0 ">
+                                        class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200  text-sm">
+                                        <p class=" whitespace-no-wrap">
+                                        <p class="text-xs font-medium   mr=4 my-0 ">
                                             {{ $item->name }}</p>
 
                                         @if ($item->options->id_dopp)
-                                            <p class=" text-gray-900 mr-2"></p>
+                                            <p class="  mr-2"></p>
                                             <ul class="flex">
                                                 <i class="text-blue-500 mr-2 fas fa-key"></i>
-                                                <li class="hidden sm:block text-gray-800 mr-2">
+                                                <li class="hidden sm:block  mr-2">
                                                     Dopplmayr:</li>
-                                                <li class=" text-gray-600   ">{{ $item->options->id_dopp }}</li>
+                                                <li class="    ">{{ $item->options->id_dopp }}</li>
                                             </ul>
                                         @endif
                                         @if ($item->options->id_eetc)
-                                            <p class=" text-gray-900 mr-2"></p>
+                                            <p class="  mr-2"></p>
 
                                             <ul class="flex">
                                                 <i class="text-yellow-400 mr-2 fas fa-key"></i>
-                                                <li class="hidden sm:block text-gray-800 mr-2">
+                                                <li class="hidden sm:block  mr-2">
                                                     MiTeleferico:
                                                 </li>
-                                                <li class=" text-gray-600"> {{ $item->options->id_eetc }}</li>
+                                                <li class=" "> {{ $item->options->id_eetc }}</li>
                                             </ul>
                                         @endif
 
@@ -632,11 +655,11 @@
                                     </td>
 
 
-                                    <td class=" sm:hidden px-2 py-2 border-b border-gray-200 bg-white text-xs">
-                                        <p class=" text-center text-gray-900 whitespace-no-wrap">
+                                    <td class=" sm:hidden px-2 py-2 border-b border-gray-200  text-xs">
+                                        <p class=" text-center  whitespace-no-wrap">
                                             {{ $item->qty }}
                                         </p>
-                                        <p class="text-gray-900 whitespace-no-wrap">
+                                        <p class=" whitespace-no-wrap">
                                             {{ $item->options->unit }}
                                         </p>
 
@@ -645,15 +668,15 @@
                                     </td>
 
                                     <td
-                                        class="hidden sm:table-cell px-5 py-2 border-b border-gray-200 bg-white text-xs">
-                                        <p class="text-gray-900 whitespace-no-wrap">
+                                        class="hidden sm:table-cell px-5 py-2 border-b border-gray-200  text-xs">
+                                        <p class=" whitespace-no-wrap">
                                             {{ $item->options->unit }}
                                         </p>
                                     </td>
 
                                     <td
-                                        class="hidden  sm:table-cell text-center px-5 py-2 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">
+                                        class="hidden  sm:table-cell text-center px-5 py-2 border-b border-gray-200  text-sm">
+                                        <p class=" whitespace-no-wrap">
                                             {{ $item->qty }}
                                         </p>
                                     </td>
@@ -723,7 +746,7 @@
 
 
 
-                <div class=" {{ $order->status == 4  || $order->status >=5  ? 'hidden ' : '' }}py-4">
+                <div class=" {{ $order->status == 4 || $order->status >= 5 ? 'hidden ' : '' }}py-4">
 
 
 
@@ -733,7 +756,7 @@
                     <x-jet-input Type="text" wire:model.defer="observation" class="w-full "
                         value="{{ old('observation', $this->observation) }}" />
                     <x-jet-input-error for="observation" />
-                
+
 
                     <div class="flex justify-between pt-2">
 
@@ -769,7 +792,7 @@
                     <div class="flex justify-between pt-2">
 
 
-{{-- 
+                        {{-- 
                         <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
                             class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
                             Cancelar Solicitud</button> --}}
