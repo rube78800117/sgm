@@ -20,7 +20,8 @@
 
             {{-- Seccion approved --}}
 
-            <div class=" {{ $order->status >= 6 && $order->status <= 6 ? 'hidden' : '  rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' }}">
+            <div
+                class=" {{ $order->status >= 6 && $order->status <= 6 ? 'hidden' : '  rounded-lg shadow-lg px-12 py-8 mb-6 flex  items-center' }}">
 
 
                 {{-- <div
@@ -122,7 +123,7 @@
                         class="{{ $order->status >= 6 && $order->status != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12  flex items-center justify-center">
                         <i class="fas fa-check text-white"></i>
                         <div class="absolute -bottom-6 mt-0.5">
-                            <p class=""> Recibido</p>
+                            <p class="">Recibido</p>
                         </div>
 
                     </div>
@@ -385,33 +386,33 @@
 
 
                 <div class=" rounded-lg shadow-lg p-6 ">
-                   
-                        <div class="grid grid-col-2 gap-6 ">
-                            <div>
-                                <p class=" font-semibold"><i
-                                        class="text-yellow-600 fas fa-info-circle"></i>&nbsp Instrucciones para el
-                                    control adecuado de Stock en almacenes.</p>
-                                <p class="text-justify ">
-                                    <spam class="text-blue-700 font-semibold">Enviado: </spam> La solicitud ya fue
-                                    enviada al administrador, las cantidades disponibles ya fueron actualizadas, por lo
-                                    tanto usted puede disponer del o los articulos estrictamente del almacen que lo
-                                    solicito. Si esta solicitud no es correcta puede comunicarse con el administrador
-                                    para su anulacion y se restablecerán las cantidades en Stock solicitadas a su
-                                    respectivo almacen.
-                                </p>
 
-                                <p class="text-justify   ">
-                                    <spam class="text-blue-700 font-semibold">Revision: </spam> El administrador puede
-                                    anular o aprobar esta solicitud en coordinacion con el solicitante, esto para
-                                    mantener un control adecuado de stock en los diferentes almacenes. Tome en cuenta
-                                    que los administradores pueden aprobar esta solicitud rapidamente cuando se trata de
-                                    articulos comunes, por tanto usted debe comunicarse rapidamente con el para anularla
-                                    si fuera el caso de que la solicitud no sea correcta
-                                </p>
-                            </div>
+                    <div class="grid grid-col-2 gap-6 ">
+                        <div>
+                            <p class=" font-semibold"><i class="text-yellow-600 fas fa-info-circle"></i>&nbsp
+                                Instrucciones para el
+                                control adecuado de Stock en almacenes.</p>
+                            <p class="text-justify ">
+                                <spam class="text-blue-700 font-semibold">Enviado: </spam> La solicitud ya fue
+                                enviada al administrador, las cantidades disponibles ya fueron actualizadas, por lo
+                                tanto usted puede disponer del o los articulos estrictamente del almacen que lo
+                                solicito. Si esta solicitud no es correcta puede comunicarse con el administrador
+                                para su anulacion y se restablecerán las cantidades en Stock solicitadas a su
+                                respectivo almacen.
+                            </p>
 
+                            <p class="text-justify   ">
+                                <spam class="text-blue-700 font-semibold">Revision: </spam> El administrador puede
+                                anular o aprobar esta solicitud en coordinacion con el solicitante, esto para
+                                mantener un control adecuado de stock en los diferentes almacenes. Tome en cuenta
+                                que los administradores pueden aprobar esta solicitud rapidamente cuando se trata de
+                                articulos comunes, por tanto usted debe comunicarse rapidamente con el para anularla
+                                si fuera el caso de que la solicitud no sea correcta
+                            </p>
                         </div>
-                   
+
+                    </div>
+
                 </div>
 
                 {{-- tabla de resumen de articulos ya solicitados --}}
@@ -445,40 +446,51 @@
                             {{ strtoupper($order->reason) }} </span>
                     </div>
                 </div>
-                <div
-                    class=" {{ $order->status >= 4 && $order->status != 6 ? 'bg-green-100' : 'hidden ' }} text-gray-800 mb-2 py-2 px-6 rounded-lg ">
-                    <div class="flex">
-                        <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
-                            {{ \App\Models\User::find($order->approved_user_id)->name }} </p>
-                        <div> <i class="pr-2 fas fa-check-circle text-{{ $line_origin_color ?? 'white' }}"> </i>
-                        </div>
-                        <P class="font-bold text-sm"> ORIGEN: </P> &nbsp <span class="text-sm">
-                            {{ strtoupper($order->observation_origin) }} </span>
-                    </div>
-                </div>
-                <div
-                    class=" {{ $order->status == 5 ? 'bg-green-100' : 'hidden ' }} text-gray-800 py-2 px-6 rounded-lg ">
-                    <div class="flex">
-                        <p class="pr-2"><i class="fas fa-user text-{{ $line_destiny_color }}"></i>
-                            {{ \App\Models\User::find($order->destiny_aprov_user_id)->name }} </p>
-                        <div><i class="pr-2 fas fa-check-circle text-{{ $line_destiny_color ?? 'white' }}"> </i>
-                        </div>
-                        <P class="font-bold text-sm"> RECEPCION DESTINO: </P> &nbsp <span class="text-sm">
-                            {{ strtoupper($order->observation_destiny) }} </span>
-                    </div>
-                </div>
 
-                <div
-                    class=" {{ $order->status == 6 ? 'bg-red-100' : 'hidden ' }} text-gray-800 py-2 px-6 rounded-lg ">
-                    <div class="flex">
-                        <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
-                            {{ \App\Models\User::find($order->approved_user_id)->name }} </p>
-                        <i class="pr-2 fas fa-cancel text-red-500"> </i>
-                        <P class="font-bold text-sm"> OBSERVACIONES: </P> &nbsp <span class="text-sm">
-                            {{ strtoupper($order->observation_origin) }} </span>
+
+   
+                    <div
+                        class=" {{ $order->status >= 4 && $order->status != 6 ? 'bg-green-100' : 'hidden ' }} text-gray-800 mb-2 py-2 px-6 rounded-lg ">
+                        <div class="flex">
+                            <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
+                                {{ approved($order->approved_user_id)->name }} </p>
+                            <div> <i class="pr-2 fas fa-check-circle text-{{ $line_origin_color ?? 'white' }}"> </i>
+                            </div>
+                            <P class="font-bold text-sm"> ORIGEN: </P> &nbsp <span class="text-sm">
+                                {{ strtoupper($order->observation_origin) }} </span>
+                        </div>
+                
+
+
+
+
+            </div>
+
+
+
+
+            
+            <div class=" {{ $order->status == 5 ? 'bg-green-100' : 'hidden ' }} text-gray-800 py-2 px-6 rounded-lg ">
+                <div class="flex">
+                    <p class="pr-2"><i class="fas fa-user text-{{ $line_destiny_color }}"></i>
+                        {{ approved($order->destiny_aprov_user_id)->name }} </p>
+                    <div><i class="pr-2 fas fa-check-circle text-{{ $line_destiny_color ?? 'white' }}"> </i>
                     </div>
+                    <P class="font-bold text-sm"> RECEPCION DESTINO: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->observation_destiny) }} </span>
                 </div>
-                {{-- <div class=" {{ $order->status >= 4 && $order->status <= 4 ? 'text-green-300' : 'hidden'}}py-4"><span class="">
+            </div>
+
+            <div class=" {{ $order->status == 6 ? 'bg-red-100' : 'hidden ' }} text-gray-800 py-2 px-6 rounded-lg ">
+                <div class="flex">
+                    <p class="pr-2"><i class="fas fa-user text-{{ $line_origin_color }}"></i>
+                        {{ approved($order->approved_user_id)->name }} </p>
+                    <i class="pr-2 fas fa-cancel text-red-500"> </i>
+                    <P class="font-bold text-sm"> OBSERVACIONES: </P> &nbsp <span class="text-sm">
+                        {{ strtoupper($order->observation_origin) }} </span>
+                </div>
+            </div>
+            {{-- <div class=" {{ $order->status >= 4 && $order->status <= 4 ? 'text-green-300' : 'hidden'}}py-4"><span class="">
                     OBSERVACIONES:</span>
                    
                 </div>
@@ -491,155 +503,153 @@
 
 
 
-                {{-- star hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh --}}
+            {{-- star hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh --}}
 
 
 
-                <!-- component -->
+            <!-- component -->
 
-                <x-table-responsive>
+            <x-table-responsive>
 
 
-                    <div class="form-control border-0 rounded-lg shadow-lg px-2  py-4 mb-2 ">
-                        <p class=" text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS
-                                SOLICITADOS</span> </p>
-                    </div>
+                <div class="form-control border-0 rounded-lg shadow-lg px-2  py-4 mb-2 ">
+                    <p class=" text-sm uppercase"><span class="font-bold">RESUMEN DE ARTICULOS
+                            SOLICITADOS</span> </p>
+                </div>
 
-                    <table class="form-control border-0 min-w-full leading-normal">
-                        <thead>
+                <table class="form-control border-0 min-w-full leading-normal">
+                    <thead>
+                        <tr>
+                            <!-- Columna visible en todas las pantallas -->
+                            <th
+                                class="px-2 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
+                                Origen
+                            </th>
+                            <!-- Columna oculta en pantallas pequeñas -->
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
+
+                            </th>
+                            <!-- Columna oculta en pantallas pequeñas -->
+                            <th
+                                class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
+                                Nombre del artículo
+                            </th>
+                            <!-- Columna oculta en pantallas pequeñas -->
+                            <th
+                                class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
+                                unidad
+                            </th>
+                            <th
+                                class="hidden sm:table-cell text-center px-5 py-3 border-b-2 border-gray-200   text-xs font-semibold  uppercase tracking-wider">
+                                Cantidad
+                            </th>
+
+                            <!-- Columna oculta en pantallas pequeñas -->
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @forelse ($items as $item)
                             <tr>
-                                <!-- Columna visible en todas las pantallas -->
-                                <th
-                                    class="px-2 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
-                                    Origen
-                                </th>
-                                <!-- Columna oculta en pantallas pequeñas -->
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
-
-                                </th>
-                                <!-- Columna oculta en pantallas pequeñas -->
-                                <th
-                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
-                                    Nombre del artículo
-                                </th>
-                                <!-- Columna oculta en pantallas pequeñas -->
-                                <th
-                                    class="hidden sm:table-cell px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold  uppercase tracking-wider">
-                                    unidad
-                                </th>
-                                <th
-                                    class="hidden sm:table-cell text-center px-5 py-3 border-b-2 border-gray-200   text-xs font-semibold  uppercase tracking-wider">
-                                    Cantidad
-                                </th>
-
-                                <!-- Columna oculta en pantallas pequeñas -->
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                            @forelse ($items as $item)
-                                <tr>
 
 
 
 
-                                    <td class="pl-4 w-4 sm:w-40 py-2 border-b border-gray-200  text-sm">
+                                <td class="pl-4 w-4 sm:w-40 py-2 border-b border-gray-200  text-sm">
 
 
 
-                                        <div class="flex justify-between items-center  ">
+                                    <div class="flex justify-between items-center  ">
 
-                                            {{-- icono svg --}}
+                                        {{-- icono svg --}}
 
-                                            <div class="mr-2">
+                                        <div class="mr-2">
 
 
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                    xmlns:svgjs="http://svgjs.com/svgjs" version="1.1"
-                                                    width="32" height="32" x="0" y="0"
-                                                    viewBox="0 0 512.001 512.001"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="fill-current text-{{ $item->options->line_color }}">
-                                                    <g>
-                                                        <g xmlns="http://www.w3.org/2000/svg">
-                                                            <g>
-                                                                <path fill="currentcolor"
-                                                                    d="M406.543,188.63c-3.085-3.35-7.428-5.255-11.981-5.255H186.954c-4.554,0-8.899,1.905-11.982,5.255    c-37.133,40.315-58.429,98.289-58.429,159.059c0,57.446,19.382,116.669,58.429,159.059c3.085,3.349,7.43,5.254,11.982,5.254    h207.607c4.553,0,8.898-1.905,11.982-5.254c38.929-42.261,58.43-101.378,58.43-159.059    C464.973,286.92,443.677,228.944,406.543,188.63z M274.468,334.16H149.529c2.67-45.034,18.595-87.191,44.775-118.203h80.164    V334.16z M307.049,334.16V215.957h80.163c26.182,31.012,42.106,73.169,44.776,118.203H307.049z"
-                                                                    fill="#024820" data-original="#000000"
-                                                                    style="" class="" />
-                                                            </g>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="32"
+                                                height="32" x="0" y="0" viewBox="0 0 512.001 512.001"
+                                                style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                class="fill-current text-{{ $item->options->line_color }}">
+                                                <g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <g>
+                                                            <path fill="currentcolor"
+                                                                d="M406.543,188.63c-3.085-3.35-7.428-5.255-11.981-5.255H186.954c-4.554,0-8.899,1.905-11.982,5.255    c-37.133,40.315-58.429,98.289-58.429,159.059c0,57.446,19.382,116.669,58.429,159.059c3.085,3.349,7.43,5.254,11.982,5.254    h207.607c4.553,0,8.898-1.905,11.982-5.254c38.929-42.261,58.43-101.378,58.43-159.059    C464.973,286.92,443.677,228.944,406.543,188.63z M274.468,334.16H149.529c2.67-45.034,18.595-87.191,44.775-118.203h80.164    V334.16z M307.049,334.16V215.957h80.163c26.182,31.012,42.106,73.169,44.776,118.203H307.049z"
+                                                                fill="#024820" data-original="#000000" style=""
+                                                                class="" />
                                                         </g>
-                                                        <g xmlns="http://www.w3.org/2000/svg">
-                                                            <g>
-                                                                <path fill="currentcolor"
-                                                                    d="M495.299,13.917c-1.313-8.901-9.581-15.064-18.494-13.737L256.607,32.678c-8.942-19.27-28.464-32.673-51.068-32.673    c-28.368,0-51.888,21.103-55.717,48.433L30.439,66.056c-8.901,1.313-15.051,9.593-13.737,18.494    c1.195,8.094,8.151,13.914,16.095,13.914c0.792,0,1.592-0.057,2.399-0.178l119.612-17.654    c5.084,10.548,13.367,19.271,23.577,24.919v43.554h87.866l-33.563-23.473v-20.078c14.937-8.264,25.743-23.116,28.457-40.613    l220.416-32.53C490.463,31.098,496.613,22.818,495.299,13.917z M205.537,79.975c-13.065,0-23.694-10.629-23.694-23.694    s10.629-23.694,23.694-23.694c13.065,0,23.694,10.629,23.694,23.694C229.233,69.346,218.603,79.975,205.537,79.975z"
-                                                                    fill="#024820" data-original="#000000"
-                                                                    style="" class="" />
-                                                            </g>
-                                                        </g>
-
                                                     </g>
-                                                </svg>
-                                            </div>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <g>
+                                                            <path fill="currentcolor"
+                                                                d="M495.299,13.917c-1.313-8.901-9.581-15.064-18.494-13.737L256.607,32.678c-8.942-19.27-28.464-32.673-51.068-32.673    c-28.368,0-51.888,21.103-55.717,48.433L30.439,66.056c-8.901,1.313-15.051,9.593-13.737,18.494    c1.195,8.094,8.151,13.914,16.095,13.914c0.792,0,1.592-0.057,2.399-0.178l119.612-17.654    c5.084,10.548,13.367,19.271,23.577,24.919v43.554h87.866l-33.563-23.473v-20.078c14.937-8.264,25.743-23.116,28.457-40.613    l220.416-32.53C490.463,31.098,496.613,22.818,495.299,13.917z M205.537,79.975c-13.065,0-23.694-10.629-23.694-23.694    s10.629-23.694,23.694-23.694c13.065,0,23.694,10.629,23.694,23.694C229.233,69.346,218.603,79.975,205.537,79.975z"
+                                                                fill="#024820" data-original="#000000" style=""
+                                                                class="" />
+                                                        </g>
+                                                    </g>
 
-                                            {{-- FIN icono svg --}}
-                                            <div class="hidden  sm:w-24 sm:table-cell">
-                                                <h1 class="text-xs  mt-0 uppercase py-2 ">
-                                                    {{ $item->options->warehouse }}
-                                                </h1>
-                                            </div>
+                                                </g>
+                                            </svg>
+                                        </div>
 
-
-
+                                        {{-- FIN icono svg --}}
+                                        <div class="hidden  sm:w-24 sm:table-cell">
+                                            <h1 class="text-xs  mt-0 uppercase py-2 ">
+                                                {{ $item->options->warehouse }}
+                                            </h1>
                                         </div>
 
 
 
-                                    </td>
+                                    </div>
 
-                                    <td class=" py-2 border-b border-gray-200  text-sm">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-12 h-12">
-                                                <img class="h-10 w-10 object-cover ml-2 mr-1"
-                                                    src=" {{ $item->options->image }} " alt="">
-                                            </div>
+
+
+                                </td>
+
+                                <td class=" py-2 border-b border-gray-200  text-sm">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 w-12 h-12">
+                                            <img class="h-10 w-10 object-cover ml-2 mr-1"
+                                                src=" {{ $item->options->image }} " alt="">
                                         </div>
-                                    </td>
+                                    </div>
+                                </td>
 
 
-                                    <td
-                                        class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200  text-sm">
-                                        <p class=" whitespace-no-wrap">
-                                        <p class="text-xs font-medium   mr=4 my-0 ">
-                                            {{ $item->name }}</p>
+                                <td class=" sm:table-cell px-2 sm:px-3 py-2 border-b border-gray-200  text-sm">
+                                    <p class=" whitespace-no-wrap">
+                                    <p class="text-xs font-medium   mr=4 my-0 ">
+                                        {{ $item->name }}</p>
 
-                                        @if ($item->options->id_dopp)
-                                            <p class="  mr-2"></p>
-                                            <ul class="flex">
-                                                <i class="text-blue-500 mr-2 fas fa-key"></i>
-                                                <li class="hidden sm:block  mr-2">
-                                                    Dopplmayr:</li>
-                                                <li class="    ">{{ $item->options->id_dopp }}</li>
-                                            </ul>
-                                        @endif
-                                        @if ($item->options->id_eetc)
-                                            <p class="  mr-2"></p>
+                                    @if ($item->options->id_dopp)
+                                        <p class="  mr-2"></p>
+                                        <ul class="flex">
+                                            <i class="text-blue-500 mr-2 fas fa-key"></i>
+                                            <li class="hidden sm:block  mr-2">
+                                                Dopplmayr:</li>
+                                            <li class="    ">{{ $item->options->id_dopp }}</li>
+                                        </ul>
+                                    @endif
+                                    @if ($item->options->id_eetc)
+                                        <p class="  mr-2"></p>
 
-                                            <ul class="flex">
-                                                <i class="text-yellow-400 mr-2 fas fa-key"></i>
-                                                <li class="hidden sm:block  mr-2">
-                                                    MiTeleferico:
-                                                </li>
-                                                <li class=" "> {{ $item->options->id_eetc }}</li>
-                                            </ul>
-                                        @endif
+                                        <ul class="flex">
+                                            <i class="text-yellow-400 mr-2 fas fa-key"></i>
+                                            <li class="hidden sm:block  mr-2">
+                                                MiTeleferico:
+                                            </li>
+                                            <li class=" "> {{ $item->options->id_eetc }}</li>
+                                        </ul>
+                                    @endif
 
-                                        {{-- @if ($item->options->id_zona !== null)
+                                    {{-- @if ($item->options->id_zona !== null)
                                             <p class=" text-gray-900 mr-2"> </p>
                                             <ul class="flex">
                                                 <i class="text-gray-400 mr-2 fas fa-key"></i>
@@ -650,48 +660,47 @@
                                         @endif --}}
 
 
-                                        </p>
+                                    </p>
 
-                                    </td>
+                                </td>
 
 
-                                    <td class=" sm:hidden px-2 py-2 border-b border-gray-200  text-xs">
-                                        <p class=" text-center  whitespace-no-wrap">
-                                            {{ $item->qty }}
-                                        </p>
-                                        <p class=" whitespace-no-wrap">
-                                            {{ $item->options->unit }}
-                                        </p>
+                                <td class=" sm:hidden px-2 py-2 border-b border-gray-200  text-xs">
+                                    <p class=" text-center  whitespace-no-wrap">
+                                        {{ $item->qty }}
+                                    </p>
+                                    <p class=" whitespace-no-wrap">
+                                        {{ $item->options->unit }}
+                                    </p>
 
 
 
-                                    </td>
+                                </td>
 
-                                    <td
-                                        class="hidden sm:table-cell px-5 py-2 border-b border-gray-200  text-xs">
-                                        <p class=" whitespace-no-wrap">
-                                            {{ $item->options->unit }}
-                                        </p>
-                                    </td>
+                                <td class="hidden sm:table-cell px-5 py-2 border-b border-gray-200  text-xs">
+                                    <p class=" whitespace-no-wrap">
+                                        {{ $item->options->unit }}
+                                    </p>
+                                </td>
 
-                                    <td
-                                        class="hidden  sm:table-cell text-center px-5 py-2 border-b border-gray-200  text-sm">
-                                        <p class=" whitespace-no-wrap">
-                                            {{ $item->qty }}
-                                        </p>
-                                    </td>
+                                <td
+                                    class="hidden  sm:table-cell text-center px-5 py-2 border-b border-gray-200  text-sm">
+                                    <p class=" whitespace-no-wrap">
+                                        {{ $item->qty }}
+                                    </p>
+                                </td>
 
 
-                                </tr>
-                            @empty
+                            </tr>
+                        @empty
 
-                                <div class="px-6 py-4">
-                                    No hay ningún
-                                </div>
-                            @endforelse
+                            <div class="px-6 py-4">
+                                No hay ningún
+                            </div>
+                        @endforelse
 
 
-                        </tbody>
+                    </tbody>
 
 
 
@@ -703,115 +712,92 @@
 
 
 
-                    </table>
+                </table>
 
 
 
 
 
-                </x-table-responsive>
+            </x-table-responsive>
 
 
+            {{-- END  hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh --}}
 
 
+            <div class=" {{ $order->status == 4 || $order->status >= 5 ? 'hidden ' : '' }}py-4">
 
 
 
 
-                {{-- END  hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh --}}
+                <x-jet-label value=" Observaciones" />
 
+                <x-jet-input Type="text" wire:model.defer="observation" class="w-full "
+                    value="{{ old('observation', $this->observation) }}" />
+                <x-jet-input-error for="observation" />
 
 
+                <div class="flex justify-between pt-2">
 
 
 
+                    <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
+                        Cancelar Solicitud</button>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class=" {{ $order->status == 4 || $order->status >= 5 ? 'hidden ' : '' }}py-4">
-
-
-
-
-                    <x-jet-label value=" Observaciones" />
-
-                    <x-jet-input Type="text" wire:model.defer="observation" class="w-full "
-                        value="{{ old('observation', $this->observation) }}" />
-                    <x-jet-input-error for="observation" />
-
-
-                    <div class="flex justify-between pt-2">
-
-
-
-                        <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
-                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
-                            Cancelar Solicitud</button>
-
-
-
-                        <button wire:click="status_save({{ 4 }})" type="button"
-                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
-                            Aprobar Solicitud </button>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class=" {{ $order->status < 4 || $order->status >= 5 ? 'hidden ' : '' }}py-4">
-
-
-                    <x-jet-label value=" Observaciones recepción " />
-
-                    <x-jet-input Type="text" wire:model.defer="observation_destiny" class="w-full "
-                        value="{{ old('observation_destiny', $this->observation_destiny) }}" />
-                    <x-jet-input-error for="observation_destiny" />
-
-
-                    <div class="flex justify-between pt-2">
-
-
-                        {{-- 
-                        <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
-                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
-                            Cancelar Solicitud</button> --}}
-
-
-
-                        <button wire:click="statusMovementSave({{ 5 }})" type="button"
-                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
-                            Recepcionar </button>
-
-                    </div>
-
+                    <button wire:click="status_save({{ 4 }})" type="button"
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
+                        Aprobar Solicitud </button>
 
                 </div>
 
 
             </div>
 
+       @if ($order->movement_type == 7)
 
+       
+             
+            @if (lineSearch($order->destiny_mov_warehouse_id)->zone->id === auth()->user()->line->zone->id )
+            <p class="text-gray-500 text-sm mt-2">Nombre de línea de destino: </p>
+            <span class="text-gray-700 text-sm ">{{ lineSearch($order->destiny_mov_warehouse_id)->name }}</span>
+        
+ 
+        
+            <div class=" {{ $order->status < 4 || $order->status >= 5 ? 'hidden ' : '' }}py-4">
+
+
+                <x-jet-label value=" Observaciones recepción " />
+
+                <x-jet-input Type="text" wire:model.defer="observation_destiny" class="w-full "
+                    value="{{ old('observation_destiny', $this->observation_destiny) }}" />
+                <x-jet-input-error for="observation_destiny" />
+
+
+                <div class="flex justify-between pt-2">
+
+
+                    {{-- 
+                        <button wire:click="status_save({{ 6 }},{{ $order }})" type="button"
+                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 sm:w-auto sm:text-sm">
+                            Cancelar Solicitud</button> --}}
+
+
+
+                    <button wire:click="statusMovementSave({{ 5 }})" type="button"
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 sm:w-auto sm:text-sm">
+                        Recepcionar </button>
+
+                </div>
+
+
+            </div>
+            @endif
+            
+            {{lineSearch($order->destiny_mov_warehouse_id)->zone->id}}"="
+            {{auth()->user()->line->zone->id }}
+       @endif
 
 
         </div>
@@ -819,14 +805,19 @@
 
 
 
+    </div>
 
 
 
-        {{-- asdadasdasssssssssse lllllllllllllllllllllllllllllllll --}}
 
 
 
-        {{-- <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+
+    {{-- asdadasdasssssssssse lllllllllllllllllllllllllllllllll --}}
+
+
+
+    {{-- <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
     <section class="py-20 mx-auto space-y-8 sm:py-20">
         <div style='width:800px;'
             class="container flex flex-row items-stretch justify-center w-full max-w-4xl space-x-12" x-data="{tab: 1}">
@@ -1022,10 +1013,10 @@
 
 
 
-        {{-- STAR tab componenet --}}
+    {{-- STAR tab componenet --}}
 
 
-        {{-- <div class="bg-gray-300 flex justify-center items-center p-8 h-full h-screen">
+    {{-- <div class="bg-gray-300 flex justify-center items-center p-8 h-full h-screen">
     <div x-data="{ tab: 'foo' }" style="max-width:550px">
         <div class="flex -mx-px">
             <button x-on:click="tab = 'foo'" x-bind:class="{ 'bg-white border-white': tab === 'foo' }"
@@ -1095,4 +1086,4 @@
  --}}
 
 
-        {{-- END tab componenet --}}
+    {{-- END tab componenet --}}

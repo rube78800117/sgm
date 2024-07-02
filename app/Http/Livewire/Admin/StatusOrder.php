@@ -52,8 +52,14 @@ class StatusOrder extends Component
 
     public function destinyLineColor($id){
 
-        $warehouse = Warehouse::find($id);
-        $this->line_destiny_color=$warehouse->station->line->color;
+        
+        if ($id) {
+            $warehouse = Warehouse::find($id);
+            $this->line_destiny_color=$warehouse->station->line->color;
+        } else {
+            $this->line_destiny_color="white";
+        }
+        
 
     }
 

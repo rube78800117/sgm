@@ -5,8 +5,8 @@
         zonas
     </button>
     <div class="flex justify-end">
-        <select name="" id="">
-            @foreach ($this->zone() as $line)
+        <select name="" id="" wire:model="lineSelect">
+            @foreach ($this->lines as $line)
                 <option value=""> {{ $line->name }}
                 </option>
             @endforeach
@@ -123,8 +123,11 @@
                             </thead>
                             <tbody>
 
-
+                        
                                 @forelse ($orders as $order)
+
+
+                          
                                     <tr>
 
 

@@ -23,7 +23,29 @@ function estadosConfig()
 function approved($approved_id)
 {
     $approved = User::find($approved_id);
+
+
+if ($approved) {
     return $approved;
+}else {
+    $approved = new \stdClass();
+    $approved->name = 'Sin aprobador asignado';
+    return $approved;
+}
+
+    
+}
+
+function lineSearch($id_warehouse){
+
+
+   
+    if ($id_warehouse) {
+    $warehouse = Warehouse::find($id_warehouse);
+    $line = $warehouse->station->line;
+  
+    return $line;
+    }
 }
 
 function jobs()
