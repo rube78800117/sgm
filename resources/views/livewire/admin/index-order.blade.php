@@ -4,6 +4,10 @@
     <button wire:click="zone">
         zonas
     </button>
+
+
+
+    <span>linea Seleccionada {{ $this->lines->firstWhere('id', $lineSelect)->name }}</span>
     <div class="flex justify-end">
         <select name="lineSelect" wire:model="lineSelect" >
             @foreach ($this->lines as $line)
@@ -11,6 +15,8 @@
                 </option>
             @endforeach
         </select>
+
+        <button class="success" wire:click="showAll">Mostrar Todos</button>
     </div>
 
     <div class=" ">
