@@ -30,7 +30,7 @@ class IndexOrderMovement extends Component
     public $aprobadoreg;
     public $rechazadoreg;
     public $anuladoreg;
-    public $lineSelect;
+    public $lineSelectDestiny;
     public $lines;
     public $open;
 
@@ -41,8 +41,7 @@ class IndexOrderMovement extends Component
         if ($user->hasRole('superadmin')) {
             // Obtener todas las zonas
             $this->lines = Line::all();
-
-         } elseif ($user->hasRole('admin')) {
+        } elseif ($user->hasRole('admin')) {
             // Obtener la zona de la línea del usuario autenticado
             $userLineId = $user->line_id;
             $zoneId = Line::where('id', $userLineId)->value('zone_id');
@@ -55,15 +54,20 @@ class IndexOrderMovement extends Component
             // Definir una lógica por defecto o específica para otros roles
             $this->lines = Line::where('id', $user->line_id)->get();
         }
+    }
 
-    
+
+
+    public function refreshPage()
+    {
+        // return redirect()->route('admin.orders.index', ['reload' => $this->lineSelect]);
     }
 
     public function mount()
     {
         $this->zone();
-        // $lineSelect = auth()->user()->line_id;
-        // $this->lineSelect = $this->lines->isNotEmpty() ? $this->lines->first()->id : null;
+        $this->lineSelectDestiny = auth()->user()->line_id;
+        //  $this->lineSelectDestiny = $this->lines->isNotEmpty() ? $this->lines->first()->id : null;
         // $this->lineSelect = 1;
     }
 
@@ -74,50 +78,41 @@ class IndexOrderMovement extends Component
         // return $warehouseOrder->name;
     }
 
+    // public function render()
+    // {
+    //     // $orders = collect();
+
+    //     if ($this->lineSelect) {
+    //         // Obtener los IDs de las estaciones que pertenecen a la línea seleccionada
+    //         $stationIds = Station::where('line_id', $this->lineSelect)->pluck('id');
+
+    //         // Obtener los IDs de los almacenes que pertenecen a las estaciones obtenidas
+    //         $warehouseIds = Warehouse::whereIn('station_id', $stationIds)->pluck('id');
+
+    //         // Filtrar las órdenes usando los IDs de los almacenes obtenidos
+    //         $orders = Order::whereIn('destiny_mov_warehouse_id', $warehouseIds)->get();
+    //     }
+
+    //     $this->orders = $orders->map(function ($order) {
+    //         return new \App\Models\Order($order->toArray());
+    //     })->all();
+
+    //     // $this->orders= Order::all();
+
+    //     return view('livewire.admin.index-order-movement');
+    // }
 
     public function render()
     {
-        // $orders = collect();
-
-        if ($this->lineSelect) {
-            // Obtener los IDs de las estaciones que pertenecen a la línea seleccionada
-            $stationIds = Station::where('line_id', $this->lineSelect)->pluck('id');
-
-            // Obtener los IDs de los almacenes que pertenecen a las estaciones obtenidas
-            $warehouseIds = Warehouse::whereIn('station_id', $stationIds)->pluck('id');
-
-            // Filtrar las órdenes usando los IDs de los almacenes obtenidos
-            $orders = Order::whereIn('destiny_mov_warehouse_id', $warehouseIds)->get();
-        }
-
-
-        
-        $this->orders = $orders->map(function ($order) {
-            return new \App\Models\Order($order->toArray());
-        })->all();
-
-        // $this->orders= Order::all();
-
+        //  $this->orders=Order::all();
+        $this->orders = Order::whereIn('status', [4, 5])
+            ->where('movement_type', '7')
+            ->whereHas('warehouseDestiny', function ($query) {
+                $query->whereHas('station', function ($query) {
+                    $query->where('line_id', $this->lineSelectDestiny);
+                });
+            })
+            ->get();
         return view('livewire.admin.index-order-movement');
     }
-
-    // public function render()
-    // {
-
-
-
-
-
-
-
-
-        
-    // //  $this->orders=Order::all();
-    //     $this->orders = Order::whereIn('status', [2,3,4,5])
-    //       ->where('movement_type', '7')
-    //       ->where('destiny_mov_warehouse_id', $this->lineSearch($this->lineSelect))
-    //       ->get();
-    //     return view('livewire.admin.index-order-movement');
-    //  }
-
 }

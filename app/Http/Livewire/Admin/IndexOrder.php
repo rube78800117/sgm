@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Line;
@@ -9,6 +8,7 @@ use App\Models\Order;
 use App\Models\Warehouse;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class IndexOrder extends Component
 {
@@ -48,20 +48,36 @@ class IndexOrder extends Component
             $this->lines = Line::where('id', $user->line_id)->get();
         }
     }
-
+    public function refreshPage()
+    {
+         return redirect()->route('admin.orders.index', ['reload' => $this->lineSelect]);
+        // $this->loadOrders();
+    }
     public function showAll()
     {
+
         $this->orders = Order::all();
 
-        // dd($this->orders);
-        // $this->render();
     }
 
     public function mount()
     {
+
+
         $this->zone();
-        $this->lineSelect = auth()->user()->line_id;
-        $this->loadOrders();
+
+
+        // Obtener el valor del parámetro de la URL
+        $reload = Request::query('reload');
+
+        if ($reload) {
+            $this->lineSelect = $reload;
+            // Realiza alguna acción si la variable 'reload' está presente
+            $this->loadOrders();
+        } else {
+            $this->lineSelect = auth()->user()->line_id;
+            $this->loadOrders();
+        }
     }
 
     public function warehouseOrderSearch($id)
@@ -80,8 +96,16 @@ class IndexOrder extends Component
         $this->orders = Order::where('origin_line_id', $this->lineSelect)->get();
     }
 
-    public function updatedLineSelect($value)
+    public function updatedLineSelect()
     {
-        $this->loadOrders();
+        //   refresca toda la pagina
+       
+
+        // refrecas solo los datos
+         $this->refreshPage();
+        // $this->emit('refreshChildComponent');
+     
+        $this->loadOrders(); 
+  
     }
 }

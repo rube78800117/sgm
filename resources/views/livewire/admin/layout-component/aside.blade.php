@@ -208,7 +208,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('admin.orders.movements.index') }}" class="menu-link">
-                            <div data-i18n="eCommerce">Todos los movimientos</div>
+                            <div data-i18n="eCommerce">Recepción de movimientos aprobados</div>
                         </a>
                     </li>
                     <li class="menu-item">

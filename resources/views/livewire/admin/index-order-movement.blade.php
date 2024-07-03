@@ -5,7 +5,7 @@
         zonas
     </button>
     <div class="flex justify-end">
-        <select name="" id="" wire:model="lineSelect">
+        <select name="" id="" wire:model="lineSelectDestiny">
             @foreach ($this->lines as $line)
                 <option value=""> {{ $line->name }}
                 </option>
