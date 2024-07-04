@@ -3,7 +3,7 @@
 
 
 
-    <div class="container mx-auto">
+    <div class="sm:container mx-auto">
 
 
         <div class="grid sm:grid-cols-12 mb-1 gap-4 grid-cols-4">
@@ -419,26 +419,27 @@
 
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="card-header flex justify-between border-top rounded-0 flex-wrap py-md-0">
-                                <div class="me-5 ms-n2">
+                                {{-- <div class="me-5 ms-n2">
                                     <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
 
 
 
 
                                             <div class="input-group input-group-floating">
-                                                <span class="input-group-text"><i class='fas fa-search'></i></span>
+                                                <span class="input-group-text"><a  wire:click="searchArray"><i class='text-blue-500 fas fa-search'></i></a> </span>
+
                                                 <div class="form-floating">
-                                                    <input wire:model="search" type="text" class="form-control"
+                                                    <input wire:model.defer="search" type="text" class="form-control"
                                                         id="basic-addon21" placeholder="" aria-label="Username"
                                                         aria-describedby="basic-addon21" />
-                                                    <label for="basic-addon21">Que estas buscando...?</label>
+                                                    <label for="basic-addon21">ID de articulo</label>
                                                 </div>
                                                 <span class="form-floating-focused"></span>
                                             </div>
 
 
                                         </label></div>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
                                     <div
                                         class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0">
@@ -466,7 +467,7 @@
 
 
 
-                                            <button class="dt-button add-new btn btn-primary ms-n1" tabindex="0"
+                                            {{-- <button class="dt-button add-new btn btn-primary ms-n1" tabindex="0"
                                                 aria-controls="DataTables_Table_0" type="button"><span><i
                                                         class="mdi mdi-plus me-0 me-sm-1"></i><span
                                                         class="d-none d-sm-inline-block">
@@ -478,7 +479,7 @@
 
 
                                                     </span></span>
-                                            </button>
+                                            </button> --}}
 
 
 
@@ -658,8 +659,9 @@
                                     </table>
                                 @else
                                     <div class="form-control px-6 py-4">
-                                        No hay ningún registro coincidente
+                                        No hay ningún registro agregado, porfavor agregue almenos 1 registro para un nuevo ingreso
                                     </div>
+                                    <x-jet-input-error for="selectedArticles" />
                                 @endif
 
                                 <!-- Paginación de la tabla -->
@@ -699,7 +701,32 @@
 
 
 
+                            <div class="me-5 ms-n2">
+                                <div id="DataTables_Table_0_filter" class="mx-4 dataTables_filter ">
+                                    
+                                    <label>
 
+
+
+
+                                        <div class="input-group input-group-floating w-full">
+                                            {{-- <label for="">Busqueda de articulos por ID dentro de la tabla</label> --}}
+
+                                            <span class="input-group-text "><a class="cursor-pointer hover:text-white " wire:click="searchArray"> Buscar </a> </span>
+
+                                            <div class="form-floating w-full">
+                                                <input wire:model.defer="search" type="text" class="form-control "
+                                                    id="basic-addon21" placeholder="¿Que estas buscando?..." aria-label="Username"
+                                                    aria-describedby="basic-addon21" />
+                                                <label for="basic-addon21"> Busca por ID´s del articulo dentro la tabla</label>
+                                            </div>
+                                            <span class="form-floating-focused"></span>
+                                        </div>
+
+
+                                    </label>
+                                </div>
+                            </div>
 
 
 
@@ -726,11 +753,13 @@
 
                         {{-- info art --}}
                         {{-- BUSCADOR SEARCH-COUNT  BUSCA LOS ARTICULOS  --}}
+                        <p class="pt-4"><strong>Agrega artículos para el nuevo registros de ingreso</strong></p>
                         <div class="col-span-12 md:col-span-7 mt-2 py-2  ">
                             <div class="mx-4">
+                      
                                @livewire('search-count')
                                
-                               <x-jet-input-error  class="mt-2" for="id_art" />
+                                <x-jet-input-error  class="mt-1" for="id_art" />
   
                             </div>
                            
@@ -758,8 +787,7 @@
                                                             type="button">
                                                             <i class="text-md fas fa-times"></i>
                                                         </button>
-                                                        <label for="floatingInputFilled">Escriba la
-                                                            cantidad</label>
+                                                        <label for="floatingInputFilled">Cantidad o stock del artículo para el registro</label>
                                                         <span class="form-floating-focused"></span>
                                                     </div>
                                                     <div id="floatingInputFilledHelp" class="form-text">
@@ -875,7 +903,7 @@
                 {{-- %%%%%%%%%%%%%%%%%%%% END LISTA DE ARTICULOS DETALLES %%%%%%%%%%%%%%%%%%%% --}}
 
 
-                <div class=" justify-end inline-block mr-2 m-2">
+                <div class=" justify-end inline-block sm:mr-2 sm:m-2">
                     <button wire:click="storeOrder" type="button"
                         class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg flex items-center">
                         <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -918,3 +946,4 @@
 
         </div>
     </div>
+</div>

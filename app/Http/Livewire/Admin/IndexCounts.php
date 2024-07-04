@@ -7,8 +7,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 class IndexCounts extends Component
 
-{
-   
+{ 
+//   s 
     use WithPagination;
     public $search, $idsearch;
 
@@ -25,15 +25,23 @@ class IndexCounts extends Component
   
     public function render()
     {
-     
-        $mycounts = Count::where('id', 'LIKE','%'.$this->search.'%')
+        $countsTotal = Count::all();
+        $countsFound = Count::where('id', 'LIKE', '%' . $this->search . '%');
+        $mycounts = $countsFound
+        // $mycounts = Count::where('id', 'LIKE','%'.$this->search.'%')
+        ->orWhereHas('user', function ($query) {
+            $query->where('name', 'LIKE', '%' . $this->search . '%');
+        })
+        ->orWhereHas('warehouse', function ($query) {
+            $query->where('name', 'LIKE', '%' . $this->search . '%');
+        })
         ->orWhere('name', 'LIKE','%'.$this->search.'%')
         ->orWhere('observation', 'LIKE', '%'.$this->search.'%')
         ->orderBy('created_at', 'desc')
-        ->paginate(12);
+        ->paginate(10);
        
        
-        return view('livewire.admin.index-counts', compact('mycounts'))->layout('layouts.admin');
+        return view('livewire.admin.index-counts', compact('mycounts', 'countsTotal', 'countsFound'))->layout('layouts.admin');
     }
 }
 

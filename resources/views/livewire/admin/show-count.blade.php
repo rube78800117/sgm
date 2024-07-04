@@ -6,7 +6,7 @@
                     
                     <h1 class="py-4 w-full font-bold text-sm  text-center leading-tight mb-2">DETALLE DE RELEVAMIENTO</h1>
 
-                        <h1 class="w-full font-bold text-sm  leading-tight mb-2">ID: {{$count->id}}</h1>
+                        <h1 class="w-full font-bold text-sm  leading-tight mb-2">ID de Relevamiento: {{$count->id}}</h1>
                         <h1 class="w-full  text-sm  leading-tight mb">Nombre Relevamiento:  {{$count->name}}</h1>
                         <h1 class="w-full text-sm  leading-tight">Descripción:  {{$count->Obs}}</h1>
                          

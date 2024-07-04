@@ -72,7 +72,7 @@
 
 
 
-                <div class=" grid-cols-2 text-md px-4 text-gray-800">
+                <div class=" grid-cols-2 text-md px-4">
 
                     {{-- 
                 <p class="  font-semibold text-center">ID's del Insumo o repuesto</p> --}}
@@ -80,30 +80,30 @@
 
 
                     @if (!empty($article->id_dopp))
-                        <p class=" text-gray-900 mr-2"></p>
+                        <p class="  mr-2"></p>
                         <ul class="flex">
-                            <li class=" text-gray-800 mr-2"><i class="text-blue-500 mr-2 fas fa-key"> </i>
+                            <li class="  mr-2"><i class="text-blue-500 mr-2 fas fa-key"> </i>
                                 Dopplmayr:</li>
-                            <li class=" text-gray-900 font-bold  ">{{ $article->id_dopp }}</li>
+                            <li class="  font-bold  ">{{ $article->id_dopp }}</li>
                         </ul>
                     @endif
                     @if (!empty($article->id_eetc))
-                        <p class=" text-gray-900 mr-2"></p>
+                        <p class="  mr-2"></p>
 
                         <ul class="flex">
-                            <li class=" text-gray-800 mr-2">
+                            <li class="  mr-2">
                                 <i class="text-yellow-400 mr-2 fas fa-key"></i> MiTeleferico:
                             </li>
-                            <li class=" text-gray-900 font-bold "> {{ $article->id_eetc }}</li>
+                            <li class="  font-bold "> {{ $article->id_eetc }}</li>
                         </ul>
                     @endif
 
                     @if (!empty($article->id_zona))
-                        <p class=" text-gray-900 mr-2"> </p>
+                        <p class=" mr-2"> </p>
                         <ul class="flex">
-                            <li class=" text-gray-800 mr-2"><i class="text-gray-400 mr-2 fas fa-key"></i>
+                            <li class=" mr-2"><i class="text-gray-400 mr-2 fas fa-key"></i>
                                 Zona:</li>
-                            <li class=" text-gray-900 font-bold ">{{ $article->id_zona }}</li>
+                            <li class="  font-bold ">{{ $article->id_zona }}</li>
                         </ul>
                     @endif
 
@@ -129,28 +129,28 @@
                 {{-- div apertura datos del articulo --}}
 
 
-                <div class="  bg-gray-100    rounded-xl p-4   row-span-4 ">
+                <div class="   rounded-xl p-4   row-span-4 ">
 
                     <ul class="flex">
-                        <li class=" text-gray-900 text-sm mr-2"> <i
+                        <li class="  text-sm mr-2"> <i
                                 class="text-yellow-500 fas fa-check-circle mr-2"></i>
                             Marca o proveedor:</li>
-                        <li class="text-gray-700 text-xs ">{{ $article->trademark->name }}</li>
+                        <li class=" text-xs ">{{ $article->trademark->name }}</li>
                     </ul>
                     <ul class="flex">
-                        <li class=" text-gray-900 text-sm mr-2"><i class="text-yellow-500 fas fa-check-circle mr-2"></i>
+                        <li class="  text-sm mr-2"><i class="text-yellow-500 fas fa-check-circle mr-2"></i>
                             Medida en por:</li>
-                        <li class="text-gray-700 ">{{ $article->Unit->name }}</li>
+                        <li class=" ">{{ $article->Unit->name }}</li>
                     </ul>
                     <ul class="flex">
-                        <li class=" text-gray-900 text-sm mr-2"><i class="text-yellow-500 fas fa-check-circle mr-2"></i>
+                        <li class="  text-sm mr-2"><i class="text-yellow-500 fas fa-check-circle mr-2"></i>
                             Sub Categoria:</li>
-                        <li class="text-gray-700 ">{{ $article->category->name }}</li>
+                        <li class=" ">{{ $article->category->name }}</li>
                     </ul>
                     <ul class="flex">
-                        <li class=" text-gray-900 text-sm mr-2"><i class="text-yellow-500 fas fa-check-circle mr-2"></i>
+                        <li class="  text-sm mr-2"><i class="text-yellow-500 fas fa-check-circle mr-2"></i>
                             Categoria:</li>
-                        <li class="text-gray-700 ">{{ $article->category->department->name }}</li>
+                        <li class=" ">{{ $article->category->department->name }}</li>
                     </ul>
                     
                     {{-- <ul class="">

@@ -3,21 +3,66 @@
 
      <!-- Float label (Filled) -->
 
-    
+   
             <div class="form-floating">
-              <input @keyup="open = true" wire:model="search"
+               
+ 
+            
+
+                    <div class="input-group input-group-floating">
+                        {{-- <label for="">Busqueda de articulos por ID dentro de la tabla</label> --}}
+
+                        <span class="input-group-text "><a class="cursor-pointer hover:text-white " 
+                         >  <i class="text- text-blue-500 fas fa-search" ></i> </a> </span>
+
+                        <div class="form-floating">
+                            <input @keyup="open = true"
+                            wire:model="search" 
+                            type="text" 
+                            class="form-control  "
+                                id="search" 
+                                placeholder="¿Que estas buscando?..." 
+                                aria-describedby="floatingInputFilledHelp" />
+                                <button @click="clearSearch()" class="absolute inset-y-0 -right-1  p-3 rounded-r-lg bg-bl bg-blue-500 flex items-center text-white focus:outline-none hover:text-gray-600 transition-colors" type="button">
+                                    <i class="text-md fas fa-times"></i>
+                                  </button>
+                              <label for="floatingInputFilled">Busqueda del articulo por ID´s, nombre o descripción para el registro</label>
+                           
+                  
+                        </div>
+                        <span class="form-floating-focused"></span>
+                    </div>
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+              {{-- <input @keyup="open = true" 
+              wire:model="search "
                 type="text"
-                class="form-control"
+                class="form-control  "
                 id="search"
                 placeholder= "Selecciona el articulo"
                 aria-describedby="floatingInputFilledHelp" />
+            
                 <button @click="clearSearch()" class="absolute inset-y-0 -right-1  p-3 rounded-r-lg bg-bl bg-blue-500 flex items-center text-white focus:outline-none hover:text-gray-600 transition-colors" type="button">
                     <i class="text-md fas fa-times"></i>
                   </button>
-              <label for="floatingInputFilled">seleccionar el articulo a adicionar</label>
+              <label for="floatingInputFilled">seleccionar el articulo a adicionar</label> --}}
            
             </div>
-   
+     
    
         
     
@@ -33,7 +78,7 @@
             <ul class="form-control border-0 absolute z-50 left-0 w-full  rounded-lg overflow-hidden">
                 @forelse ($this->results as $result)
                     <div wire:click="$emit('updatedart',{{$result->id}})">
-                        <li x-show="open" @click.away="open = false" class=" font-semibold leading-1 px-5 hover:text-white text-sm cursor-pointer hover:bg-blue-900 mb-2"> 
+                        <li x-show="open" @click.away="open = false" class=" font-semibold leading-1  hover:text-white text-sm cursor-pointer hover:bg-blue-900 mb-2"> 
                             {{$result->name}} ID : {{$result->id_dopp}}&nbsp&nbsp/&nbsp&nbsp{{$result->id_eetc}}
                         </li>
                     </div>

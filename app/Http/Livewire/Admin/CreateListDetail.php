@@ -50,7 +50,7 @@ class CreateListDetail extends Component
     public $id_art, $id_dopp_art, $id_eetc_art, $id_zona_art;
     public $unit;
     public $cod_document =' 06/2024', $purchase_description= 'Primeros ingresos', $state_id = 1, $voucher_select = 3, $proveedor_id;
-    public $savem;
+    public $savem, $keySearch=-1;
     public $variableRecibida;
 
 
@@ -93,7 +93,40 @@ class CreateListDetail extends Component
    
     }
 
+    public function searchArray()
+    {
+        if (!(empty($this->search) || $this->search === null)) {
+            $found = false;
+            $searchValue = $this->search; // Suponiendo que 'search' es la variable del input con wire:model
+        
+            // Verificar si el artículo ya existe en el array
+            foreach ($this->selectedArticles as $clave => $articulo) {
+                if (
+                    $articulo['article_id_dopp'] == $searchValue ||
+                    $articulo['article_name'] == $searchValue ||
+                    $articulo['article_id_eetc'] == $searchValue ||
+                    $articulo['article_id_zona'] == $searchValue
+                ) {
+                    $found = true;
+                    $this->keySearch = $clave;
+                    break;
+                }
+            }
+        
+         
+            
+            if ($found) {
+                $this->alertSearch();
+            }  else {
+                $this->alertInfoSearch(); # code...
+            }
+        
+        }
+        
+       
+    }
 
+   
     public function updatedart($value)
     {
         $this->idart = $value;
@@ -154,6 +187,8 @@ class CreateListDetail extends Component
             'sectorselect' => 'required',
             'locationselect' => 'required',
             'id_art' => 'required',
+            'selectedArticles.*' => 'required',
+
 
 
         ]);
@@ -297,6 +332,7 @@ class CreateListDetail extends Component
             'proveedor_id' => 'required',
             'voucher_select' => 'required',
             'lineselect' => 'required',
+            'selectedArticles' => 'required',
 
         ]);
 
@@ -476,6 +512,19 @@ class CreateListDetail extends Component
 
 
  // mensages de alerta
+
+ public function alertSearch()
+ {
+     $this->dispatchBrowserEvent('alerttoastr', 
+     ['type' => 'success',  'message' => 'El articulo se encontro en la lista!, Numero de registro: '. $this->keySearch+1 ]);
+           
+ }
+ public function alertInfoSearch()
+ {
+    $this->dispatchBrowserEvent('alerttoastr',
+    ['type' => 'warning',  'message' => 'El articulo no se encontro en la lista!, asegurece de escribir el iD completo']);
+ }
+
 
  public function alertSuccess()
  {

@@ -36,10 +36,28 @@ class ShowPurchase extends Component
 
       
       $purchaseTotal = PurchaseDetail::where('purchase_id', $this->purchase->id)->get();
-      $purchaseFound = PurchaseDetail::where('purchase_id', $this->purchase->id)
-          ->where('article_name', 'LIKE', '%' . $this->search . '%');
+      $purchaseFound = PurchaseDetail::where('purchase_id', $this->purchase->id);
+          
       $purchaseDetails = $purchaseFound
-          // ->orWhere('id_dopp', 'LIKE', '%' . $this->search . '%')
+ 
+ 
+  // ->Where('article_name', 'LIKE','%'.$this->search.'%')
+  ->orWhereHas('article', function ($query) {
+    $query->where('id_eetc', 'LIKE', '%' . $this->search . '%');
+})
+->orWhereHas('article', function ($query) {
+  $query->where('id_dopp', 'LIKE', '%' . $this->search . '%');
+})  ->orWhereHas('article', function ($query) {
+  $query->where('id_zona', 'LIKE', '%' . $this->search . '%');
+})
+  
+
+// ->where('article_name', 'LIKE', '%' . $this->search . '%');
+
+
+
+
+          // 
           // ->orWhere('id_zona', 'LIKE', '%' . $this->search . '%')
           // ->orWhere('id_eetc', 'LIKE', '%' . $this->search . '%')
           ->paginate(10);

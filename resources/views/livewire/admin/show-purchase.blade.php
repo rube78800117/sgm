@@ -12,8 +12,8 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="py-3 mb-4"><span class="text-muted fw-light">SGM /</span>Lista de materiales<p class="mb-2">
-                        ID: {{ $purchase->id }}</p>
+                <h4 class="py-3 mb-4"><span class="text-muted fw-light">SGM /</span>Ingresos de Stok<p class="mb-2">
+                        ID de Ingreso: {{ $purchase->id }}</p>
                 </h4>
 
                 <!-- Product List Widget -->
@@ -32,10 +32,10 @@
 
 
 
-                                            <h4 class="mb-2">{{ $purchaseTotal->count() }}</h4>
+                                            <h4 class="mb-2"></h4>
                                             <p class="mb-0">
-                                                <span class="me-2">5k orders</span><span
-                                                    class="badge rounded-pill bg-label-success">+5.7%</span>
+                                                <span class="me-2"></span><span
+                                                    class="badge rounded-pill bg-label-success"><strong class="text-xl"> {{ $purchaseTotal->count() }}</strong></span>
                                             </p>
                                         </div>
                                         <div class="avatar me-sm-4">
@@ -51,10 +51,10 @@
                                         class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
                                         <div>
                                             <p class="mb-2">Registros encontrados</p>
-                                            <h4 class="mb-2">{{ $purchaseFound->count() }}</h4>
+                                            <h4 class="mb-2"></h4>
                                             <p class="mb-0">
-                                                <span class="me-2">21k orders</span><span
-                                                    class="badge rounded-pill bg-label-success">++/span>
+                                                <span class="me-2"></span><span
+                                                    class="badge rounded-pill bg-label-success"><strong class="text-xl">{{ $purchaseFound->count() }}</strong></span>
                                             </p>
                                         </div>
                                         <div class="avatar me-lg-4">
@@ -70,14 +70,14 @@
                                         class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
                                         <div>
                                             {{-- <p class="mb-2">ID: {{ $purchase->id }}</p> --}}
-                                            <h4 class="mb-2">Descripción: {{ $purchase->description }}</h4>
-                                            <p class="mb-0">Cod o Nro.Documento: {{ $purchase->ndocument }}</p>
+                                            <h1 class="w-full text-sm  leading-tight">Descripció<stron>{{ $purchase->name }}</stron>  </h1>
+                                            <h1 class="w-full text-sm  leading-tight">Cod o Nro.Documento: <strong> {{ $purchase->ndocument }}</strong></h1>
                                             <h1 class="w-full text-sm  leading-tight">Realizado por:
-                                                {{ $purchase->user->name }}</h1>
-                                             <h1 class="w-full text-sm  leading-tight">Linea: {{ $purchase->line->name }}
+                                               <strong>{{ $purchase->user->name }}</strong> </h1>
+                                             <h1 class="w-full text-sm  leading-tight">Linea: <strong>{{ $purchase->line->name }}</strong>
                                                 </h2>
                                                 <h1 class="w-full text-sm  leading-tight">Fecha de ingreso:
-                                                    {{ $purchase->created_at->format('d-m-Y') }}</h1>
+                                                   <strong>{{ $purchase->created_at->format('d-m-Y') }}</strong> </h1>
                                         </div>
                                     </div>
                                     <div class="avatar me-sm-4">
@@ -258,8 +258,8 @@
 
 
                                             <td class="text-xs">
-                                                {{ $item->warehouse->station->line->acronym }}
-                                                {{ $item->warehouse->station->name }} -
+                                                {{-- {{ $item->warehouse->station->line->acronym }}
+                                                {{ $item->warehouse->station->name }} - --}}
                                                 {{ $item->warehouse->name }}
                                             </td>
                                             <td class="text-xs">
@@ -350,7 +350,7 @@
                     <div class="container-xxl">
                         <div
                             class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
+                            {{-- <div class="mb-2 mb-md-0">
                                 ©
                                 <script>
                                     document.write(new Date().getFullYear());
@@ -371,7 +371,7 @@
 
                                 <a href="https://pixinvent.ticksy.com/" target="_blank"
                                     class="footer-link d-none d-sm-inline-block">Support</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </footer>

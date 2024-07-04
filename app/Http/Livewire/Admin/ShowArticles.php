@@ -21,6 +21,7 @@ class ShowArticles extends Component
         $articlesTotal = Article::all();
         $articlesFound = Article::where('name', 'LIKE', '%' . $this->search . '%');
         $articles = $articlesFound
+            ->orWhere('description', 'LIKE', '%' . $this->search . '%')
             ->orWhere('id_dopp', 'LIKE', '%' . $this->search . '%')
             ->orWhere('id_zona', 'LIKE', '%' . $this->search . '%')
             ->orWhere('id_eetc', 'LIKE', '%' . $this->search . '%')
