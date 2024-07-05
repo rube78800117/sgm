@@ -1,10 +1,7 @@
 <div class="">
-
     <!-- INDEX DE ARTICULOS  Layout wrapper         I N D E X                   I N D E X   -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-
-
 
             <!-- Content wrapper -->
             <div class="content-wrapper">
@@ -16,98 +13,54 @@
 
 
 
-
-                    <!-- Product List Widget -->
-
-                    <div class="card mb-4">
-                        <div class="card-widget-separator-wrapper">
-                            <div class="card-body card-widget-separator">
-                                <div class="row gy-4 gy-sm-1">
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div
-                                            class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
-                                            <div>
-                                                <p class="mb-2">Total de Registrados</p>
-
-
-
-
-
-                                                <h4 class="mb-2"></h4>
-                                                <p class="mb-0">
-                                                    <span class="me-2"></span><span
-                                                        class="badge rounded-pill bg-label-success"><strong
-                                                            class="text-xl">{{ $articlesTotal->count() }}</strong></span>
+                    <div class="row g-4 mb-4">
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="me-1">
+                                            <p class="mb-2">Total de Registrados</p>
+                                            <div class="d-flex align-items-center">
+                                                <h4 class="mb-2 me-1 display-6">{{ $articlesTotal->count() }}</h4>
+                                                <p class="text-success mb-2">(100%)</p>
+                                            </div>
+                                            <p class="mb-0"></p>
+                                        </div>
+                                        <div class="avatar">
+                                            <div class="avatar-initial bg-label-success rounded">
+                                                <div class="mdi mdi-store mdi-24px"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="me-1">
+                                            <p class="text-heading mb-2">Artículos encontrados</p>
+                                            <div class="d-flex align-items-center">
+                                                <h4 class="mb-2 me-1 display-6">{{ $articlesFound->count() }}</h4>
+                                                <p class="text-success mb-2">
+                                                    ({{ number_format(($articlesFound->count() / $articlesTotal->count()) * 100, 1) }}%)
                                                 </p>
                                             </div>
-                                            <div class="avatar me-sm-4">
-                                                <span class="avatar-initial rounded bg-label-secondary">
-                                                    <i class="mdi mdi-home-outline mdi-24px"></i>
-                                                </span>
+                                            <p class="mb-0"></p>
+                                        </div>
+                                        <div class="avatar">
+                                            <div class="avatar-initial bg-label-warning rounded">
+                                                <div class="mdi mdi-store-search mdi-24px"></div>
                                             </div>
                                         </div>
-                                        <hr class="d-none d-sm-block d-lg-none me-4" />
                                     </div>
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div
-                                            class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
-                                            <div>
-                                                <p class="mb-2">Registros encontrados</p>
-                                                <h4 class="mb-2"></h4>
-                                                <p class="mb-0">
-                                                    <span class="me-2"></span><span
-                                                        class="badge rounded-pill bg-label-success"><strong
-                                                            class="text-xl"> {{ $articlesFound->count() }}</strong>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div class="avatar me-lg-4">
-                                                <span class="avatar-initial rounded bg-label-secondary">
-                                                    <i class="mdi mdi-laptop mdi-24px"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <hr class="d-none d-sm-block d-lg-none" />
-                                    </div>
-                                    {{-- <div class="col-sm-6 col-lg-3">
-                                            <div
-                                                class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
-                                                <div>
-                                                    <p class="mb-2">Discount</p>
-                                                    <h4 class="mb-2">$14,235.12</h4>
-                                                    <p class="mb-0">6k orders</p>
-                                                </div>
-                                                <div class="avatar me-sm-4">
-                                                    <span class="avatar-initial rounded bg-label-secondary">
-                                                        <i class="mdi mdi-wallet-giftcard mdi-24px"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-3">
-                                            <div class="d-flex justify-content-between align-items-start">
-                                                <div>
-                                                    <p class="mb-2">Affiliate</p>
-                                                    <h4 class="mb-2">$8,345.23</h4>
-                                                    <p class="mb-0">
-                                                        <span class="me-2">150 orders</span><span
-                                                            class="badge rounded-pill bg-label-danger">-3.5%</span>
-                                                    </p>
-                                                </div>
-                                                <div class="avatar">
-                                                    <span class="avatar-initial rounded bg-label-secondary">
-                                                        <i class="mdi mdi-currency-usd mdi-24px"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-
+             
 
 
                     <!-- Hoverable Table rows -->
@@ -132,12 +85,28 @@
                                             <div class="input-group input-group-floating">
                                                 <span class="input-group-text"><i class='fas fa-search'></i></span>
                                                 <div class="form-floating">
-                                                    <input wire:model="search" type="text" class="form-control"
-                                                        id="basic-addon21" placeholder="" aria-label="Username"
-                                                        aria-describedby="basic-addon21" />
-                                                    <label for="basic-addon21">Que estas buscando...?</label>
+
+
+                                                    <input wire:model="search"
+                                                        placeholder="Que estas buscando?..." type="text"
+                                                        class="form-control rounded-lg" id="search"
+                                                        aria-describedby="floatingInputFilledHelp" />
+                                           
+                                                    <label for="floatingInputFilled">Busqueda por ID´s, nombre o descripción</label>
+                                                    <span class="form-floating-focused"></span>
+
+
+
+
+
+
+
+
+
+
+
                                                 </div>
-                                                <span class="form-floating-focused"></span>
+                                             
                                             </div>
 
 
@@ -176,8 +145,7 @@
                                                         class="d-none d-sm-inline-block">
                                                         <a class="dropdown-item"
                                                             href="{{ route('admin.articles.create') }}">
-                                                            Add
-                                                            Product
+                                                            Add Article
                                                         </a>
 
 
@@ -216,7 +184,7 @@
 
                                             @foreach ($articles as $article)
                                                 <tr>
-                                                    <td style="width: 30%;" class="w-30">
+                                                    <td class="w-96  ">
 
                                                         <div class="flex  items-center">
                                                             <div class="flex-shrink-0 w-12 h-12">
@@ -239,7 +207,7 @@
 
 
                                                     </td>
-                                                    <td class=" py-2 text-sm">
+                                                    <td class=" py-2 text-sm w-36">
 
 
 
@@ -265,21 +233,21 @@
                                                     </td>
 
 
-                                                    <td class="text-xs">
+                                                    <td class="text-xs w-28">
                                                         {{ $article->unit->name }}
                                                     </td>
-                                                    <td class="text-xs">
+                                                    <td class="text-xs w-28">
                                                         {{ $article->department->name }}
                                                     </td>
-                                                    <td class="text-xs">
+                                                    <td class="text-xs w-48">
                                                         {{ $article->category->name }}
                                                     </td>
 
-                                                    <td>
+                                                    <td class="w-28">
                                                         {{ $article->stock_min }}
                                                     </td>
 
-                                                    <td>
+                                                    <td class="w-28">
                                                         <div class="dropdown">
                                                             <button type="button"
                                                                 class="btn p-0 dropdown-toggle hide-arrow"
@@ -363,4 +331,5 @@
             <!-- / Layout wrapper -->
         </div>
     </div>
+
 </div>

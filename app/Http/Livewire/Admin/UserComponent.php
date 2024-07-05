@@ -32,18 +32,26 @@ class UserComponent extends Component
     {
 
 
-        $users = User::where('email', '<>', auth()->user()->email)
-            ->where(function ($query) {
-                $query->where('name', 'LIKE', '%' . $this->search . '%');
-                $query->orWhere('email', 'LIKE', '%' . $this->search . '%');
-            })->orderBy('id','desc')->paginate(8);
+        $usersTotal = User::all();
+    
+        $users = User::where('name', 'LIKE', '%'. $this->search .'%')
+        ->where('email', '<>', auth()->user()->email)
+        ->orWhereHas('line', function ($query) {
+            $query->where('name', 'LIKE', '%' . $this->search . '%');
+        })
+        ->orderBy('id','desc')
+        ->paginate(10);
 
+        $usersFound=$users;
+
+
+      
 
 
 
 
 
         // $users= User::paginate();
-        return view('livewire.admin.user-component', compact('users'))->layout('layouts.admin');
+        return view('livewire.admin.user-component', compact('users', 'usersTotal','usersFound' ))->layout('layouts.admin');
     }
 }
