@@ -5,20 +5,20 @@
         {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
         {{-- <x-slot name="header">
              </x-slot> --}}
-         <div class="container py-2 flex items-center">
-            <h2 class="font-semibold text-sm text-gray-600 leading-tight">
-              RELEVAMIENTOS
+         <div class="container py-2 flex ">
+            <h2 class="font-semibold text-smleading-tight">
+            
                {{-- {{Session::get('key')}} --}}
           </h2>
           {{-- href="{{route('admin.purchases.create')}}" --}}
          </div>
-        <div>
+        {{-- <div>
          <a  href="{{route('admin.counts.create')}}">
             <x-button-enlace color='green' class="ml-auto">
              NUEVO RELEVAMIENTO
             </x-button-enlace> 
             </a>
-        </div>
+        </div> --}}
      
     </div>
           
@@ -31,9 +31,11 @@
    <!-- Content wrapper -->
    <div class="content-wrapper">
     <!-- Content -->
+   
 
-    <div class="px-8 flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">SGM /</span>Lista de relevamientos de materiales</h4>
+    <div class="px-8 flex-grow-1 container-p-y"> 
+        <h4  class="py-3 "><span class="text-xl ">Relevamientos</span></h4>
+        <h4 class="py-3 mb-4"><span class="text-xl ">SGM / </span> Lista de relevamientos de materiales</h4>
 
         <!-- Product List Widget -->
 
@@ -45,16 +47,16 @@
                             <div
                                 class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                                 <div>
-                                    <p class="mb-2">Total de Registrados</p>
+                                    <p class="mb-2">Total de Registros</p>
 
 
 
 
 
-                                    <h4 class="mb-2">{{ $countsTotal->count() }}</h4>
+                                    <h4 class="mb-2"></h4>
                                     <p class="mb-0">
-                                        <span class="me-2">5k orders</span><span
-                                            class="badge rounded-pill bg-label-success">+5.7%</span>
+                                        <span class="me-2"></span><span
+                                            class="badge rounded-pill bg-label-success"><strong class="text-xl">{{ $countsTotal->count() }}</strong></span>
                                     </p>
                                 </div>
                                 <div class="avatar me-sm-4">
@@ -70,10 +72,10 @@
                                 class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
                                 <div>
                                     <p class="mb-2">Registros encontrados</p>
-                                    <h4 class="mb-2">{{$countsFound->count()}}</h4>
+                                    <h4 class="mb-2"></h4>
                                     <p class="mb-0">
-                                        <span class="me-2">21k orders</span><span
-                                            class="badge rounded-pill bg-label-success">+12.4%</span>
+                                        <span class="me-2"></span><span
+                                            class="badge rounded-pill bg-label-success"><strong class="text-xl">{{$countsFound->count()}}</strong></span>
                                     </p>
                                 </div>
                                 <div class="avatar me-lg-4">
@@ -358,7 +360,7 @@
             <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
+            {{-- <footer class="content-footer footer bg-footer-theme">
                 <div class="container-xxl">
                     <div
                         class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
@@ -386,7 +388,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> --}}
             <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
