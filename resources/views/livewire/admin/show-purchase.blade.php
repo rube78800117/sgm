@@ -1,20 +1,23 @@
-<div>
+<div class="">
+    <!-- Content -->
+    <div class=" px-2 mt-10 sm:px-8 flex-grow-1 container-p-y">
+
+        <h4 class=" pt-4"><span class="text-xl ">SGM / Detalle de ingreso </span> </h4>
+        <h4 class=" "><span class="text-md ">Detalles de ingreso de materiales</span></h4>
 
 
-    <div class="container  shadow-md  ">
-
-
-
+        <h4 class="py-3 mb-4 "><span class="fw-light">
+                ID INGRESO: <span class="badge rounded-pill bg-label-info"><strong class="text-xl">
+                        {{ $purchase->id }}</strong></span>
+        </h4>
 
 
         <!-- Content wrapper -->
-        <div class="content-wrapper">
+        <div class="">
             <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="py-3 mb-4"><span class="text-muted fw-light">SGM /</span>Ingresos de Stok<p class="mb-2">
-                        ID de Ingreso: {{ $purchase->id }}</p>
-                </h4>
+            <div class="">
+
 
                 <!-- Product List Widget -->
 
@@ -35,7 +38,8 @@
                                             <h4 class="mb-2"></h4>
                                             <p class="mb-0">
                                                 <span class="me-2"></span><span
-                                                    class="badge rounded-pill bg-label-success"><strong class="text-xl"> {{ $purchaseTotal->count() }}</strong></span>
+                                                    class="badge rounded-pill bg-label-success"><strong class="text-xl">
+                                                        {{ $purchaseTotal->count() }}</strong></span>
                                             </p>
                                         </div>
                                         <div class="avatar me-sm-4">
@@ -54,7 +58,8 @@
                                             <h4 class="mb-2"></h4>
                                             <p class="mb-0">
                                                 <span class="me-2"></span><span
-                                                    class="badge rounded-pill bg-label-success"><strong class="text-xl">{{ $purchaseFound->count() }}</strong></span>
+                                                    class="badge rounded-pill bg-label-success"><strong
+                                                        class="text-xl">{{ $purchaseFound->count() }}</strong></span>
                                             </p>
                                         </div>
                                         <div class="avatar me-lg-4">
@@ -70,14 +75,21 @@
                                         class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
                                         <div>
                                             {{-- <p class="mb-2">ID: {{ $purchase->id }}</p> --}}
-                                            <h1 class="w-full text-sm  leading-tight">Descripció<stron>{{ $purchase->name }}</stron>  </h1>
-                                            <h1 class="w-full text-sm  leading-tight">Cod o Nro.Documento: <strong> {{ $purchase->ndocument }}</strong></h1>
+                                            <h1 class="w-full text-sm  leading-tight">Descripción:<stron>
+                                                    {{ $purchase->name }}</stron>
+                                            </h1>
+                                            <h1 class="w-full text-sm  leading-tight">Cod o Nro.Documento:
+                                                <strong> {{ $purchase->ndocument }}</strong>
+                                            </h1>
                                             <h1 class="w-full text-sm  leading-tight">Realizado por:
-                                               <strong>{{ $purchase->user->name }}</strong> </h1>
-                                             <h1 class="w-full text-sm  leading-tight">Linea: <strong>{{ $purchase->line->name }}</strong>
+                                                <strong>{{ $purchase->user->name }}</strong>
+                                            </h1>
+                                            <h1 class="w-full text-sm  leading-tight">Linea:
+                                                <strong>{{ $purchase->line->name }}</strong>
                                                 </h2>
                                                 <h1 class="w-full text-sm  leading-tight">Fecha de ingreso:
-                                                   <strong>{{ $purchase->created_at->format('d-m-Y') }}</strong> </h1>
+                                                    <strong>{{ $purchase->created_at->format('d-m-Y') }}</strong>
+                                                </h1>
                                         </div>
                                     </div>
                                     <div class="avatar me-sm-4">
@@ -87,10 +99,18 @@
                                     </div>
                                 </div>
                             </div>
-                          
+
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
             </div>
 
 
@@ -345,37 +365,6 @@
                 </div>
                 <!-- / Content -->
 
-                <!-- Footer -->
-                <footer class="content-footer footer bg-footer-theme">
-                    <div class="container-xxl">
-                        <div
-                            class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
-                            {{-- <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with <span class="text-danger"><i class="tf-icons mdi mdi-heart"></i></span>
-                                by
-                                <a href="https://pixinvent.com" target="_blank"
-                                    class="footer-link fw-medium">Pixinvent</a>
-                            </div>
-                            <div class="d-none d-lg-inline-block">
-                                <a href="https://themeforest.net/licenses/standard" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://1.envato.market/pixinvent_portfolio" target="_blank"
-                                    class="footer-link me-4">More Themes</a>
-
-                                <a href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://pixinvent.ticksy.com/" target="_blank"
-                                    class="footer-link d-none d-sm-inline-block">Support</a>
-                            </div> --}}
-                        </div>
-                    </div>
-                </footer>
-                <!-- / Footer -->
 
                 <div class="content-backdrop fade"></div>
             </div>
@@ -384,17 +373,7 @@
         <!-- / Layout page -->
     </div>
 
-    <!-- Content wrapper -->
+   
 
-
-
-
-
-
-
-
-
-
-</div>
 
 </div>

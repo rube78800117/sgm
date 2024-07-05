@@ -151,6 +151,7 @@ protected $listeners = ['updatedart','storeOrder'];
                    'unit_name' => $this->unit,
                    'warehouse_name' => $this->warehouse->name,
                    'warehouse_id' => $this->warehouse->id,
+                //    'line_id' => $this->warehouse->station->line->id,
               
                );
 
@@ -206,7 +207,7 @@ protected $listeners = ['updatedart','storeOrder'];
                         $order->user_id = auth()->user()->id;
                         $order->status = $this->state_id;
                         $order->warehouse_id = $this->warehouseselect;
-                        $order->line_id = $this->lineselect;
+                        $order->line_id = $this->linewarehouse;
                         $order->closing_date = Carbon::today() ;
 
                         $order->save();

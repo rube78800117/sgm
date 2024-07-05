@@ -29,12 +29,17 @@ class IndexCounts extends Component
         $countsFound = Count::where('id', 'LIKE', '%' . $this->search . '%');
         $mycounts = $countsFound
         // $mycounts = Count::where('id', 'LIKE','%'.$this->search.'%')
+        ->orWhereHas('line', function ($query) {
+            $query->where('name', 'LIKE', '%' . $this->search . '%');
+        })
         ->orWhereHas('user', function ($query) {
             $query->where('name', 'LIKE', '%' . $this->search . '%');
         })
+        
         ->orWhereHas('warehouse', function ($query) {
             $query->where('name', 'LIKE', '%' . $this->search . '%');
         })
+     
         ->orWhere('name', 'LIKE','%'.$this->search.'%')
         ->orWhere('observation', 'LIKE', '%'.$this->search.'%')
         ->orderBy('created_at', 'desc')

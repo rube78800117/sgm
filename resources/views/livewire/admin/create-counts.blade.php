@@ -6,7 +6,7 @@
 
 
 
-        <div class="p-6 m-6 bg-gray-100 rounded-xl shadow-2xl">
+        <div class="p-6 m-6  rounded-xl shadow-2xl">
 
 
             <div class="sm:grid grid-cols-2 mb-1 gap-4">

@@ -1,11 +1,15 @@
-<div>
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+            <!-- Content -->
+            <div class=" px-2 mt-10 sm:px-8 flex-grow-1 container-p-y"> 
 
 
 
+                
+         <h4 class=" pt-4"><span class="text-xl ">SGM / Ingreso de STOCK </span> </h4>
+         <h4 class="mb-4 "><span class="text-md ">Crea nuevo ingreso de STOCK de materiales</span></h4>
 
-    <div class="sm:container mx-auto">
-
-
+ 
         <div class="grid sm:grid-cols-12 mb-1 gap-4 grid-cols-4">
             {{-- nivel 1 --}}
             <div class=" form-control col-span-12 sm:col-span-5 md:col-span-5 pb-4 mt-4  rounded-xl shadow-2xl">
