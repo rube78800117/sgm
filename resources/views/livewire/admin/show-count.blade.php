@@ -2,8 +2,8 @@
     <!-- Content -->
     <div class=" px-2 mt-10 sm:px-8 flex-grow-1 container-p-y">
 
-        <h4 class=" pt-4"><span class="text-xl ">SGM / Detalle de ingreso </span> </h4>
-        <h4 class=" "><span class="text-md ">Detalles de ingreso de materiales</span></h4>
+        <h4 class=" pt-4"><span class="text-xl ">SGM / Detalle de relevamiento </span> </h4>
+        <h4 class=" "><span class="text-md ">Detalles de registros de relevamientos</span></h4>
 
 
         <h4 class="py-3 mb-4 "><span class="fw-light">
@@ -37,9 +37,9 @@
 
                                             <h4 class="mb-2"></h4>
                                             <p class="mb-0">
-                                                {{-- <span class="me-2"></span><span
+                                                <span class="me-2"></span><span
                                                     class="badge rounded-pill bg-label-success"><strong class="text-xl">
-                                                        {{ $purchaseTotal->count() }}</strong></span> --}}
+                                                        {{ $countDetailsTotal->count() }}</strong></span>
                                             </p>
                                         </div>
                                         <div class="avatar me-sm-4">
@@ -57,9 +57,9 @@
                                             <p class="mb-2">Registros encontrados</p>
                                             <h4 class="mb-2"></h4>
                                             <p class="mb-0">
-                                                {{-- <span class="me-2"></span><span
+                                                <span class="me-2"></span><span
                                                     class="badge rounded-pill bg-label-success"><strong
-                                                        class="text-xl">{{ $purchaseFound->count() }}</strong></span> --}}
+                                                        class="text-xl">{{ $countDetailsFound->count() }}</strong></span>
                                             </p>
                                         </div>
                                         <div class="avatar me-lg-4">
@@ -241,10 +241,10 @@
                                         aria-controls="DataTables_Table_0" type="button"><span><i
                                                 class="mdi mdi-plus me-0 me-sm-1"></i><span
                                                 class="d-none d-sm-inline-block">
-                                                <a class="dropdown-item" href="{{ route('admin.purchases.create') }}">
+                                                {{-- <a class="dropdown-item" href="{{ route('admin.purchases.create') }}">
                                                     Add
                                                     Product
-                                                </a>
+                                                </a> --}}
 
 
                                             </span></span>

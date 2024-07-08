@@ -312,37 +312,44 @@
 
                     <div class="col-span-12 md:col-span-7 mt-2 px-2 py-2 ">
                         @livewire('search-count')
-                        <x-jet-input-error for="id_art" />     
+                        <x-jet-input-error for="id_art" />
                     </div>
 
-                    <div class=" pb-2">
-                        @livewire('info-article')
-                    </div>
+                    <div class="m-4 ">
 
-                
-
-                    <div class="mx-4 ">
-
-                        <div>
-                            <div class="relative mt-1">
+                        <div class="flex items-center">
+                            <div class="relative mr-2">
                                 <input wire:model.defer="quantity" type="text" id="cantidad"
                                     class="pl-3 pr-10 py-2 border-2 border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors"
                                     placeholder="Ingrese la cantidad...">
                                 <button wire:click="$set('quantity', '')"
                                     class="block w-7 h-7 text-center text-xl leading-0 absolute top-2 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors">X</button>
                             </div>
-                            <x-jet-input-error for="quantity" />
+                            {{-- <button wire:click="$set('quantity', '')"
+                                class="text-gray-400 hover:text-gray-900 transition-colors">
+                                X
+                            </button> --}}
+                        </div>
+                        <x-jet-input-error for="quantity" />
+
+                        <div>
+
+                            <x-button-enlace color="blue" class="mt-2 ml-6 "
+                                wire:click.prevent="addArticle()">AGREGAR
+                                ITEM</x-button-enlace>
                         </div>
 
-                       
-
                     </div>
-                   
-                    <div>
 
-                        <x-button-enlace color="blue" class="mt-2 ml-6 "
-                            wire:click.prevent="addArticle()">AGREGAR ITEM</x-button-enlace>
+                    <div class=" pb-2">
+                        @livewire('info-article')
                     </div>
+
+
+
+             
+
+
 
                     {{-- END info art --}}
                     <!--End component -->
