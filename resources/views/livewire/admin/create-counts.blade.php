@@ -30,7 +30,7 @@
                         <div class="col-span-5  z-10">
 
 
-                            <div class="   mt-2  rounded-xl shadow-xl">
+                          
                                 <div class="   mb-1 gap-4">
 
 
@@ -58,7 +58,7 @@
                                                     id="floatingcod_document"
                                                     placeholder="Detalle o descripción del relevamiento"
                                                     aria-describedby="floatingcod_documentHelp" />
-                                                <label for="floatingcod_document">Nombre del
+                                                <label for="floatingcod_document">Descripción del
                                                     relevamiento</label>
                                                 <span class="form-floating-focused"></span>
                                                 <x-jet-input-error for="descriptionCount" />
@@ -73,7 +73,7 @@
 
 
                                 </div>
-                            </div>
+                       
 
 
 

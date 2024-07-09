@@ -21,6 +21,9 @@
         <h4  class="mb-4 "><span class="text-md ">Lista de relevamientos</span></h4>
 
       <!-- Product List Widget -->
+      @if ($countsTotal->count() || $countsFound->count()  )
+          
+   
         <div class="row g-4 mb-4">
             <div class="col-sm-6 col-xl-3">
                 <div class="card">
@@ -68,7 +71,7 @@
             </div>
         </div>
 
-
+   @endif
    
 
 
