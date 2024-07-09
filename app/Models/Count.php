@@ -31,9 +31,10 @@ class Count extends Model
         return $this->hasMany(CountDetail::class);
     }
 
+
     public function line()
     {
-        return $this->belongsTo('App\Models\Line');
+        return $this->belongsTo(Line::class);
     }
     public function warehouse()
     {

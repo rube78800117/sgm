@@ -21,60 +21,57 @@
             
              <!-- Product List Widget -->
 
-             <div class="card mb-4">
-                 <div class="card-widget-separator-wrapper">
-                     <div class="card-body card-widget-separator">
-                         <div class="row gy-4 gy-sm-1">
-                             <div class="col-sm-6 col-lg-3">
-                                 <div
-                                     class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
-                                     <div>
-                                         <p class="mb-2">Total de Registros</p>
+
+   <!-- Product List Widget -->
+   <div class="row g-4 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="me-1">
+                        <p class="mb-2">Total de Registros</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-2 me-1 display-6">{{  $purchasesTotal->count() }}</h4>
+                            <p class="text-success mb-2">(100%)</p>
+                        </div>
+                        <p class="mb-0"></p>
+                    </div>
+                    <div class="avatar">
+                        <div class="avatar-initial bg-label-success rounded">
+                            <div class="mdi mdi-store mdi-24px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="me-1">
+                        <p class="text-heading mb-2">Registros encontrados</p>
+                        <div class="d-flex align-items-center">
+                            <h4 class="mb-2 me-1 display-6">{{    $purchasesFound->count() }}</h4>
+                            <p class="text-success mb-2">
+                                ({{ number_format((   $purchasesFound->count() /  $purchasesTotal->count()) * 100, 1) }}%)
+                            </p>
+                        </div>
+                        <p class="mb-0"></p>
+                    </div>
+                    <div class="avatar">
+                        <div class="avatar-initial bg-label-warning rounded">
+                            <div class="mdi mdi-store-search mdi-24px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-
-
-                                         <h4 class="mb-2"></h4>
-                                         <p class="mb-0">
-                                             <span class="me-2"></span><span
-                                                 class="badge rounded-pill bg-label-success"><strong
-                                                     class="text-xl">{{ $purchasesTotal->count() }}</strong></span>
-                                         </p>
-                                     </div>
-                                     <div class="avatar me-sm-4">
-                                         <span class="avatar-initial rounded bg-label-secondary">
-                                             <i class="mdi mdi-home-outline mdi-24px"></i>
-                                         </span>
-                                     </div>
-                                 </div>
-                                 <hr class="d-none d-sm-block d-lg-none me-4" />
-                             </div>
-                             <div class="col-sm-6 col-lg-3">
-                                 <div
-                                     class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
-                                     <div>
-                                         <p class="mb-2">Registros encontrados</p>
-                                         <h4 class="mb-2"></h4>
-                                         <p class="mb-0">
-                                             <span class="me-2"></span><span
-                                                 class="badge rounded-pill bg-label-success"><strong
-                                                     class="text-xl">{{ $purchasesFound->count() }}</strong></span>
-                                         </p>
-                                     </div>
-                                     <div class="avatar me-lg-4">
-                                         <span class="avatar-initial rounded bg-label-secondary">
-                                             <i class="mdi mdi-laptop mdi-24px"></i>
-                                         </span>
-                                     </div>
-                                 </div>
-                                 <hr class="d-none d-sm-block d-lg-none" />
-                             </div>
-
-                         </div>
-                     </div>
-                 </div>
-             </div>
 
 
 
@@ -148,7 +145,7 @@
                                                  class="mdi mdi-plus me-0 me-sm-1"></i><span
                                                  class="d-none d-sm-inline-block">
                                                  <a class="dropdown-item" href="{{ route('admin.purchases.create') }}">
-                                                     Add nuevo Ingreso
+                                                    Nuevo Ingreso
                                                  </a>
 
 

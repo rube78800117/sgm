@@ -6,7 +6,7 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-                <div class=" px-2 mt-10 sm:px-8 flex-grow-1 container-p-y">
+                <div class=" px-2 sm:mt-10 sm:px-8 flex-grow-1 container-p-y">
 
                     <h4 class=" pt-4"><span class="text-xl ">SGM / Materiales </span> </h4>
                     <h4 class="mb-4 "><span class="text-md ">Listado de materiales</span></h4>
