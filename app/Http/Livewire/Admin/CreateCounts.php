@@ -137,6 +137,8 @@ class CreateCounts extends Component
                 ];
 
                 $this->selectedArticles[] = $selectedArticles;
+
+                dd($this->selectedArticles);
                 $this->selectedArticles = $this->selectedArticles;
 
                 // Guarda en la sessione el array de articulos

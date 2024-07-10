@@ -223,73 +223,74 @@
                         <hr>
                         <x-button-enlace wire:click="stockWarehouse()" color="blue" class="mt-4 mx-2"> Mostrar stock
                             actual de almacén seleccionado</x-button-enlace>
-<!-- Hoverable Table rows -->
+                        <!-- Hoverable Table rows -->
                         {{-- <x-button-enlace  --}}
-                            <div class="card">
+                        <div class="card">
 
 
 
 
 
 
-                                <h5 class="card-header"></h5>
+                            <h5 class="card-header"></h5>
 
 
-                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                <div class="card-header flex justify-between border-top rounded-0 flex-wrap py-md-0">
+
                                     <div
-                                        class="card-header flex justify-between border-top rounded-0 flex-wrap py-md-0">
-
+                                        class="d-flex justify-content-start justify-content-md-end align-items-baseline">
                                         <div
-                                            class="d-flex justify-content-start justify-content-md-end align-items-baseline">
-                                            <div
-                                                class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0">
-                                                <div class="me-5 ms-n2">
-                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
-                    
-                    
-                    
-                    
-                                                            <div class="input-group input-group-floating">
-                                                                <span class="input-group-text"><i class='fas fa-search'></i></span>
-                                                                <div class="form-floating">
-                                                                    <input wire:model="search" type="text" class="form-control"
-                                                                        id="basic-addon21" placeholder="" aria-label="Username"
-                                                                        aria-describedby="basic-addon21" />
-                                                                    <label for="basic-addon21">¿Que estas buscando?...</label>
-                                                                </div>
-                                                                <span class="form-floating-focused"></span>
+                                            class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0">
+                                            <div class="me-5 ms-n2">
+                                                <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
+
+
+
+
+                                                        <div class="input-group input-group-floating">
+                                                            <span class="input-group-text"><i
+                                                                    class='fas fa-search'></i></span>
+                                                            <div class="form-floating">
+                                                                <input wire:model="search" type="text"
+                                                                    class="form-control" id="basic-addon21"
+                                                                    placeholder="" aria-label="Username"
+                                                                    aria-describedby="basic-addon21" />
+                                                                <label for="basic-addon21">¿Que estas
+                                                                    buscando?...</label>
                                                             </div>
-                    
-                    
-                                                        </label></div>
-                                                </div>
-                                                <div class="dataTables_length mt-0 mt-md-3"
-                                                    id="DataTables_Table_0_length">
-                                                    <label class="mb-3"><select name="DataTables_Table_0_length "
-                                                            aria-controls="DataTables_Table_0" class="form-select">
-                                                            <option value="7">7</option>
-                                                            <option value="10">10</option>
-                                                            <option value="20">20</option>
-                                                            <option value="50">50</option>
-                                                            <option value="70">70</option>
-                                                            <option value="100">100</option>
-                                                        </select>
-                                                    </label>
-                                                </div>
-                                                <div class="dt-buttons"> <button
-                                                        class="dt-button buttons-collection dropdown-toggle btn btn-label-secondary me-3"
-                                                        tabindex="0" aria-controls="DataTables_Table_0"
-                                                        type="button" aria-haspopup="dialog"
-                                                        aria-expanded="false"><span><i
-                                                                class="mdi mdi-export-variant me-1"></i><span
-                                                                class="d-none d-sm-inline-block">Export
-                                                            </span></span><span class="dt-down-arrow">▼</span></button>
+                                                            <span class="form-floating-focused"></span>
+                                                        </div>
+
+
+                                                    </label></div>
+                                            </div>
+                                            <div class="dataTables_length mt-0 mt-md-3"
+                                                id="DataTables_Table_0_length">
+                                                <label class="mb-3"><select name="DataTables_Table_0_length "
+                                                        aria-controls="DataTables_Table_0" class="form-select">
+                                                        <option value="7">7</option>
+                                                        <option value="10">10</option>
+                                                        <option value="20">20</option>
+                                                        <option value="50">50</option>
+                                                        <option value="70">70</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="dt-buttons"> <button
+                                                    class="dt-button buttons-collection dropdown-toggle btn btn-label-secondary me-3"
+                                                    tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                    aria-haspopup="dialog" aria-expanded="false"><span><i
+                                                            class="mdi mdi-export-variant me-1"></i><span
+                                                            class="d-none d-sm-inline-block">Export
+                                                        </span></span><span class="dt-down-arrow">▼</span></button>
 
 
 
 
 
-                                                    {{-- <button class="dt-button add-new btn btn-primary ms-n1" tabindex="0"
+                                                {{-- <button class="dt-button add-new btn btn-primary ms-n1" tabindex="0"
                                         aria-controls="DataTables_Table_0" type="button"><span><i
                                                 class="mdi mdi-plus me-0 me-sm-1"></i><span
                                                 class="d-none d-sm-inline-block">
@@ -305,152 +306,162 @@
 
 
 
-                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
 
-
-
-                                    <div class="table-responsive form-control">
-
-
-
-                                        @if ($this->result)
-
-
-                                            <table class="table table-hover">
-                                                <thead class="sticky top-0 z-10 ">
-                                                    <tr>
-                                                        <th> Nro</th>
-                                                        <th> Nombre de articulo</th>
-                                                        <th> ID's</th>
-                                                        <th> Cantidad</th>
-                                                        <th>Ajsute</th>
-                                                        <th>Total</th>
-                                                        <th> Acción</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-border-bottom-0">
-
-                                                    @foreach ($this->result as $key => $item)
-                                                        <tr class="text-left " wire:key="{{ $key }}">
-
-                                                            <td class="w-12">
-
-
-                                                                <p class=" whitespace-no-wrap">
-                                                                    {{ $key + 1 }}</p>
-
-
-                                                            </td>
-                                                            <td>
+                                </div>
 
 
 
-                                                                <div class="flex  items-center w-64">
-                                                                    <div class="flex-shrink-0 w-12 h-12">
-                                                                        @if ($item->article->image != null)
-                                                                            <img class="w-full h-full rounded-full object-cover"
-                                                                                src="{{ asset('storage/' . $item->article->image->url) }}"
-                                                                                alt="" />
-                                                                        @else
-                                                                            <img class="w-full h-full rounded-full object-cover"
-                                                                                src="{{ asset('storage/' . 'articles/def.jpg') }}"
-                                                                                alt="" />
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class=" w-full ml-3  text-xs" >
-                                                                        <p class="  ">
-                                                                            {{ $item->article->name }}
+                                <div class="table-responsive form-control">
+
+
+
+                                    @if ($this->result)
+
+
+                                        <table class="table table-hover">
+                                            <thead class="sticky top-0 z-10 ">
+                                                <tr>
+                                                    <th> Nro</th>
+                                                    <th> Nombre de articulo</th>
+                                                    <th> ID's</th>
+                                                    <th> Cantidad</th>
+                                                    <th>Ajsute</th>
+                                                    <th>Total</th>
+                                                    <th> Acción</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-border-bottom-0">
+
+                                                @foreach ($this->result as $key => $item)
+                                                    <tr class="text-left " wire:key="{{ $key }}">
+
+                                                        <td class="w-12">
+
+
+                                                            <p class=" whitespace-no-wrap">
+                                                                {{ $key + 1 }}</p>
+
+
+                                                        </td>
+                                                        <td>
+
+
+
+                                                            <div class="flex  items-center w-64">
+                                                                <div class="flex-shrink-0 w-12 h-12">
+                                                                    @if ($item->article->image != null)
+                                                                        <img class="w-full h-full rounded-full object-cover"
+                                                                            src="{{ asset('storage/' . $item->article->image->url) }}"
+                                                                            alt="" />
+                                                                    @else
+                                                                        <img class="w-full h-full rounded-full object-cover"
+                                                                            src="{{ asset('storage/' . 'articles/def.jpg') }}"
+                                                                            alt="" />
+                                                                    @endif
+                                                                </div>
+                                                                <div class=" w-full ml-3  text-xs">
+                                                                    <p class="  ">
+                                                                        {{ $item->article->name }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="w-36 py-2 text-sm">
+
+
+
+
+                                                            @if (!empty($item->article->id_dopp))
+                                                                <p class=" "><i
+                                                                        class="text-blue-500  fas fa-key"></i>
+                                                                    {{ $item->article->id_dopp }}</p>
+                                                            @endif
+                                                            @if (!empty($item->article->id_eetc))
+                                                                <p class=" "><i
+                                                                        class="text-yellow-400  fas fa-key"></i>
+                                                                    {{ $item->article->id_eetc }}</p>
+                                                            @endif
+                                                            @if (!empty($item->article->id_zona))
+                                                                <p class=" "><i
+                                                                        class="text-gray-400  fas fa-key"></i>
+                                                                    {{ $item->article->id_zona }}</p>
+                                                            @endif
+
+                                                        </td>
+
+
+                                                        <td class="text-sm">
+                                                            {{ $item['quantity'] }}
+                                                        </td>
+                                                        <td class="w-20 text-xs">
+
+                                                            <div class="form-floating mb-2">
+                                                                <input wire:model="adjustments.{{ $item['id'] }}"
+                                                                       wire:change="saveAdjustment('{{ $item['id'] }}', $event.target.value, {{ $item }})"
+                                                                       type="number"
+                                                                       class="form-control rounded-md"
+                                                                       name="adjustment"
+                                                                       id="floatingcod_document"
+                                                                       placeholder="Cantidad de ajuste"
+                                                                       aria-describedby="floatingcod_documentHelp" />
+                                                                <label for="floatingcod_document">Ajuste</label>
+                                                                <span class="form-floating-focused"></span>
+                                                                <x-jet-input-error for="adjustment" />
+                                                            </div>
+
+                                                     
+
+                                                        <td>
+                                                            {{-- <label>{{ $this->updatedQuantityTotal($item['quantity'], $adjustments[$item['id']] ?? 0) }}</label> --}}
+                                                    
+                                                        </td>
+
+
+                                                        <td>
+
+
+
+
+
+
+                                                            
+                                                            <div class="dropdown">
+                                                                <button type="button"
+                                                                    class="btn p-0 dropdown-toggle hide-arrow"
+                                                                    data-bs-toggle="dropdown">
+                                                                    <i class="mdi mdi-dots-vertical"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+
+
+
+                                                                    <div wire:click="removeIttem({{ $key }})"
+                                                                        class=" text-red-400 hover:text-red-600 cursor-pointer">
+                                                                        <p class="text-xl flex justify-center">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                        </p>
+                                                                        <p
+                                                                            class=" text-red-400 hover:text-red-600 text-md flex justify-center">
+                                                                            Borrar
                                                                         </p>
                                                                     </div>
-                                                                </div>
-
-
-                                                            </td>
-                                                            <td class="w-36 py-2 text-sm">
-
-
-
-
-                                                                @if (!empty($item->article->id_dopp))
-                                                                    <p class=" "><i
-                                                                            class="text-blue-500  fas fa-key"></i>
-                                                                        {{ $item->article->id_dopp }}</p>
-                                                                @endif
-                                                                @if (!empty($item->article->id_eetc))
-                                                                    <p class=" "><i
-                                                                            class="text-yellow-400  fas fa-key"></i>
-                                                                        {{ $item->article->id_eetc }}</p>
-                                                                @endif
-                                                                @if (!empty($item->article->id_zona))
-                                                                    <p class=" "><i
-                                                                            class="text-gray-400  fas fa-key"></i>
-                                                                        {{ $item->article->id_zona }}</p>
-                                                                @endif
-
-                                                            </td>
-
-
-                                                            <td class="text-sm">
-                                                                {{ $item['quantity'] }}
-                                                            </td>
-                                                            <td class="w-20 text-xs">
-                                                                <div class="form-floating mb-2">
-                                                                    <input wire:model="adjustments.{{ $item['id'] }}" type="number"
-                                                                        class="form-control rounded-md " name="purchase_description"
-                                                                        id="floatingcod_document" placeholder="Cantidad de ajuste"
-                                                                        aria-describedby="floatingcod_documentHelp" />
-                                                                    <label for="floatingcod_document">Ajuste</label>
-                                                                    <span class="form-floating-focused"></span>
-                                                                    <x-jet-input-error for="purchase_description" />
-                    
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                                <label>{{ $this->updatedQuantityTotal($item['quantity'], $adjustments[$item['id']] ?? 0) }}</label>
-                                                                {{-- <label for="">
-                                                                    {{ $this->updatedQuantityTotal($item['quantity'], $adjust) }}
-                                                                </label> --}}
-                                                            </td>
-
-
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <button type="button"
-                                                                        class="btn p-0 dropdown-toggle hide-arrow"
-                                                                        data-bs-toggle="dropdown">
-                                                                        <i class="mdi mdi-dots-vertical"></i>
-                                                                    </button>
-                                                                    <div class="dropdown-menu">
-
-
-
-                                                                        <div wire:click="removeIttem({{ $key }})"
-                                                                            class=" text-red-400 hover:text-red-600 cursor-pointer">
-                                                                            <p class="text-xl flex justify-center">
-                                                                                <i class="fas fa-trash-alt"></i>
-                                                                            </p>
-                                                                            <p
-                                                                                class=" text-red-400 hover:text-red-600 text-md flex justify-center">
-                                                                                Borrar
-                                                                            </p>
-                                                                        </div>
-                                                                        {{-- <a class="dropdown-item"
+                                                                    {{-- <a class="dropdown-item"
                                             href="{{ route('admin.articles.edit', $item->id) }}"><i
                                                 class="mdi mdi-pencil-outline me-1"></i>
                                             Edit</a> --}}
 
-                                                                    </div>
                                                                 </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
 
 
 
@@ -458,18 +469,18 @@
 
 
 
-                                            </table>
-                                        @else
-                                            <div class="form-control px-6 py-4">
-                                                No hay ningún registro agregado, porfavor agregue almenos 1 registro
-                                                para un nuevo ingreso
-                                            </div>
-                                            <x-jet-input-error for="selectedArticles" />
-                                        @endif
+                                        </table>
+                                    @else
+                                        <div class="form-control px-6 py-4">
+                                            No hay ningún registro agregado, porfavor agregue almenos 1 registro
+                                            para un nuevo ingreso
+                                        </div>
+                                        <x-jet-input-error for="selectedArticles" />
+                                    @endif
 
-                                        <!-- Paginación de la tabla -->
+                                    <!-- Paginación de la tabla -->
 
-                                        {{-- @if ($purchaseDetails->hasPages())
+                                    {{-- @if ($purchaseDetails->hasPages())
                             <div class=" form-control px-6 py-4">
                                 <span class="form-control  ">{{ $purchaseDetails->links() }}</span>
                             </div>
@@ -487,7 +498,7 @@
 
 
 
-                                        <!--/ Hoverable Table rows -->
+                                    <!--/ Hoverable Table rows -->
 
 
 
@@ -499,14 +510,14 @@
 
 
 
-                                    </div>
+                                </div>
 
-                                    <!-- / Content -->
+                                <!-- / Content -->
 
-                                    <div class="d-flex justify-content-end mt-4 align-items-sm-center">
+                                <div class="d-flex justify-content-end mt-4 align-items-sm-center">
 
 
-                                        {{-- <button wire:click="clearSelectedArticles" class="dt-button add-new btn btn-danger ms-n1" tabindex="0"
+                                    {{-- <button wire:click="clearSelectedArticles" class="dt-button add-new btn btn-danger ms-n1" tabindex="0"
                                aria-controls="DataTables_Table_0" type="button"><i class="px-2 fas fa-trash"></i><span
                                        class="d-none d-sm-inline-block">
 
@@ -518,243 +529,55 @@
 
 
 
-                                        <div>
-                                            <!-- Botón para eliminar todo el array de la sesión con confirmación -->
-                                            {{-- <button wire:click="confirmClear">Eliminar Todo</button> --}}
+                                    <div>
+                                        <!-- Botón para eliminar todo el array de la sesión con confirmación -->
+                                        {{-- <button wire:click="confirmClear">Eliminar Todo</button> --}}
 
 
-                                            <!-- Mostrar el mensaje de confirmación si $confirmingClear es true -->
-                                            @if ($confirmingClear)
-                                                <div class="px-4">
-                                                    ¿Estás seguro de que deseas eliminar todos los artículos?
-                                                    <button wire:click="clearSelectedArticles">Sí, eliminar</button>
-                                                    <button wire:click="cancelClear">Cancelar</button>
-                                                </div>
-                                            @endif
-
-
-
-                                        </div>
-                                        <button wire:click="confirmClear"
-                                            class="dt-button add-new btn btn-danger ms-n1" tabindex="0"
-                                            aria-controls="DataTables_Table_0" type="button"><i
-                                                class="px-2 fas fa-trash"></i><span class="d-none d-sm-inline-block">
-
-                                                Eliminar lista
-
-                                            </span></span>
-                                        </button>
-
-                                    </div>
-
-                                    {{-- Star inpunt buscador dentro del array de la lista --}}
-
-
-                                    {{-- <div class="me-5 ms-n2">
-                                    <div id="DataTables_Table_0_filter" class="mx-4 dataTables_filter ">
-    
-                                        <label>
-    
-    
-    
-    
-                                            <div class="input-group input-group-floating w-full">
-                                               
-    
-                                                <span class="input-group-text "><a
-                                                        class="cursor-pointer hover:text-white " wire:click="searchArray">
-                                                        Buscar </a> </span>
-    
-                                                <div class="form-floating w-full">
-                                                    <input wire:model.defer="search" type="text" class="form-control "
-                                                        id="basic-addon21" placeholder="¿Que estas buscando?..."
-                                                        aria-label="Username" aria-describedby="basic-addon21" />
-                                                    <label for="basic-addon21"> Busca por ID´s del articulo dentro
-                                                        la tabla</label>
-                                                </div>
-                                                <span class="form-floating-focused"></span>
+                                        <!-- Mostrar el mensaje de confirmación si $confirmingClear es true -->
+                                        @if ($confirmingClear)
+                                            <div class="px-4">
+                                                ¿Estás seguro de que deseas eliminar todos los artículos?
+                                                <button wire:click="clearSelectedArticles">Sí, eliminar</button>
+                                                <button wire:click="cancelClear">Cancelar</button>
                                             </div>
-    
-    
-                                        </label>
-                                    </div>
-                                </div>
-     --}}
+                                        @endif
 
 
-
-
-                                </div>
-                                <!-- / Content -->
-
-
-
-                                <!-- Content wrapper -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                {{-- info art --}}
-                                {{-- BUSCADOR SEARCH-COUNT  BUSCA LOS ARTICULOS  --}}
-                                <p class="pt-4"><strong>Agrega artículos para el nuevo registros de ingreso</strong>
-                                </p>
-                                <div class="col-span-12 md:col-span-7 mt-2 py-2  ">
-                                    <div class="mx-4">
-
-                                        @livewire('search-count')
-
-                                        <x-jet-input-error class="mt-1" for="id_art" />
 
                                     </div>
+                                    <button wire:click="confirmClear" class="dt-button add-new btn btn-danger ms-n1"
+                                        tabindex="0" aria-controls="DataTables_Table_0" type="button"><i
+                                            class="px-2 fas fa-trash"></i><span class="d-none d-sm-inline-block">
 
+                                            Eliminar lista
 
-
-
-
-
-
-
-                                    <div class="card-body">
-                                        <form class="form-repeater" data-select2-id="34">
-                                            <div data-repeater-list="group-a" data-select2-id="33">
-                                                <div data-repeater-item="" data-select2-id="32">
-                                                    <div class="row mb-3 mb-sm-0" data-select2-id="31">
-                                                        <div class="mb-3 col-sm-4" data-select2-id="30">
-
-                                                            <div class="form-floating">
-                                                                <input wire:model.defer="quantity"
-                                                                    placeholder="Ingrese la cantidad..."
-                                                                    type="text" class="form-control rounded-lg"
-                                                                    id="qty"
-                                                                    aria-describedby="floatingInputFilledHelp" />
-                                                                <button wire:click="$set('quantity', '')"
-                                                                    class="absolute inset-y-0 -right-1  p-3 rounded-r-lg flex items-center bg-blue-500 text-white focus:outline-none hover:text-gray-600 transition-colors"
-                                                                    type="button">
-                                                                    <i class="text-md fas fa-times"></i>
-                                                                </button>
-                                                                <label for="floatingInputFilled">Cantidad o stock del
-                                                                    artículo para el registro</label>
-                                                                <span class="form-floating-focused"></span>
-                                                            </div>
-                                                            <div id="floatingInputFilledHelp" class="form-text">
-                                                                Escriba la cantidad para el ingreso
-                                                            </div>
-
-                                                            <x-jet-input-error for="quantity" />
-                                                        </div>
-                                                        <div>
-                                                            <button wire:click.prevent="addArticle()"
-                                                                class="btn btn-primary waves-effect waves-light"
-                                                                data-repeater-create="">Add
-                                                                article</button>
-                                                        </div>
-                                                        <div class="mb-3 col-sm-8">
-                                                            <div class="form-floating form-floating-outline">
-
-                                                                @livewire('info-article')
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{-- <div>
-                                <button wire:click.prevent="addArticle()"
-                                class="btn btn-primary waves-effect waves-light" data-repeater-create="">Add
-                                article</button>
-                            </div> --}}
-                                        </form>
-                                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                        </span></span>
+                                    </button>
 
                                 </div>
 
 
-                                {{-- <div class="flex justify-items-stretch mt-6 ">
-    
-                <div>
-    
-                    <div class="pt-2 flex items-center">
-    
-                        <div class="relative flex-grow">
-                            <x-jet-label class="px-2 text-xl" value="Cantidad:" />
-                            <x-jet-input
-                                class="px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:border-green-400"
-                                type="text" wire:model.defer="quantity"
-                                placeholder="Ingrese la cantidad..." />
-    
-                            <button wire:click="$set('quantity', '')"
-                                class="absolute inset-y-0 right-0 px-3 py-2  text-gray-600 hover:text-green-800 focus:outline-none rounded-r-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 5.293a1 1 0 011.414 0L10 8.586l3.293-3.293a1 1 0 111.414 1.414L11.414 10l3.293 3.293a1 1 0 01-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586 10 5.293 6.707a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <x-jet-input-error for="quantity" />
-    
-                </div>
-    
-    
-    
-    
-    
-    
-    
-                <div class="col-span-12 md:col-span-2 m-6">
-                    <x-button-enlace color="blue" class="px-2 flex w-full justify-center items-center "
-                        wire:click.prevent="addArticle()">AGREGRAR ITEM (Temporal)
-    
-                    </x-button-enlace>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                </div>
-            </div> --}}
-                                <div class="col-span-12 md:col-span-5 pb-2">
-                                    {{-- @livewire('info-article') --}}
-
-                                </div>
-
-
-
-
-
-
-                                {{-- END info art --}}
-                                <!--End component -->
                             </div>
+                            <!-- / Content -->
+
+
+
+                            <!-- Content wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!--End content -->
+                        </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%%%%%%% END LISTA DE ARTICULOS DETALLES %%%%%%%%%%%%%%%%%%%% --}}
 
