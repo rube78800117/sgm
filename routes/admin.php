@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdjustmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Livewire\Admin\ShowArticles;
@@ -28,6 +29,7 @@ use App\Http\Livewire\Admin\CreateCounts;
 use App\Http\Livewire\Admin\IndexPurchase;
 use App\Http\Livewire\Admin\ShowSector;
 use Brian2694\Toastr\Facades\Toastr;
+
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
@@ -89,7 +91,7 @@ Route::get('counts/create', [CountController::class, 'create'])->name('admin.cou
 Route::get('counts', [CountController::class, 'index'])->name('admin.counts.index');
 Route::get('counts/{count}', [CountController::class, 'show'])->name('admin.counts.show');
 
-
+Route::get('adjustment/create', [AdjustmentController::class, 'create'])->name('admin.adjustment.create');
 // Route::get('purchase/{purchase}', [PurchaseController::class, 'show'])
 //     ->name('admin.purchases.show');
 

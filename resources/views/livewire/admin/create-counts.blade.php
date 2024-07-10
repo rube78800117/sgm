@@ -31,7 +31,7 @@
 
 
                           
-                                <div class="   mb-1 gap-4">
+                                <div class="p-4   mb-1 gap-4">
 
 
 
@@ -102,14 +102,10 @@
 
 
 
-
-
-
-
-
                             <div class="form-floating mb-2">
                                 <select wire:model="lineselect" placeholder="Tipo Documento" name="lineselect"
                                     class="form-select" id="lineselect" aria-label="Floating label select example">
+                                    <option value="" selected>Seleccione una Linea</option>
                                     @foreach ($lines as $line)
                                         <option value="{{ $line->id }}">{{ $line->name }}</option>
                                     @endforeach
@@ -118,6 +114,10 @@
                                 <span class="form-floating-focused"></span>
                                 <x-jet-input-error for="lineselect" />
                             </div>
+
+
+
+
 
 
 

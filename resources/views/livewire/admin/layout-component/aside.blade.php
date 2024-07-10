@@ -307,6 +307,11 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="{{ route('admin.adjustment.create') }}" class="menu-link">
+                            <div data-i18n="Profile">Ajustes de Stock</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="{{ route('admin.counts.create') }}" class="menu-link">
                             <div data-i18n="Profile">Nuevo relevamiento</div>
                         </a>

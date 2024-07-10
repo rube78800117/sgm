@@ -1,5 +1,6 @@
-        <!-- Content wrapper -->
-        <div class="content-wrapper">
+     
+<div class="content-wrapper">  
+     <!-- Content wrapper -->
             <!-- Content -->
             <div class=" px-2 sm:mt-10 sm:px-8 flex-grow-1 container-p-y"> 
 
@@ -251,6 +252,7 @@
                         <div class="form-floating mb-2">
                             <select wire:model="lineselect" placeholder="Tipo Documento" name="lineselect"
                                 class="form-select" id="lineselect" aria-label="Floating label select example">
+                                
                                 @foreach ($lines as $line)
                                     <option value="{{ $line->id }}">{{ $line->name }}</option>
                                 @endforeach
