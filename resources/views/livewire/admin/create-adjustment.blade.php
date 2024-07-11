@@ -199,6 +199,17 @@
                                 <span class="form-floating-focused"></span>
                                 <x-jet-input-error for="warehouseselect" />
                             </div>
+                            <div>
+
+                                {{$this->linewarehouse}}
+@foreach ( $sessionData as $item)
+{{$item['adjustments']}}
+@endforeach
+                        
+                                @foreach ($adjustments as $item)
+                                    {{$item}}
+                                @endforeach
+                            </div>
 
 
 
@@ -403,7 +414,7 @@
 
                                                             <div class="form-floating mb-2">
                                                                 <input wire:model="adjustments.{{ $item['id'] }}"
-                                                                       wire:change="saveAdjustment('{{ $item['id'] }}', $event.target.value, {{ $item }})"
+                                                                     
                                                                        type="number"
                                                                        class="form-control rounded-md"
                                                                        name="adjustment"
@@ -418,7 +429,7 @@
                                                      
 
                                                         <td>
-                                                            {{-- <label>{{ $this->updatedQuantityTotal($item['quantity'], $adjustments[$item['id']] ?? 0) }}</label> --}}
+                                                            <label>{{ $this->updatedQuantityTotal($item['quantity'], $adjustments[$item['id']] ?? 0) }}</label>
                                                     
                                                         </td>
 
@@ -432,6 +443,7 @@
 
                                                             
                                                             <div class="dropdown">
+                                                               
                                                                 <button type="button"
                                                                     class="btn p-0 dropdown-toggle hide-arrow"
                                                                     data-bs-toggle="dropdown">
@@ -538,7 +550,7 @@
                                         @if ($confirmingClear)
                                             <div class="px-4">
                                                 ¿Estás seguro de que deseas eliminar todos los artículos?
-                                                <button wire:click="clearSelectedArticles">Sí, eliminar</button>
+                                                <button wire:click="clearAdjustments">Sí, eliminar</button>
                                                 <button wire:click="cancelClear">Cancelar</button>
                                             </div>
                                         @endif
@@ -583,7 +595,7 @@
 
 
                     <div class=" justify-end inline-block sm:mr-2 sm:m-2">
-                        <button wire:click="storeOrder" type="button"
+                        <button wire:click="storeAdjustments" type="button"
                             class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg flex items-center">
                             <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">

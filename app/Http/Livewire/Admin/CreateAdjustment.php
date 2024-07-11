@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\ArticleWarehouse;
+use App\Models\CountDetail;
 use Livewire\Component;
 use App\Models\Line;
 use App\Models\Station;
@@ -14,7 +15,7 @@ class CreateAdjustment extends Component
     public $search;
     public $lines;
     public $selectedArticles;
-    public $confirmingClear;
+    
     public $descriptionCount;
     public $lineselect, $stationselect, $warehouseselect;
     public $stations, $warehouses, $warehouse_id, $warehouse;
@@ -22,6 +23,9 @@ class CreateAdjustment extends Component
     public $quantityTotal, $adjust, $lineSelected, $linewarehouse;
     public $items = []; // Aquí se supone que tienes una colección de items desde tu consulta
     public $adjustmentArticles = [];
+    public $sessionData=[];
+    public $data;
+    public $confirmingClear = false;
   
     // Esta variable almacenará los ajustes para cada item
     public $adjustments = [];
@@ -35,16 +39,25 @@ class CreateAdjustment extends Component
         $this->lines = Line::all();
 
         // Recuperar la colección 'result' de la sesión, si no existe se asigna una colección vacía
-
-        $this->adjustmentArticles = session()->get('adjustmentArticles', []);
+       // Recuperar el valor de 'linewarehouse' de la sesión
+    $this->linewarehouse = session()->get('linewarehouse');
+        $this->adjustments = session()->get('adjustments', []);
     }
 
     // Para recuperar el color de la línea para el icono cabina
     public function updatedLineselect($line_id)
     {
-        $this->lineSelected = Line::where('id', $line_id)->first();
-        $this->updatedLinewarehouse($this->lineSelected->id);
-        $this->linewarehouse = $this->lineSelected->id;
+        $this->lineSelected = Line::find($line_id); // Buscar la línea seleccionada por su ID
+
+        if ($this->lineSelected) {
+            $this->updatedLinewarehouse($this->lineSelected->id); // Actualizar el almacén según la línea seleccionada
+            $this->linewarehouse = $this->lineSelected->id; // Asignar el ID del almacén seleccionado
+    
+            session()->put('linewarehouse', $this->lineSelected->id); // Guardar el ID del almacén en la sesión
+        } else {
+            // Manejo de errores si no se encuentra la línea seleccionada
+            session()->flash('error', 'Selected line not found.');
+        }
     }
 
     public function updatedLinewarehouse($line_id)
@@ -100,27 +113,102 @@ class CreateAdjustment extends Component
     }
 
     public function updatedQuantityTotal($quantity, $adjustment)
-    {
-        // Implementa la lógica para calcular el total ajustado según tus necesidades
+    {  
+
+
+
+
+          // Verificar que el ajuste sea numérico, no sea cero, y tenga hasta dos decimales
+    if (is_numeric($adjustment) && $adjustment != 0 && preg_match('/^-?\d+(\.\d{1,2})?$/', $adjustment)) {
+        // Actualiza la sesión con los ajustes actuales
+
+        $data = [
+            'adjustments' => $adjustment,
+            'linewarehouse' => $this->linewarehouse,
+            // Puedes añadir más variables aquí si lo necesitas
+        ];
+        
+        // Guarda el arreglo completo en la sesión
+        session()->put('sessionData', $data);
+
+     
+
+        session()->put('adjustments', $this->adjustments, $this->linewarehouse);
+        
+        // Calcular y devolver el total ajustado
         return $quantity + $adjustment;
     }
+    
+        
+        // if (is_numeric($adjustment) && is_int($adjustment*100) && ($adjustment <= 0 || $adjustment >= -99.99)) {
+        //      session()->put('adjustments', $this->adjustments);
+        // // Implementa la lógica para calcular el total ajustado según tus necesidades
+        // return $quantity + $adjustment;
+        // }
+      
 
+    }
+
+
+
+    public function confirmClear()
+    {
+        $this->confirmingClear = true;
+    }
+
+    public function cancelClear()
+    {
+        $this->confirmingClear = false;
+    }
+
+    public function clearAdjustments()
+    {
+        // Vaciar el array de la sesión
+        session()->forget('adjustments');
+        $this->adjustments = [];
+        $this->confirmingClear = false;
+    }
+
+
+    public function storeAdjustments()
+    {
+        // Obtener los ajustes actuales de la sesión
+        $adjustments = session()->get('adjustments', []);
+    
+        // Aquí puedes implementar la lógica para guardar los ajustes en la base de datos u otro almacenamiento permanente
+        // Por ejemplo, si estás utilizando Eloquent y tienes un modelo para los ajustes, podrías hacer algo como:
+ 
+
+
+    
+        // Limpiar los ajustes de la sesión después de guardarlos
+        // session()->forget('adjustments');
+    
+        // Opcional: Puedes mostrar un mensaje de éxito o realizar otras operaciones aquí
+        session()->flash('message', 'Adjustments stored successfully.');
+    }
 
     public function saveAdjustment($itemId, $adjustmentValue, $item)
     {
 
         // Actualiza o añade el ajuste para el artículo específico
-        $this->adjustments[$itemId] = [
-            'key' => $itemId,
-            'article_id'=> $item['article_id'],
-            'warehouse_id' => $item['warehouse_id' ],
-            'quantity'=> $item['quantity'],
-            'adjustment' => floatval($adjustmentValue),
 
-        ];
+        
+
+
+
+
+        // $this->adjustments[$itemId] = [
+        //     'key' => $itemId,
+        //     'article_id'=> $item['article_id'],
+        //     'warehouse_id' => $item['warehouse_id' ],
+        //     'quantity'=> $item['quantity'],
+        //     'adjustment' => floatval($adjustmentValue),
+
+        // ];
 
         // Opcional: Puedes mostrar un mensaje de éxito o realizar otras operaciones aquí
-        session()->put('>adjustments', $this->adjustments);
-        dd($this->adjustments);
+        // session()->put('adjustments', $this->adjustments);
+        // dd($this->adjustments);
     }
 }
