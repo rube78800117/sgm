@@ -35,7 +35,7 @@ use App\Models\User;
 
 // Route::get('',[ HomeController::class, 'index']);
 Route::get('/', ShowArticles::class)->name('admin.index');
-Route::get('articles/pdf', [ArticleController::class, 'pdf'])->name('admin.pdf.articlesPdf');
+Route::get('articles/pdf', [ArticleController::class, 'pdf'])->name('admin.pdf.articlesPdfOther');
 Route::get('ingresos/pdf', [IndexPurchase::class, 'pdf'])->name('admin.pdf.purchasesPdf');
 Route::get('articles/create', CreateArticle::class)->name('admin.articles.create');
 Route::get('brands/create', CreateBrand::class)->name('admin.brands.create');
@@ -120,7 +120,9 @@ Route::get('redirect', function () {
 
 Route::get('movements', [ OrderMovementController::class, 'index' ] )->name('admin.orders.movements.index');
 
-
+// RUTAS PDF-------------------------------------------------------------------
+Route::get('movements', [ OrderMovementController::class, 'index' ] )->name('admin.orders.movements.index');
+Route::get('articles/pdf/qr', [ShowArticles::class, 'pdf'])->name('admin.pdf.articlesPdf');
 
 
 

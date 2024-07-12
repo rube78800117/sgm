@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\ArticleWarehouse;
+use App\Models\Count;
 use App\Models\CountDetail;
 use Livewire\Component;
 use App\Models\Line;
 use App\Models\Station;
 use App\Models\Warehouse;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\WithPagination;
 
@@ -36,7 +39,8 @@ class CreateAdjustment extends Component
     public $selectStationName;
     public $selectWarehouseName;
     protected $resultTotal;
-  
+    public $selectWarehousId;
+    public $selectLineId;
 
     // Esta variable almacenará los ajustes para cada item
     public $adjustments = [];
@@ -58,18 +62,17 @@ class CreateAdjustment extends Component
         $this->selectedLine = Line::find($this->linewarehouse2);
         $this->selectStation = Station::find($this->stationselect2);
         if (!is_null($this->warehouseselect2)) {
-        $this->selectWarehouse = Warehouse::find($this->warehouseselect2);
-         }else{
+            $this->selectWarehouse = Warehouse::find($this->warehouseselect2);
+        } else {
             $this->selectWarehouse = Warehouse::with(['station.line'])->first();
+        }
 
-         }
+        $this->selectLineColor = $this->selectWarehouse->station?->line?->color;
+        $this->selectLineName = $this->selectWarehouse->station?->line?->name;
+        $this->selectStationName = $this->selectWarehouse->station?->name;
+        $this->selectWarehouseName = $this->selectWarehouse->name;
+        $this->selectWarehousId = $this->selectWarehouse->id;
 
-            $this->selectLineColor = $this->selectWarehouse->station?->line?->color;
-            $this->selectLineName = $this->selectWarehouse->station?->line?->name;
-            $this->selectStationName = $this->selectWarehouse->station?->name;
-            $this->selectWarehouseName = $this->selectWarehouse->name;
-       
-      
         $this->adjustments = session()->get('adjustments', []);
     }
 
@@ -107,10 +110,13 @@ class CreateAdjustment extends Component
         $this->warehouse_id = $warehouse_id;
         $this->warehouse = Warehouse::where('id', 'LIKE', $this->warehouse_id)->first();
         $warehouse = $this->warehouse;
+        $this->selectLineId = $this->warehouse->station->line->id;
         $this->selectLineColor = $this->warehouse->station->line->color;
         $this->selectLineName = $this->warehouse->station->line->name;
         $this->selectStationName = $this->warehouse->station->name;
         $this->selectWarehouseName = $this->warehouse->name;
+        $this->selectWarehousId = $this->warehouse->id;
+        $this->selectLineId = $this->warehouse->station->line->id;
 
         session()->forget('adjustments'); // Limpiar variable de sssion ajusteslos ajustes
         $this->adjustments = [];
@@ -121,10 +127,9 @@ class CreateAdjustment extends Component
     {
         $result = $this->stockWarehouse();
         $resultFound = $result->total();
-      
+
         return view('livewire.admin.create-adjustment', compact('result', 'resultFound'));
     }
-
 
     public function updatedSearch()
     {
@@ -143,38 +148,37 @@ class CreateAdjustment extends Component
             if (!$this->warehouseselect2) {
                 // Retornar una colección paginada vacía si no hay selección de almacén
                 return ArticleWarehouse::where('warehouse_id', 0)->paginate(10);
-                
-            }else{
-                $this->resultTotal=ArticleWarehouse::where('warehouse_id', $this->warehouseselect2);
+            } else {
+                $this->resultTotal = ArticleWarehouse::where('warehouse_id', $this->warehouseselect2);
             }
-
 
             // Realizar la consulta para obtener los artículos del almacén seleccionado y aplicar el filtro de búsqueda
             return ArticleWarehouse::where('warehouse_id', $this->warehouseselect2)
                 ->whereHas('article', function ($query) {
-                    $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('id_dopp', 'like', '%' . $this->search . '%')
-                    ->orWhere('id_zona', 'like', '%' . $this->search . '%')
-                    ->orWhere('id_eetc', 'like', '%' . $this->search . '%');
+                    $query
+                        ->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_dopp', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_zona', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_eetc', 'like', '%' . $this->search . '%');
                 })
                 ->paginate($this->nItems); // Cambia 10 por el número de resultados por página que desees
-
         } else {
             // Validar que $this->warehouseselect tiene un valor antes de realizar la consulta
             if (!$this->warehouseselect) {
                 // Retornar una colección paginada vacía si no hay selección de almacén
                 return ArticleWarehouse::where('warehouse_id', 0)->paginate(10);
-            }else {
-                $this->resultTotal=ArticleWarehouse::where('warehouse_id', $this->warehouseselect);
+            } else {
+                $this->resultTotal = ArticleWarehouse::where('warehouse_id', $this->warehouseselect);
             }
 
             // Realizar la consulta para obtener los artículos del almacén seleccionado y aplicar el filtro de búsqueda
             return ArticleWarehouse::where('warehouse_id', $this->warehouseselect)
                 ->whereHas('article', function ($query) {
-                    $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('id_dopp', 'like', '%' . $this->search . '%')
-                    ->orWhere('id_zona', 'like', '%' . $this->search . '%')
-                    ->orWhere('id_eetc', 'like', '%' . $this->search . '%');
+                    $query
+                        ->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_dopp', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_zona', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_eetc', 'like', '%' . $this->search . '%');
                 })
                 ->paginate($this->nItems); // Cambia 10 por el número de resultados por página que desees
         }
@@ -191,16 +195,17 @@ class CreateAdjustment extends Component
         if (is_numeric($adjustment) && $adjustment != 0 && preg_match('/^-?\d+(\.\d{1,2})?$/', $adjustment)) {
             // Actualiza la sesión con los ajustes actuales
 
-            $data = [
-                'adjustments' => $adjustment,
-                'linewarehouse' => $this->linewarehouse,
-                // Puedes añadir más variables aquí si lo necesitas
-            ];
+            // $data = [
+            //     'adjustments' => $adjustment,
+            //     'linewarehouse' => $this->linewarehouse,
+            //     // Puedes añadir más variables aquí si lo necesitas
+            // ];
 
             // Guarda el arreglo completo en la sesión
-            session()->put('sessionData', $data);
+            // session()->put('sessionData', $data);
 
-            session()->put('adjustments', $this->adjustments, $this->linewarehouse);
+            session()->put('adjustments', $this->adjustments);
+
 
             // Calcular y devolver el total ajustado
             return $quantity + $adjustment;
@@ -235,7 +240,9 @@ class CreateAdjustment extends Component
     public function storeAdjustments()
     {
         // Obtener los ajustes actuales de la sesión
-        $adjustments = session()->get('adjustments', []);
+        // $adjustments = session()->get('adjustments', []);
+
+        $this->storeOrder();
 
         // Aquí puedes implementar la lógica para guardar los ajustes en la base de datos u otro almacenamiento permanente
         // Por ejemplo, si estás utilizando Eloquent y tienes un modelo para los ajustes, podrías hacer algo como:
@@ -243,8 +250,8 @@ class CreateAdjustment extends Component
         // Limpiar los ajustes de la sesión después de guardarlos
         // session()->forget('adjustments');
 
-        // Opcional: Puedes mostrar un mensaje de éxito o realizar otras operaciones aquí
-        session()->flash('message', 'Adjustments stored successfully.');
+        // // Opcional: Puedes mostrar un mensaje de éxito o realizar otras operaciones aquí
+        // session()->flash('message', 'Adjustments stored successfully.');
     }
 
     public function saveAdjustment($itemId, $adjustmentValue, $item)
@@ -263,5 +270,81 @@ class CreateAdjustment extends Component
         // Opcional: Puedes mostrar un mensaje de éxito o realizar otras operaciones aquí
         // session()->put('adjustments', $this->adjustments);
         // dd($this->adjustments);
+    }
+
+    public function storeOrder()
+    {
+        try {
+            // $this->validate([
+            //     'purchase_description' => 'required',
+            //     'descriptionCount' => 'required',
+            //     'linewarehouse' => 'required',
+            //     'stationselect' => 'required',
+            //     'warehouseselect' => 'required',
+            //     'state_id' => 'required',
+            //     'selectedArticles' => 'required',
+            // ]);
+            // $this->adjustments = session()->get('adjustments', []);
+            // foreach ($this->adjustments as $key => $value) {
+            //     echo "La clave es: $key y el valor es: $value <br>";
+            // }
+            // si la validación es exitosa:
+            // dd($adjustments);
+            DB::transaction(function () {
+                $order = new Count();
+                $order->name = 'Ajuste de inventario';
+                $order->description = 'Ajuste de stock de almacen';
+                $order->observation = 'S/N';
+                $order->user_id = auth()->user()->id;
+                $order->status = 3;
+                $order->warehouse_id = $this->selectWarehousId;
+                $order->line_id = $this->selectLineId;
+                $order->closing_date = Carbon::today();
+
+                $order->save();
+                $this->adjustments = session()->get('adjustments', []);
+            //  dd($this->adjustments);
+            $results = []; // Inicializa un array vacío para almacenar todos los resultados
+
+            // Obtener los datos necesarios en una sola consulta
+            $adjustmentsData = DB::table('article_warehouse')
+                ->join('articles', 'article_warehouse.article_id', '=', 'articles.id')
+                ->whereIn('article_warehouse.id', array_keys($this->adjustments))
+                ->select('article_warehouse.id as key', 'article_warehouse.article_id', 'articles.name as article_name')
+                ->get();
+            
+            // Recorrer los datos obtenidos y construir el array $results
+            foreach ($adjustmentsData as $adjustment) {
+                $results[] = [
+                    'count_id' => $order['id'], // Asegúrate de que $order esté definido y accesible
+                    'quantity' => $this->adjustments[$adjustment->key], // Obtener la cantidad correspondiente
+                    'article_id' => $adjustment->article_id,
+                    'article_name' => $adjustment->article_name,
+                    'warehouse_id' => $this->selectWarehousId, // Asegúrate de que $this->selectWarehousId esté definido
+                    'warehouse_name' => $this->selectWarehouseName, // Asegúrate de que $this->selectWarehouseName esté definido
+                ];
+            }
+
+                CountDetail::insert($results); //inserta uno a uno los registros resultante del array anterior $results
+
+                $results = collect($results);
+                $results2 = json_decode(json_encode($results)); //convierte array  en una coleccion
+
+                //    increase($results2);
+
+                // Vaciar el array de la sesión después de guardar en la base de datos
+                session()->forget('adjustments');
+                $this->adjustments = [];
+            });
+
+            // Toastr::success('Se guardo correctamente', 'Nuevo Ingreso', ["positionClass" => "toast-top-right"]);
+
+            // $this->alertSuccess();
+            // ambas lineas redireccionan
+            return redirect()->to('admin/counts/create');
+
+            // return redirect('admin/redirect');
+        } catch (ValidationException $e) {
+        }
     }
 }
