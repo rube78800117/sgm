@@ -49,8 +49,13 @@
                                                                     placeholder="Tipo Documento" name="lineselect"
                                                                     class="form-select" id="lineselect"
                                                                     aria-label="Floating label select example">
+                                                                    @if (!is_null($selectedLine) && !is_null($selectedLine->id))
                                                                     <option value="{{ $selectedLine->id }}" selected>
-                                                                        {{ $selectedLine->name }}</option>
+                                                                        {{ $selectedLine->name }}
+                                                                    </option>
+                                                                @endif
+                                                                  
+                                                                        
                                                                     @foreach ($lines as $line)
                                                                         <option value="{{ $line->id }}">
                                                                             {{ $line->name }}

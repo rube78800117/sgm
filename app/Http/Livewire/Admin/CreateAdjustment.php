@@ -57,11 +57,19 @@ class CreateAdjustment extends Component
         $this->warehouseselect2 = session()->get('warehouseselectS');
         $this->selectedLine = Line::find($this->linewarehouse2);
         $this->selectStation = Station::find($this->stationselect2);
+        if (!is_null($this->warehouseselect2)) {
         $this->selectWarehouse = Warehouse::find($this->warehouseselect2);
-        $this->selectLineColor = $this->selectWarehouse->station->line->color;
-        $this->selectLineName = $this->selectWarehouse->station->line->name;
-        $this->selectStationName = $this->selectWarehouse->station->name;
-        $this->selectWarehouseName = $this->selectWarehouse->name;
+         }else{
+            $this->selectWarehouse = Warehouse::with(['station.line'])->first();
+
+         }
+
+            $this->selectLineColor = $this->selectWarehouse->station?->line?->color;
+            $this->selectLineName = $this->selectWarehouse->station?->line?->name;
+            $this->selectStationName = $this->selectWarehouse->station?->name;
+            $this->selectWarehouseName = $this->selectWarehouse->name;
+       
+      
         $this->adjustments = session()->get('adjustments', []);
     }
 
@@ -219,6 +227,7 @@ class CreateAdjustment extends Component
     {
         // Vaciar el array de la sesión
         session()->forget('adjustments');
+        session()->forget('selectWarehouse');
         $this->adjustments = [];
         $this->confirmingClear = false;
     }
