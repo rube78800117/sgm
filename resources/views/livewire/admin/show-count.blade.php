@@ -111,10 +111,10 @@
                                         <div class=" flex items-center">
                                             <div><span class="pr-2">Linea:</span></div>
                                             <div>
-                                                <strong>{{ $count->line->name }}</strong>
+                                                {{-- <strong>{{ $count->line->name }}</strong> --}}
                                             </div>
                                             <div>
-
+{{-- 
 
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -141,7 +141,7 @@
                                                         </g>
 
                                                     </g>
-                                                </svg>
+                                                </svg> --}}
                                             </div>
 
 

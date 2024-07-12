@@ -50,12 +50,13 @@
                                                                     class="form-select" id="lineselect"
                                                                     aria-label="Floating label select example">
                                                                     @if (!is_null($selectedLine) && !is_null($selectedLine->id))
-                                                                    <option value="{{ $selectedLine->id }}" selected>
-                                                                        {{ $selectedLine->name }}
-                                                                    </option>
-                                                                @endif
-                                                                  
-                                                                        
+                                                                        <option value="{{ $selectedLine->id }}"
+                                                                            selected>
+                                                                            {{ $selectedLine->name }}
+                                                                        </option>
+                                                                    @endif
+
+
                                                                     @foreach ($lines as $line)
                                                                         <option value="{{ $line->id }}">
                                                                             {{ $line->name }}
@@ -67,6 +68,10 @@
                                                                     Linea</label>
                                                                 <span class="form-floating-focused"></span>
                                                                 <x-jet-input-error for="lineselect" />
+
+                                                                @foreach ($this->adjustments as $item)
+                                                                    {{ $item }}
+                                                                @endforeach
                                                             </div>
 
 
@@ -278,14 +283,13 @@
                                                     <div class="d-flex align-items-center">
                                                         <h4 class="mb-2 me-1 display-6">
 
-                                          @if (!is_null($this->resultTotal))
-                                              {{ $this->resultTotal->count()}}
-                                          @else
-                                              
-                                          @endif
+                                                            @if (!is_null($this->resultTotal))
+                                                                {{ $this->resultTotal->count() }}
+                                                            @else
+                                                            @endif
 
 
-                                                            </h4>
+                                                        </h4>
                                                         <p class="text-success mb-2">(100%)</p>
                                                     </div>
                                                     <p class="mb-0"></p>
@@ -311,11 +315,9 @@
                                                         <h4 class="mb-2 me-1 display-6">{{ $resultFound }}</h4>
                                                         <p class="text-success mb-2">
                                                             @if (!is_null($this->resultTotal))
-                                                                 {{ (number_format(($resultFound / $this->resultTotal->count()) * 100, 1))}}
-                                                            @else
-                                                                  
+                                                                ({{ number_format(($resultFound / $this->resultTotal->count()) * 100, 1) }}%)
                                                             @endif
-                                                         
+
                                                         </p>
                                                     </div>
                                                     <p class="mb-0"></p>
